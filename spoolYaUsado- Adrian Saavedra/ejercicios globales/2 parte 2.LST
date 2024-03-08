@@ -1,0 +1,722 @@
+SQL> connect adrian
+Conectado.
+SQL> REM 5.- Nombre de los alumnos matriculados en FOL.
+SQL> desc alumnos
+ Nombre                                    ¿Nulo?   Tipo
+ ----------------------------------------- -------- ----------------------------
+ DNI                                       NOT NULL VARCHAR2(10)
+ APENOM                                             VARCHAR2(30)
+ DIREC                                              VARCHAR2(30)
+ POBLA                                              VARCHAR2(15)
+ TELEF                                              VARCHAR2(10)
+
+SQL> desc asignaturas
+ Nombre                                    ¿Nulo?   Tipo
+ ----------------------------------------- -------- ----------------------------
+ COD                                       NOT NULL NUMBER(2)
+ NOMBRE                                             VARCHAR2(25)
+
+SQL> select tables_name from user_tables;
+select tables_name from user_tables
+       *
+ERROR en línea 1:
+ORA-00904: "TABLES_NAME": identificador no válido 
+
+
+SQL> select table_name from user_tables;
+
+TABLE_NAME                                                                      
+------------------------------                                                  
+EQUIPOS                                                                         
+ESTADIOS                                                                        
+KK                                                                              
+TRATAR                                                                          
+MEDICO                                                                          
+PACIENTE                                                                        
+D3                                                                              
+M3                                                                              
+PR0                                                                             
+W0R                                                                             
+VISITANTES                                                                      
+
+TABLE_NAME                                                                      
+------------------------------                                                  
+LIBROS                                                                          
+PERSONAS                                                                        
+ALUMNOS2                                                                        
+DEPART                                                                          
+EMPLE                                                                           
+NOTAS_ALUMNOS                                                                   
+LIBRERIA                                                                        
+ALUMNOS                                                                         
+ASIGNATURAS                                                                     
+NOTAS                                                                           
+
+21 filas seleccionadas.
+
+SQL> desc notas
+ Nombre                                    ¿Nulo?   Tipo
+ ----------------------------------------- -------- ----------------------------
+ DNI                                       NOT NULL VARCHAR2(10)
+ COD                                       NOT NULL NUMBER(2)
+ NOTA                                               NUMBER(2)
+
+SQL> desc notas_alumnos
+ Nombre                                    ¿Nulo?   Tipo
+ ----------------------------------------- -------- ----------------------------
+ NOMBRE_ALUMNO                             NOT NULL VARCHAR2(25)
+ NOTA1                                              NUMBER(2)
+ NOTA2                                              NUMBER(2)
+ NOTA3                                              NUMBER(2)
+
+SQL> SELECT APENOM AS "Nombre del Alumno"
+  2  FROM ALUMNOS
+  3  WHERE DNI IN (SELECT DNI FROM NOTAS WHERE COD IN (SELECT COD FROM ASIGNATURAS WHERE NOMBRE = 'FOL'));
+
+Nombre del Alumno                                                               
+------------------------------                                                  
+Cerrato Vela, Luis                                                              
+D¡az Fern ndez, Mar¡a                                                           
+
+SQL> REM 6.- seleccionar de la tabla emple aquellas filas cuyo apellido empiece por A y el oficio tenga una e en cualquier posici¢n.
+SQL> desc emple
+ Nombre                                    ¿Nulo?   Tipo
+ ----------------------------------------- -------- ----------------------------
+ EMP_NO                                    NOT NULL NUMBER(4)
+ APELLIDO                                           VARCHAR2(10)
+ OFICIO                                             VARCHAR2(10)
+ DIR                                                NUMBER(4)
+ FECHA_ALT                                          DATE
+ SALARIO                                            NUMBER(10)
+ COMISION                                           NUMBER(10)
+ DEPT_NO                                            NUMBER(2)
+
+SQL> SELECT * FROM EMPLE WHERE APELLIDO LIKE 'A%' AND APELLIDO LIKE '%e%';
+
+ninguna fila seleccionada
+
+SQL> SELECT * FROM EMPLE
+  2  ;
+
+    EMP_NO APELLIDO   OFICIO            DIR FECHA_AL    SALARIO   COMISION      
+---------- ---------- ---------- ---------- -------- ---------- ----------      
+   DEPT_NO                                                                      
+----------                                                                      
+      7369 SµNCHEZ    EMPLEADO         7902 17/12/80     104000                 
+        20                                                                      
+                                                                                
+      7499 ARROYO     VENDEDOR         7698 20/02/80     208000      39000      
+        30                                                                      
+                                                                                
+      7521 SALA       VENDEDOR         7698 22/02/81     162500      65000      
+        30                                                                      
+                                                                                
+
+    EMP_NO APELLIDO   OFICIO            DIR FECHA_AL    SALARIO   COMISION      
+---------- ---------- ---------- ---------- -------- ---------- ----------      
+   DEPT_NO                                                                      
+----------                                                                      
+      7566 JIMNEZ    DIRECTOR         7839 02/04/81     386750                 
+        20                                                                      
+                                                                                
+      7654 MARTÖN     VENDEDOR         7698 29/09/81     162500     182000      
+        30                                                                      
+                                                                                
+      7698 NEGRO      DIRECTOR         7839 01/05/81     370500                 
+        30                                                                      
+                                                                                
+
+    EMP_NO APELLIDO   OFICIO            DIR FECHA_AL    SALARIO   COMISION      
+---------- ---------- ---------- ---------- -------- ---------- ----------      
+   DEPT_NO                                                                      
+----------                                                                      
+      7782 CEREZO     DIRECTOR         7839 09/06/81     318500                 
+        10                                                                      
+                                                                                
+      7788 GIL        ANALISTA         7566 09/11/81     390000                 
+        20                                                                      
+                                                                                
+      7839 REY        PRESIDENTE            17/11/81      50000                 
+        10                                                                      
+                                                                                
+
+    EMP_NO APELLIDO   OFICIO            DIR FECHA_AL    SALARIO   COMISION      
+---------- ---------- ---------- ---------- -------- ---------- ----------      
+   DEPT_NO                                                                      
+----------                                                                      
+      7844 TOVAR      VENDEDOR         7698 08/09/81     195000          0      
+        30                                                                      
+                                                                                
+      7876 ALONSO     EMPLEADO         7788 23/09/81     143000                 
+        20                                                                      
+                                                                                
+      7900 JIMENO     EMPLEADO         7698 03/12/81     123500                 
+        30                                                                      
+                                                                                
+
+    EMP_NO APELLIDO   OFICIO            DIR FECHA_AL    SALARIO   COMISION      
+---------- ---------- ---------- ---------- -------- ---------- ----------      
+   DEPT_NO                                                                      
+----------                                                                      
+      7902 FERNµNDEZ  ANALISTA         7566 03/12/81     390000                 
+        20                                                                      
+                                                                                
+      7934 MU¥OZ      EMPLEADO         7782 23/01/82     169000                 
+        10                                                                      
+                                                                                
+
+14 filas seleccionadas.
+
+SQL> SELECT * FROM EMPLE WHERE APELLIDO LIKE 'A%' AND APELLIDO LIKE '%E%';
+
+ninguna fila seleccionada
+
+SQL> SELECT * FROM EMPLE WHERE APELLIDO LIKE 'A%';
+
+    EMP_NO APELLIDO   OFICIO            DIR FECHA_AL    SALARIO   COMISION      
+---------- ---------- ---------- ---------- -------- ---------- ----------      
+   DEPT_NO                                                                      
+----------                                                                      
+      7499 ARROYO     VENDEDOR         7698 20/02/80     208000      39000      
+        30                                                                      
+                                                                                
+      7876 ALONSO     EMPLEADO         7788 23/09/81     143000                 
+        20                                                                      
+                                                                                
+
+SQL> SELECT * FROM EMPLE WHERE APELLIDO LIKE 'A%' AND OFICIO LIKE '%E%';
+
+    EMP_NO APELLIDO   OFICIO            DIR FECHA_AL    SALARIO   COMISION      
+---------- ---------- ---------- ---------- -------- ---------- ----------      
+   DEPT_NO                                                                      
+----------                                                                      
+      7499 ARROYO     VENDEDOR         7698 20/02/80     208000      39000      
+        30                                                                      
+                                                                                
+      7876 ALONSO     EMPLEADO         7788 23/09/81     143000                 
+        20                                                                      
+                                                                                
+
+SQL> REM 7.- Seleccionar el apellido, el oficio y la localidad  de los departamentos donde trabajan los analistas.
+SQL> DESC EMPLE
+ Nombre                                    ¿Nulo?   Tipo
+ ----------------------------------------- -------- ----------------------------
+ EMP_NO                                    NOT NULL NUMBER(4)
+ APELLIDO                                           VARCHAR2(10)
+ OFICIO                                             VARCHAR2(10)
+ DIR                                                NUMBER(4)
+ FECHA_ALT                                          DATE
+ SALARIO                                            NUMBER(10)
+ COMISION                                           NUMBER(10)
+ DEPT_NO                                            NUMBER(2)
+
+SQL> DESC DEPART
+ Nombre                                    ¿Nulo?   Tipo
+ ----------------------------------------- -------- ----------------------------
+ DEPT_NO                                   NOT NULL NUMBER(2)
+ DNOMBRE                                            VARCHAR2(14)
+ LOC                                                VARCHAR2(14)
+
+SQL> SELECT EMPLE.APELLIDO, EMPLE.OFICIO, DEPART.LOC
+  2  FROM EMPLE, DEPART
+  3  WHERE EMPLE.DEPT_NO = DEPART.DEPT_NO
+  4  AND EMPLE.OFICIO = 'ANALISTA';
+
+APELLIDO   OFICIO     LOC                                                       
+---------- ---------- --------------                                            
+GIL        ANALISTA   MADRID                                                    
+FERNµNDEZ  ANALISTA   MADRID                                                    
+
+SQL> REM 8.- Mostrar los empleados (nombre, oficio ,salario y fecha de alta) que desempe¤en el mismo oficio que JIMENEZ o que tengan el salario mayor o igual a FERNANDEZ.
+SQL> SELECT NOMBE, OFICIO, SALARIO, FECHA_ALT FROM EMPLE WHERE OFICIO IN
+  2  (SELECT OFICIO FROM EMPLE WHERE APELLIDO = 'JIMENEZ')
+  3  AND SALARIO >= (SELECT SALARIO FROM EMPLE WHERE APELLIDO = 'FERNANDEZ');
+SELECT NOMBE, OFICIO, SALARIO, FECHA_ALT FROM EMPLE WHERE OFICIO IN
+       *
+ERROR en línea 1:
+ORA-00904: "NOMBE": identificador no válido 
+
+
+SQL> SELECT NOMBRE, OFICIO, SALARIO, FECHA_ALT
+  2  FROM EMPLE
+  3  WHERE OFICIO IN (SELECT OFICIO FROM EMPLE WHERE APELLIDO = 'JIMENEZ')
+  4        AND SALARIO >= (SELECT SALARIO FROM EMPLE WHERE APELLIDO = 'FERNANDEZ');
+SELECT NOMBRE, OFICIO, SALARIO, FECHA_ALT
+       *
+ERROR en línea 1:
+ORA-00904: "NOMBRE": identificador no válido 
+
+
+SQL> SELECT APELLIDO, OFICIO, SALARIO, FECHA_ALT
+  2  FROM EMPLE
+  3  WHERE OFICIO IN (SELECT OFICIO FROM EMPLE WHERE APELLIDO = 'JIMENEZ')
+  4        AND SALARIO >= (SELECT SALARIO FROM EMPLE WHERE APELLIDO = 'FERNANDEZ');
+
+ninguna fila seleccionada
+
+SQL> SELECT DISTINCT OFICIO FROM EMPLE WHERE APELLIDO = 'JIMENEZ';
+
+ninguna fila seleccionada
+
+SQL> SELECT DISTINCT SALARIO FROM EMPLE WHERE APELLIDO = 'FERNANDEZ';
+
+ninguna fila seleccionada
+
+SQL> SELECT * FROM EMPLE
+  2  ;
+
+    EMP_NO APELLIDO   OFICIO            DIR FECHA_AL    SALARIO   COMISION      
+---------- ---------- ---------- ---------- -------- ---------- ----------      
+   DEPT_NO                                                                      
+----------                                                                      
+      7369 SµNCHEZ    EMPLEADO         7902 17/12/80     104000                 
+        20                                                                      
+                                                                                
+      7499 ARROYO     VENDEDOR         7698 20/02/80     208000      39000      
+        30                                                                      
+                                                                                
+      7521 SALA       VENDEDOR         7698 22/02/81     162500      65000      
+        30                                                                      
+                                                                                
+
+    EMP_NO APELLIDO   OFICIO            DIR FECHA_AL    SALARIO   COMISION      
+---------- ---------- ---------- ---------- -------- ---------- ----------      
+   DEPT_NO                                                                      
+----------                                                                      
+      7566 JIMNEZ    DIRECTOR         7839 02/04/81     386750                 
+        20                                                                      
+                                                                                
+      7654 MARTÖN     VENDEDOR         7698 29/09/81     162500     182000      
+        30                                                                      
+                                                                                
+      7698 NEGRO      DIRECTOR         7839 01/05/81     370500                 
+        30                                                                      
+                                                                                
+
+    EMP_NO APELLIDO   OFICIO            DIR FECHA_AL    SALARIO   COMISION      
+---------- ---------- ---------- ---------- -------- ---------- ----------      
+   DEPT_NO                                                                      
+----------                                                                      
+      7782 CEREZO     DIRECTOR         7839 09/06/81     318500                 
+        10                                                                      
+                                                                                
+      7788 GIL        ANALISTA         7566 09/11/81     390000                 
+        20                                                                      
+                                                                                
+      7839 REY        PRESIDENTE            17/11/81      50000                 
+        10                                                                      
+                                                                                
+
+    EMP_NO APELLIDO   OFICIO            DIR FECHA_AL    SALARIO   COMISION      
+---------- ---------- ---------- ---------- -------- ---------- ----------      
+   DEPT_NO                                                                      
+----------                                                                      
+      7844 TOVAR      VENDEDOR         7698 08/09/81     195000          0      
+        30                                                                      
+                                                                                
+      7876 ALONSO     EMPLEADO         7788 23/09/81     143000                 
+        20                                                                      
+                                                                                
+      7900 JIMENO     EMPLEADO         7698 03/12/81     123500                 
+        30                                                                      
+                                                                                
+
+    EMP_NO APELLIDO   OFICIO            DIR FECHA_AL    SALARIO   COMISION      
+---------- ---------- ---------- ---------- -------- ---------- ----------      
+   DEPT_NO                                                                      
+----------                                                                      
+      7902 FERNµNDEZ  ANALISTA         7566 03/12/81     390000                 
+        20                                                                      
+                                                                                
+      7934 MU¥OZ      EMPLEADO         7782 23/01/82     169000                 
+        10                                                                      
+                                                                                
+
+14 filas seleccionadas.
+
+SQL> SELECT NOMBRE, OFICIO, SALARIO, FECHA_ALT
+  2  FROM EMPLE
+  3  WHERE OFICIO IN (SELECT OFICIO FROM EMPLE WHERE APELLIDO = 'JIMENEZ')
+  4        AND SALARIO >= (SELECT SALARIO FROM EMPLE WHERE APELLIDO = 'FERNANDEZ');
+SELECT NOMBRE, OFICIO, SALARIO, FECHA_ALT
+       *
+ERROR en línea 1:
+ORA-00904: "NOMBRE": identificador no válido 
+
+
+SQL> SELECT APELLIDO, OFICIO, SALARIO, FECHA_ALT
+  2  FROM EMPLE
+  3  WHERE OFICIO IN (SELECT OFICIO FROM EMPLE WHERE APELLIDO = 'JIMENEZ')
+  4        AND SALARIO <= (SELECT SALARIO FROM EMPLE WHERE APELLIDO = 'FERNANDEZ');
+
+ninguna fila seleccionada
+
+SQL> SELECT APELLIDO, OFICIO, SALARIO, FECHA_ALT
+  2  FROM EMPLE
+  3  WHERE OFICIO IN (SELECT OFICIO FROM EMPLE WHERE APELLIDO = 'JIMENEZ')
+  4        OR SALARIO >= (SELECT SALARIO FROM EMPLE WHERE APELLIDO = 'FERNANDEZ');
+
+ninguna fila seleccionada
+
+SQL> SELECT APELLIDO, OFICIO, SALARIO, FECHA_ALT
+  2  FROM EMPLE
+  3  WHERE OFICIO IN (SELECT OFICIO FROM EMPLE WHERE APELLIDO = 'JIMENEZ')
+  4        OR SALARIO <= (SELECT SALARIO FROM EMPLE WHERE APELLIDO = 'FERNANDEZ');
+
+ninguna fila seleccionada
+
+SQL> SET LINESIZE 200
+SQL> SET PAGESIZE 200
+SQL> REM 9.- Mostar por pantalla el nombre, el oficio y el salario de los empleados del departamento de FERNANDEZ que tengan su mismo salario.
+SQL> SELECT * FROM EMPLE
+  2  ;
+
+    EMP_NO APELLIDO   OFICIO            DIR FECHA_AL    SALARIO   COMISION    DEPT_NO                                                                                                                   
+---------- ---------- ---------- ---------- -------- ---------- ---------- ----------                                                                                                                   
+      7369 SµNCHEZ    EMPLEADO         7902 17/12/80     104000                    20                                                                                                                   
+      7499 ARROYO     VENDEDOR         7698 20/02/80     208000      39000         30                                                                                                                   
+      7521 SALA       VENDEDOR         7698 22/02/81     162500      65000         30                                                                                                                   
+      7566 JIMNEZ    DIRECTOR         7839 02/04/81     386750                    20                                                                                                                   
+      7654 MARTÖN     VENDEDOR         7698 29/09/81     162500     182000         30                                                                                                                   
+      7698 NEGRO      DIRECTOR         7839 01/05/81     370500                    30                                                                                                                   
+      7782 CEREZO     DIRECTOR         7839 09/06/81     318500                    10                                                                                                                   
+      7788 GIL        ANALISTA         7566 09/11/81     390000                    20                                                                                                                   
+      7839 REY        PRESIDENTE            17/11/81      50000                    10                                                                                                                   
+      7844 TOVAR      VENDEDOR         7698 08/09/81     195000          0         30                                                                                                                   
+      7876 ALONSO     EMPLEADO         7788 23/09/81     143000                    20                                                                                                                   
+      7900 JIMENO     EMPLEADO         7698 03/12/81     123500                    30                                                                                                                   
+      7902 FERNµNDEZ  ANALISTA         7566 03/12/81     390000                    20                                                                                                                   
+      7934 MU¥OZ      EMPLEADO         7782 23/01/82     169000                    10                                                                                                                   
+
+14 filas seleccionadas.
+
+SQL> SELECT NOMBRE, OFICIO, SALARIO
+  2  FROM EMPLE
+  3  WHERE DEPT_NO = (SELECT DEPT_NO FROM EMPLE WHERE APELLIDO = 'FERNANDEZ')
+  4        AND SALARIO = (SELECT SALARIO FROM EMPLE WHERE APELLIDO = 'FERNANDEZ');
+SELECT NOMBRE, OFICIO, SALARIO
+       *
+ERROR en línea 1:
+ORA-00904: "NOMBRE": identificador no válido 
+
+
+SQL> SELECT APELLIDO, OFICIO, SALARIO
+  2  FROM EMPLE
+  3  WHERE DEPT_NO = (SELECT DEPT_NO FROM EMPLE WHERE APELLIDO = 'FERNANDEZ')
+  4        AND SALARIO = (SELECT SALARIO FROM EMPLE WHERE APELLIDO = 'FERNANDEZ');
+
+ninguna fila seleccionada
+
+SQL> REM 10.- Presentar los nombres y oficios de los empleados que tienen el mismo trabajo que JIMENEZ.
+SQL> SELECT NOMBRE, OFICIO
+  2  FROM EMPLE
+  3  WHERE OFICIO = (SELECT OFICIO FROM EMPLE WHERE APELLIDO = 'JIMENEZ');
+SELECT NOMBRE, OFICIO
+       *
+ERROR en línea 1:
+ORA-00904: "NOMBRE": identificador no válido 
+
+
+SQL> SELECT APELLIDO, OFICIO
+  2  FROM EMPLE
+  3  WHERE OFICIO = (SELECT OFICIO FROM EMPLE WHERE APELLIDO = 'JIMENEZ');
+
+ninguna fila seleccionada
+
+SQL> SELECT APELLIDO, OFICIO
+  2  FROM EMPLE
+  3  WHERE OFICIO = (SELECT OFICIO FROM EMPLE WHERE APELLIDO = 'GIL');
+
+APELLIDO   OFICIO                                                                                                                                                                                       
+---------- ----------                                                                                                                                                                                   
+GIL        ANALISTA                                                                                                                                                                                     
+FERNµNDEZ  ANALISTA                                                                                                                                                                                     
+
+SQL> REM111.- Visualizar los nombres de los alumnos que tengan una nota entre 7 y 8 en la asignatura de FOL.
+SQL> DESC ALUMNOS
+ Nombre                                                                                                            ¿Nulo?   Tipo
+ ----------------------------------------------------------------------------------------------------------------- -------- ----------------------------------------------------------------------------
+ DNI                                                                                                               NOT NULL VARCHAR2(10)
+ APENOM                                                                                                                     VARCHAR2(30)
+ DIREC                                                                                                                      VARCHAR2(30)
+ POBLA                                                                                                                      VARCHAR2(15)
+ TELEF                                                                                                                      VARCHAR2(10)
+
+SQL> DESC NOTA_ALUMNOS
+ERROR:
+ORA-04043: el objeto NOTA_ALUMNOS no existe 
+
+
+SQL> DESC NOTAS_ALUMNOS
+ Nombre                                                                                                            ¿Nulo?   Tipo
+ ----------------------------------------------------------------------------------------------------------------- -------- ----------------------------------------------------------------------------
+ NOMBRE_ALUMNO                                                                                                     NOT NULL VARCHAR2(25)
+ NOTA1                                                                                                                      NUMBER(2)
+ NOTA2                                                                                                                      NUMBER(2)
+ NOTA3                                                                                                                      NUMBER(2)
+
+SQL> DESC ASIGNATURQAS
+ERROR:
+ORA-04043: el objeto ASIGNATURQAS no existe 
+
+
+SQL> DESC ASIGNATURAS
+ Nombre                                                                                                            ¿Nulo?   Tipo
+ ----------------------------------------------------------------------------------------------------------------- -------- ----------------------------------------------------------------------------
+ COD                                                                                                               NOT NULL NUMBER(2)
+ NOMBRE                                                                                                                     VARCHAR2(25)
+
+SQL> SELECT APENOM, NOMBRE, NOTA
+  2  FROM ALUMNOS, ASIGNATURAS, NOTAS
+  3  WHERE NOMBRE = 'FOL' AND NOTA BETWEEN 7 AND 8
+  4  AND ASIGNATURAS.COD = NOTAS.COD
+  5  AND NOTAS.DNI = ALUMNOS.DNI;
+
+APENOM                         NOMBRE                          NOTA                                                                                                                                     
+------------------------------ ------------------------- ----------                                                                                                                                     
+D¡az Fern ndez, Mar¡a          FOL                                8                                                                                                                                     
+
+SQL> REM 12.- Visualizar los nombres de asignaturas que no tengan suspensos.
+SQL> SELECT DISTINCT NOMBRE
+  2  FROM ASIGNATURAS, NOTAS
+  3  WHERE NOTA BETWEEN 5 AND 10
+  4  AND ASIGNATURAS.COD = NOTAS.COD;
+
+NOMBRE                                                                                                                                                                                                  
+-------------------------                                                                                                                                                                               
+Prog. Leng. Estr.                                                                                                                                                                                       
+Aplic. Entornos 4¦Gen                                                                                                                                                                                   
+Entornos Gr ficos                                                                                                                                                                                       
+FOL                                                                                                                                                                                                     
+An lisis                                                                                                                                                                                                
+Sist. Inform ticos                                                                                                                                                                                      
+RET                                                                                                                                                                                                     
+
+7 filas seleccionadas.
+
+SQL> SELECT APENOM, DIREC, NOTA
+  2  FROM ALUMNOS, NOTAS WHERE DIREC = 'Madrid'
+  3  AND NOTA <=4;
+
+ninguna fila seleccionada
+
+SQL> SELECT APENOM FROM ALUMNOS WHERE DNI IN (SELECT DNI FROM NOTAS WHERE NOTA IN
+  2  (SELECT NOTA FROM NOTAS WHERE DNI IN
+  3  (SELECT DNI FROM ALUMNOS WHERE APENOM = 'D¡az Fern ndez. Mar¡a')
+  4  AND COD IN (SELECT COD FROM ASIGNATURAS WHERE NOMBRE IN ('FOL')));
+AND COD IN (SELECT COD FROM ASIGNATURAS WHERE NOMBRE IN ('FOL')))
+                                                                *
+ERROR en línea 4:
+ORA-00907: falta el paréntesis derecho 
+
+
+SQL> 	SELECT APENOM FROM ALUMNOS WHERE DNI IN (SELECT DNI FROM NOTAS WHERE NOTA IN
+  2    2  (SELECT NOTA FROM NOTAS WHERE DNI IN
+  3    3  (SELECT DNI FROM ALUMNOS WHERE APENOM = 'D¡az Fern ndez. Mar¡a')
+  4    4  AND COD IN (SELECT COD FROM ASIGNATURAS WHERE NOMBRE IN ('FOL'));
+  2  (SELECT NOTA FROM NOTAS WHERE DNI IN
+     *
+ERROR en línea 2:
+ORA-00907: falta el paréntesis derecho 
+
+
+SQL> SELECT APENOM
+  2  FROM ALUMNOS
+  3  WHERE DNI IN (
+  4      SELECT DNI
+  5      FROM NOTAS
+  6      WHERE NOTA IN (
+  7          SELECT NOTA
+  8          FROM NOTAS
+  9          WHERE DNI IN (SELECT DNI FROM ALUMNOS WHERE APENOM = 'D¡az Fern ndez, Mar¡a')
+ 10          AND COD IN (SELECT COD FROM ASIGNATURAS WHERE NOMBRE = 'FOL')
+ 11      )
+ 12  );
+
+APENOM                                                                                                                                                                                                  
+------------------------------                                                                                                                                                                          
+D¡az Fern ndez, Mar¡a                                                                                                                                                                                   
+Cerrato Vela, Luis                                                                                                                                                                                      
+
+SQL> SELECT DEPT_NO, AVG (SALARIO)
+  2  FROM EMPLE
+  3  GROUP BY DEPT_NO
+  4  HAVING AVG (SALARIO) >=
+  5  (SELECT AVG (SALARIO) FROM EMPLE);
+
+   DEPT_NO AVG(SALARIO)                                                                                                                                                                                 
+---------- ------------                                                                                                                                                                                 
+        20       282750                                                                                                                                                                                 
+
+SQL> REM 2.- A partir de la tabla emple, visualizar el n£mero de venderores del departamentos 'VENTAS';
+SQL> SELECT COUNT (*) FROM EMPLE
+  2  WHERE DEPT_NO IN
+  3  (SELECT DEPT_NO FROM DEPART WHERE DNOMBRE = 'VENTAS'
+  4  AND OFICIO = 'VENDEDOR');
+
+  COUNT(*)                                                                                                                                                                                              
+----------                                                                                                                                                                                              
+         4                                                                                                                                                                                              
+
+SQL> REM 3.- Partiendo de la tabla EMPLE, visualizar por cada oficio de los empleados del departamento 'VENTAS' la suma de salarios.
+SQL> SELECT SUM (SALARIO), OFICIO
+  2  FROM EMPLE WHERE DEPT_NO IN
+  3  (SELECT DEPT_NO FROM DEPART WHERE DNOMBRE LIKE 'VENTAS')
+  4  GROUP BY OFICIO;
+
+SUM(SALARIO) OFICIO                                                                                                                                                                                     
+------------ ----------                                                                                                                                                                                 
+      728000 VENDEDOR                                                                                                                                                                                   
+      123500 EMPLEADO                                                                                                                                                                                   
+      370500 DIRECTOR                                                                                                                                                                                   
+
+SQL> REM 4.- seleccionar aquellos pedidos de la tabla EMPLE cuyo salario sea igual a la media de su salario en su departamento.
+SQL> DESC EMPLE
+ Nombre                                                                                                            ¿Nulo?   Tipo
+ ----------------------------------------------------------------------------------------------------------------- -------- ----------------------------------------------------------------------------
+ EMP_NO                                                                                                            NOT NULL NUMBER(4)
+ APELLIDO                                                                                                                   VARCHAR2(10)
+ OFICIO                                                                                                                     VARCHAR2(10)
+ DIR                                                                                                                        NUMBER(4)
+ FECHA_ALT                                                                                                                  DATE
+ SALARIO                                                                                                                    NUMBER(10)
+ COMISION                                                                                                                   NUMBER(10)
+ DEPT_NO                                                                                                                    NUMBER(2)
+
+SQL> REM 5.- A partir de la tabla emple, visualizar el numero de empleados de cada departamento cuyo oficio sea 'EMPLEADO'
+SQL> SELECT DEPT_NO, COUNT (*)
+  2  FROM EMPLE WHERE OFICIO LIKE = 'EMPLEADO'
+  3  GROUP BY DEPT_NO;
+FROM EMPLE WHERE OFICIO LIKE = 'EMPLEADO'
+                             *
+ERROR en línea 2:
+ORA-00936: falta una expresión 
+
+
+SQL> SELECT DEPT_NO, COUNT (*)
+  2  FROM EMPLE WHERE OFICIO LIKE 'EMPLEADO'
+  3  GROUP BY DEPT_NO;
+
+   DEPT_NO   COUNT(*)                                                                                                                                                                                   
+---------- ----------                                                                                                                                                                                   
+        30          1                                                                                                                                                                                   
+        20          2                                                                                                                                                                                   
+        10          1                                                                                                                                                                                   
+
+SQL> SELECT MAX (COUNT(*))
+  2  FROM EMPLE WHERE OFICIO
+  3  LIKE 'EMPLEADO' GROUP BY DEPT_NO;
+
+MAX(COUNT(*))                                                                                                                                                                                           
+-------------                                                                                                                                                                                           
+            2                                                                                                                                                                                           
+
+SQL> SELECT DEPT_NO, COUNT(*)
+  2  FROM EMPLE WHERE OFICIO LIKE 'EMPLEADO'
+  3  GROUP BY DEPT_NO;
+
+   DEPT_NO   COUNT(*)                                                                                                                                                                                   
+---------- ----------                                                                                                                                                                                   
+        30          1                                                                                                                                                                                   
+        20          2                                                                                                                                                                                   
+        10          1                                                                                                                                                                                   
+
+SQL> REM 6.- Desde la tabla EMPLE, visualizar el departamento que tenga m s empleados cuyo oficio sea 'EMPLEADO'
+SQL> DESC EMPLE
+ Nombre                                                                                                            ¿Nulo?   Tipo
+ ----------------------------------------------------------------------------------------------------------------- -------- ----------------------------------------------------------------------------
+ EMP_NO                                                                                                            NOT NULL NUMBER(4)
+ APELLIDO                                                                                                                   VARCHAR2(10)
+ OFICIO                                                                                                                     VARCHAR2(10)
+ DIR                                                                                                                        NUMBER(4)
+ FECHA_ALT                                                                                                                  DATE
+ SALARIO                                                                                                                    NUMBER(10)
+ COMISION                                                                                                                   NUMBER(10)
+ DEPT_NO                                                                                                                    NUMBER(2)
+
+SQL> DESC DEPART
+ Nombre                                                                                                            ¿Nulo?   Tipo
+ ----------------------------------------------------------------------------------------------------------------- -------- ----------------------------------------------------------------------------
+ DEPT_NO                                                                                                           NOT NULL NUMBER(2)
+ DNOMBRE                                                                                                                    VARCHAR2(14)
+ LOC                                                                                                                        VARCHAR2(14)
+
+SQL> SELECT DEPT_NO FROM EMPLE WHERE DEPT_NO IN
+  2  ;
+
+*
+ERROR en línea 2:
+ORA-00936: falta una expresión 
+
+
+SQL> SELECT DEPT_NO, COUNT(*) AS NUM_EMPLEADOS
+  2  FROM EMPLE
+  3  WHERE OFICIO = 'EMPLEADO'
+  4  GROUP BY DEPT_NO
+  5  HAVING COUNT(*) = (SELECT MAX(COUNT(*)) FROM EMPLE WHERE OFICIO = 'EMPLEADO' GROUP BY DEPT_NO);
+
+   DEPT_NO NUM_EMPLEADOS                                                                                                                                                                                
+---------- -------------                                                                                                                                                                                
+        20             2                                                                                                                                                                                
+
+SQL> REM 8.- Buscar los departamentos que tienen m s de dos personas trabajando en la misma profesi¢n
+SQL> SELECT DEPT_NO, COUNT (*)
+  2  FROM EMPLE GROUP BY DEPT_NO,OFICIO
+  3  HAVING COUNT (*)>2;
+
+   DEPT_NO   COUNT(*)                                                                                                                                                                                   
+---------- ----------                                                                                                                                                                                   
+        30          4                                                                                                                                                                                   
+
+SQL> REM 9.- Dada la tabla LIBRERIA, visualizar por cada estante la suma de los ejemplares.
+SQL> SELECT ESTANTE, SUM (EJEMPLARES)
+  2  FROM LIBRERIA GROUP BY ESTANTE;
+
+E SUM(EJEMPLARES)                                                                                                                                                                                       
+- ---------------                                                                                                                                                                                       
+D              16                                                                                                                                                                                       
+A              36                                                                                                                                                                                       
+B              28                                                                                                                                                                                       
+C              33                                                                                                                                                                                       
+E               6                                                                                                                                                                                       
+
+SQL> SELECT ESTANTE, SUM (EJEMPLARES)
+  2  FROM LIBRERIA GROUP BY ESTANTE
+  3  HAVING SUM (EJEMPLARES) =
+  4  (SELECT MAX (SUM(EJEMPLARES))
+  5  FROM LIBRERIA GROUP BY ESTANTE);
+
+E SUM(EJEMPLARES)                                                                                                                                                                                       
+- ---------------                                                                                                                                                                                       
+A              36                                                                                                                                                                                       
+
+SQL> SELECT AVG (SALARIO), OFICIO
+  2  FROM EMPLE GROUP BY OFICIO
+  3  HAVING AVG (SALARIO) > 200000;
+
+AVG(SALARIO) OFICIO                                                                                                                                                                                     
+------------ ----------                                                                                                                                                                                 
+      390000 ANALISTA                                                                                                                                                                                   
+  358583,333 DIRECTOR                                                                                                                                                                                   
+
+SQL> REM 3.- mostrar el nombre salario y n§ de departamento de aquellos empleados que ganan el salario maximo de su departamento
+SQL> SELECT NOMBRE, SALARIO, DEPT_NO FROM EMPLE
+  2  WHERE SALARIO IN (SELECT MAX(SALARIO) FROM EMPLE GROUP BY DEPT_NO);
+SELECT NOMBRE, SALARIO, DEPT_NO FROM EMPLE
+       *
+ERROR en línea 1:
+ORA-00904: "NOMBRE": identificador no válido 
+
+
+SQL> SELECT APELLIDO, SALARIO, DEPT_NO FROM EMPLE
+  2  WHERE SALARIO IN (SELECT MAX(SALARIO) FROM EMPLE GROUP BY DEPT_NO);
+
+APELLIDO      SALARIO    DEPT_NO                                                                                                                                                                        
+---------- ---------- ----------                                                                                                                                                                        
+NEGRO          370500         30                                                                                                                                                                        
+FERNµNDEZ      390000         20                                                                                                                                                                        
+GIL            390000         20                                                                                                                                                                        
+CEREZO         318500         10                                                                                                                                                                        
+
+SQL> REM 4.- mostrar el nombre del departamento que tanga mas empleados cuyo oficio sea presidente
+SQL> EXIT

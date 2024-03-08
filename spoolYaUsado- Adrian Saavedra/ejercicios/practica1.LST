@@ -1,0 +1,446 @@
+SQL> connect adrian
+Conectado.
+SQL> create table personas(
+  2    cod_hospital integer,
+  3    dni integer primary key,
+  4    apellidos varchar(50),
+  5    funcion varchar(30),
+  6    salario integer,
+  7    localidad varchar(20)
+  8  );
+
+Tabla creada.
+
+SQL> insert into personas values (1,12345678,'Garc¡a Hern ndez, Eladio','CONSERJE',1200,'LORCA');
+
+1 fila creada.
+
+SQL> insert into personas values (1,87654321,'Fuentes Bermejo, Carlos','DIRECTOR',2000,'MURCIA');
+
+1 fila creada.
+
+SQL> insert into personas values (2,55544433,'Gonz lez Mar¡n, Alicia','CONSERJE',1200,'MURCIA');
+
+1 fila creada.
+
+SQL> insert into personas values (1,66655544,'Castillo Montes, Pedro','MEDICO',1700,'MURCIA');
+
+1 fila creada.
+
+SQL> insert into personas values (2,22233322,'Trist n Garc¡a, Ana','MEDICO',1900,'MURCIA');
+
+1 fila creada.
+
+SQL> insert into personas values (3,55544411,'Ruiz Hern ndez, Caridad','MEDICO',1900,'LORCA');
+
+1 fila creada.
+
+SQL> insert into personas values (3,99988333,'Serrano D¡az, Alejandro','DIRECTOR',2400,'CARTAGENA');
+
+1 fila creada.
+
+SQL> insert into personas values (4,33222111,'Mesa del Castillo, Juan','MEDICO',2200,'LORCA');
+
+1 fila creada.
+
+SQL> insert into personas values (2,22233333,'Mart¡nez Molina, Andr‚s','MEDICO',1600,'CARTAGENA');
+
+1 fila creada.
+
+SQL> insert into personas values (4,55544412,'Jim‚nez Jim‚nez, Dolores','CONSERJE',1200,'MURCIA');
+
+1 fila creada.
+
+SQL> insert into personas values (4,22233311,'Mart¡nez Molina, Gloria','MEDICO',1600,'MURCIA');
+
+1 fila creada.
+
+SQL> rem 1)ÿMostrar todos los datos de todas las personas.
+SQL> select * from personas;
+
+COD_HOSPITAL        DNI APELLIDOS                                               
+------------ ---------- --------------------------------------------------      
+FUNCION                           SALARIO LOCALIDAD                             
+------------------------------ ---------- --------------------                  
+           1   12345678 Garc¡a Hern ndez, Eladio                                
+CONSERJE                             1200 LORCA                                 
+                                                                                
+           1   87654321 Fuentes Bermejo, Carlos                                 
+DIRECTOR                             2000 MURCIA                                
+                                                                                
+           2   55544433 Gonz lez Mar¡n, Alicia                                  
+CONSERJE                             1200 MURCIA                                
+                                                                                
+
+COD_HOSPITAL        DNI APELLIDOS                                               
+------------ ---------- --------------------------------------------------      
+FUNCION                           SALARIO LOCALIDAD                             
+------------------------------ ---------- --------------------                  
+           1   66655544 Castillo Montes, Pedro                                  
+MEDICO                               1700 MURCIA                                
+                                                                                
+           2   22233322 Trist n Garc¡a, Ana                                     
+MEDICO                               1900 MURCIA                                
+                                                                                
+           3   55544411 Ruiz Hern ndez, Caridad                                 
+MEDICO                               1900 LORCA                                 
+                                                                                
+
+COD_HOSPITAL        DNI APELLIDOS                                               
+------------ ---------- --------------------------------------------------      
+FUNCION                           SALARIO LOCALIDAD                             
+------------------------------ ---------- --------------------                  
+           3   99988333 Serrano D¡az, Alejandro                                 
+DIRECTOR                             2400 CARTAGENA                             
+                                                                                
+           4   33222111 Mesa del Castillo, Juan                                 
+MEDICO                               2200 LORCA                                 
+                                                                                
+           2   22233333 Mart¡nez Molina, Andr‚s                                 
+MEDICO                               1600 CARTAGENA                             
+                                                                                
+
+COD_HOSPITAL        DNI APELLIDOS                                               
+------------ ---------- --------------------------------------------------      
+FUNCION                           SALARIO LOCALIDAD                             
+------------------------------ ---------- --------------------                  
+           4   55544412 Jim‚nez Jim‚nez, Dolores                                
+CONSERJE                             1200 MURCIA                                
+                                                                                
+           4   22233311 Mart¡nez Molina, Gloria                                 
+MEDICO                               1600 MURCIA                                
+                                                                                
+
+11 filas seleccionadas.
+
+SQL> set pagesize 200
+SQL> set linesize 200
+SQL> select * from personas;
+
+COD_HOSPITAL        DNI APELLIDOS                                          FUNCION                           SALARIO LOCALIDAD                                                                          
+------------ ---------- -------------------------------------------------- ------------------------------ ---------- --------------------                                                               
+           1   12345678 Garc¡a Hern ndez, Eladio                           CONSERJE                             1200 LORCA                                                                              
+           1   87654321 Fuentes Bermejo, Carlos                            DIRECTOR                             2000 MURCIA                                                                             
+           2   55544433 Gonz lez Mar¡n, Alicia                             CONSERJE                             1200 MURCIA                                                                             
+           1   66655544 Castillo Montes, Pedro                             MEDICO                               1700 MURCIA                                                                             
+           2   22233322 Trist n Garc¡a, Ana                                MEDICO                               1900 MURCIA                                                                             
+           3   55544411 Ruiz Hern ndez, Caridad                            MEDICO                               1900 LORCA                                                                              
+           3   99988333 Serrano D¡az, Alejandro                            DIRECTOR                             2400 CARTAGENA                                                                          
+           4   33222111 Mesa del Castillo, Juan                            MEDICO                               2200 LORCA                                                                              
+           2   22233333 Mart¡nez Molina, Andr‚s                            MEDICO                               1600 CARTAGENA                                                                          
+           4   55544412 Jim‚nez Jim‚nez, Dolores                           CONSERJE                             1200 MURCIA                                                                             
+           4   22233311 Mart¡nez Molina, Gloria                            MEDICO                               1600 MURCIA                                                                             
+
+11 filas seleccionadas.
+
+SQL> rem Obt‚n el DNI, apellidos y funci¢n de todas las personas.
+SQL> select DNI, APELLIDOS, FUNCION FROM PERSONAS;
+
+       DNI APELLIDOS                                          FUNCION                                                                                                                                   
+---------- -------------------------------------------------- ------------------------------                                                                                                            
+  12345678 Garc¡a Hern ndez, Eladio                           CONSERJE                                                                                                                                  
+  87654321 Fuentes Bermejo, Carlos                            DIRECTOR                                                                                                                                  
+  55544433 Gonz lez Mar¡n, Alicia                             CONSERJE                                                                                                                                  
+  66655544 Castillo Montes, Pedro                             MEDICO                                                                                                                                    
+  22233322 Trist n Garc¡a, Ana                                MEDICO                                                                                                                                    
+  55544411 Ruiz Hern ndez, Caridad                            MEDICO                                                                                                                                    
+  99988333 Serrano D¡az, Alejandro                            DIRECTOR                                                                                                                                  
+  33222111 Mesa del Castillo, Juan                            MEDICO                                                                                                                                    
+  22233333 Mart¡nez Molina, Andr‚s                            MEDICO                                                                                                                                    
+  55544412 Jim‚nez Jim‚nez, Dolores                           CONSERJE                                                                                                                                  
+  22233311 Mart¡nez Molina, Gloria                            MEDICO                                                                                                                                    
+
+11 filas seleccionadas.
+
+SQL> rem Mostrar los apellidos de las personas que vivan en LORCA.
+SQL> select apellidos from personas where localidad = 'LORCA';
+
+APELLIDOS                                                                                                                                                                                               
+--------------------------------------------------                                                                                                                                                      
+Garc¡a Hern ndez, Eladio                                                                                                                                                                                
+Ruiz Hern ndez, Caridad                                                                                                                                                                                 
+Mesa del Castillo, Juan                                                                                                                                                                                 
+
+SQL> rem Mostrar los apellidos de las personas que vivan en MURCIA o LORCA
+SQL> select apellidos from personas where localidad in ('LORCA','MURCIA');
+
+APELLIDOS                                                                                                                                                                                               
+--------------------------------------------------                                                                                                                                                      
+Garc¡a Hern ndez, Eladio                                                                                                                                                                                
+Fuentes Bermejo, Carlos                                                                                                                                                                                 
+Gonz lez Mar¡n, Alicia                                                                                                                                                                                  
+Castillo Montes, Pedro                                                                                                                                                                                  
+Trist n Garc¡a, Ana                                                                                                                                                                                     
+Ruiz Hern ndez, Caridad                                                                                                                                                                                 
+Mesa del Castillo, Juan                                                                                                                                                                                 
+Jim‚nez Jim‚nez, Dolores                                                                                                                                                                                
+Mart¡nez Molina, Gloria                                                                                                                                                                                 
+
+9 filas seleccionadas.
+
+SQL> rem Seleccionar los datos de aquellas personas que vivan en MURCIA y tengan un salario superior a los 1500 euros.
+SQL> select * from personas where localidad = 'MURCIA' and salario>1500;
+
+COD_HOSPITAL        DNI APELLIDOS                                          FUNCION                           SALARIO LOCALIDAD                                                                          
+------------ ---------- -------------------------------------------------- ------------------------------ ---------- --------------------                                                               
+           1   87654321 Fuentes Bermejo, Carlos                            DIRECTOR                             2000 MURCIA                                                                             
+           1   66655544 Castillo Montes, Pedro                             MEDICO                               1700 MURCIA                                                                             
+           2   22233322 Trist n Garc¡a, Ana                                MEDICO                               1900 MURCIA                                                                             
+           4   22233311 Mart¡nez Molina, Gloria                            MEDICO                               1600 MURCIA                                                                             
+
+SQL> rem Mostrar los datos de las personas que vivan en MURCIA, tengan un salario superior a los 1500 euros y sean DIRECTORES.
+SQL> select * from personas where localidad = 'MURCIA' and salario>1500 and funcion = 'DIRECTOR';
+
+COD_HOSPITAL        DNI APELLIDOS                                          FUNCION                           SALARIO LOCALIDAD                                                                          
+------------ ---------- -------------------------------------------------- ------------------------------ ---------- --------------------                                                               
+           1   87654321 Fuentes Bermejo, Carlos                            DIRECTOR                             2000 MURCIA                                                                             
+
+SQL> rem Mostrar los datos de las personas cuya funci¢n sea MDICO ordenados por apellidos descendentemente.
+SQL> select * from personas where funcion = 'MEDICO' order by apellidos desc;
+
+COD_HOSPITAL        DNI APELLIDOS                                          FUNCION                           SALARIO LOCALIDAD                                                                          
+------------ ---------- -------------------------------------------------- ------------------------------ ---------- --------------------                                                               
+           2   22233322 Trist n Garc¡a, Ana                                MEDICO                               1900 MURCIA                                                                             
+           3   55544411 Ruiz Hern ndez, Caridad                            MEDICO                               1900 LORCA                                                                              
+           4   33222111 Mesa del Castillo, Juan                            MEDICO                               2200 LORCA                                                                              
+           4   22233311 Mart¡nez Molina, Gloria                            MEDICO                               1600 MURCIA                                                                             
+           2   22233333 Mart¡nez Molina, Andr‚s                            MEDICO                               1600 CARTAGENA                                                                          
+           1   66655544 Castillo Montes, Pedro                             MEDICO                               1700 MURCIA                                                                             
+
+6 filas seleccionadas.
+
+SQL> rem ÿMostrar los datos de todas las localidades que hay en la tabla personas sin repeticiones
+SQL> select distinct localidad from personas;
+
+LOCALIDAD                                                                                                                                                                                               
+--------------------                                                                                                                                                                                    
+LORCA                                                                                                                                                                                                   
+MURCIA                                                                                                                                                                                                  
+CARTAGENA                                                                                                                                                                                               
+
+SQL> rem Mostrar los datos de las personas que tengan un salario superior a 1500 euros y sean m‚dicos. Ordenar la salida por salario descendentemente.
+SQL> select * from personas where salario>1500 and funcion = 'MEDICO' order by salario desc;
+
+COD_HOSPITAL        DNI APELLIDOS                                          FUNCION                           SALARIO LOCALIDAD                                                                          
+------------ ---------- -------------------------------------------------- ------------------------------ ---------- --------------------                                                               
+           4   33222111 Mesa del Castillo, Juan                            MEDICO                               2200 LORCA                                                                              
+           2   22233322 Trist n Garc¡a, Ana                                MEDICO                               1900 MURCIA                                                                             
+           3   55544411 Ruiz Hern ndez, Caridad                            MEDICO                               1900 LORCA                                                                              
+           1   66655544 Castillo Montes, Pedro                             MEDICO                               1700 MURCIA                                                                             
+           2   22233333 Mart¡nez Molina, Andr‚s                            MEDICO                               1600 CARTAGENA                                                                          
+           4   22233311 Mart¡nez Molina, Gloria                            MEDICO                               1600 MURCIA                                                                             
+
+6 filas seleccionadas.
+
+SQL> rem Seleccionar aquellas personas cuyo apellido comience por M.
+SQL> select * from personas where apellido = 'M%';
+select * from personas where apellido = 'M%'
+                             *
+ERROR en línea 1:
+ORA-00904: "APELLIDO": identificador no válido 
+
+
+SQL> select * from personas where apellidos = 'M%';
+
+ninguna fila seleccionada
+
+SQL> select * from personas where apellidos like 'M%';
+
+COD_HOSPITAL        DNI APELLIDOS                                          FUNCION                           SALARIO LOCALIDAD                                                                          
+------------ ---------- -------------------------------------------------- ------------------------------ ---------- --------------------                                                               
+           4   33222111 Mesa del Castillo, Juan                            MEDICO                               2200 LORCA                                                                              
+           2   22233333 Mart¡nez Molina, Andr‚s                            MEDICO                               1600 CARTAGENA                                                                          
+           4   22233311 Mart¡nez Molina, Gloria                            MEDICO                               1600 MURCIA                                                                             
+
+SQL> rem Mostrar los datos de las personas que tengan una M en el apellido y cuya funci¢n sea CONSERJE
+SQL> select * from personas where apellidos like '%M%' and funcion = 'CONSERJE';
+
+COD_HOSPITAL        DNI APELLIDOS                                          FUNCION                           SALARIO LOCALIDAD                                                                          
+------------ ---------- -------------------------------------------------- ------------------------------ ---------- --------------------                                                               
+           2   55544433 Gonz lez Mar¡n, Alicia                             CONSERJE                             1200 MURCIA                                                                             
+
+SQL> select * from personas where (apellidos like '%M%' or apellidos like '%m%') and funcion = 'CONSERJE';
+
+COD_HOSPITAL        DNI APELLIDOS                                          FUNCION                           SALARIO LOCALIDAD                                                                          
+------------ ---------- -------------------------------------------------- ------------------------------ ---------- --------------------                                                               
+           2   55544433 Gonz lez Mar¡n, Alicia                             CONSERJE                             1200 MURCIA                                                                             
+           4   55544412 Jim‚nez Jim‚nez, Dolores                           CONSERJE                             1200 MURCIA                                                                             
+
+SQL> rem Mostrar aquellas personas que tengan un salario entre 1500 y 2000 euros.
+SQL> select * from personas where salario>1500 and salario<2000;
+
+COD_HOSPITAL        DNI APELLIDOS                                          FUNCION                           SALARIO LOCALIDAD                                                                          
+------------ ---------- -------------------------------------------------- ------------------------------ ---------- --------------------                                                               
+           1   66655544 Castillo Montes, Pedro                             MEDICO                               1700 MURCIA                                                                             
+           2   22233322 Trist n Garc¡a, Ana                                MEDICO                               1900 MURCIA                                                                             
+           3   55544411 Ruiz Hern ndez, Caridad                            MEDICO                               1900 LORCA                                                                              
+           2   22233333 Mart¡nez Molina, Andr‚s                            MEDICO                               1600 CARTAGENA                                                                          
+           4   22233311 Mart¡nez Molina, Gloria                            MEDICO                               1600 MURCIA                                                                             
+
+SQL> rem 13)ÿSeleccionar los datos de aquellas personas cuya funci¢n sea MDICO o DIRECTOR (utilizar el operador IN)
+SQL> select * from personas where funcion in ('MEDICO','DIRECTOR');
+
+COD_HOSPITAL        DNI APELLIDOS                                          FUNCION                           SALARIO LOCALIDAD                                                                          
+------------ ---------- -------------------------------------------------- ------------------------------ ---------- --------------------                                                               
+           1   87654321 Fuentes Bermejo, Carlos                            DIRECTOR                             2000 MURCIA                                                                             
+           1   66655544 Castillo Montes, Pedro                             MEDICO                               1700 MURCIA                                                                             
+           2   22233322 Trist n Garc¡a, Ana                                MEDICO                               1900 MURCIA                                                                             
+           3   55544411 Ruiz Hern ndez, Caridad                            MEDICO                               1900 LORCA                                                                              
+           3   99988333 Serrano D¡az, Alejandro                            DIRECTOR                             2400 CARTAGENA                                                                          
+           4   33222111 Mesa del Castillo, Juan                            MEDICO                               2200 LORCA                                                                              
+           2   22233333 Mart¡nez Molina, Andr‚s                            MEDICO                               1600 CARTAGENA                                                                          
+           4   22233311 Mart¡nez Molina, Gloria                            MEDICO                               1600 MURCIA                                                                             
+
+8 filas seleccionadas.
+
+SQL> rem Obtener los datos de aquellas personas cuya funci¢n no sea CONSERJE (utilizar el operador NOT IN) y tengan un salario superior a los 1500 euros, ordenados por apellido descendentemente.
+SQL> select * from personas where funcion not in ('CONSERJE') and salario>1500 order by apellidos desc;
+
+COD_HOSPITAL        DNI APELLIDOS                                          FUNCION                           SALARIO LOCALIDAD                                                                          
+------------ ---------- -------------------------------------------------- ------------------------------ ---------- --------------------                                                               
+           2   22233322 Trist n Garc¡a, Ana                                MEDICO                               1900 MURCIA                                                                             
+           3   99988333 Serrano D¡az, Alejandro                            DIRECTOR                             2400 CARTAGENA                                                                          
+           3   55544411 Ruiz Hern ndez, Caridad                            MEDICO                               1900 LORCA                                                                              
+           4   33222111 Mesa del Castillo, Juan                            MEDICO                               2200 LORCA                                                                              
+           4   22233311 Mart¡nez Molina, Gloria                            MEDICO                               1600 MURCIA                                                                             
+           2   22233333 Mart¡nez Molina, Andr‚s                            MEDICO                               1600 CARTAGENA                                                                          
+           1   87654321 Fuentes Bermejo, Carlos                            DIRECTOR                             2000 MURCIA                                                                             
+           1   66655544 Castillo Montes, Pedro                             MEDICO                               1700 MURCIA                                                                             
+
+8 filas seleccionadas.
+
+SQL> rem Mostrar los datos de las personas que sean de MURCIA o CARTAGENA y que pertenezcan al hospital n£mero 1.
+SQL> select * from personas where localidad in ('MURCIA','CARTAGENA') and cod_hospital=1;
+
+COD_HOSPITAL        DNI APELLIDOS                                          FUNCION                           SALARIO LOCALIDAD                                                                          
+------------ ---------- -------------------------------------------------- ------------------------------ ---------- --------------------                                                               
+           1   87654321 Fuentes Bermejo, Carlos                            DIRECTOR                             2000 MURCIA                                                                             
+           1   66655544 Castillo Montes, Pedro                             MEDICO                               1700 MURCIA                                                                             
+
+SQL> rem Obt‚n los apellidos en may£sculas de las personas que trabajen en el hospital n£meroÿ1.
+SQL> select upper(apellidos) as apellidos_mayusculas where cod_hospital=1;
+select upper(apellidos) as apellidos_mayusculas where cod_hospital=1
+                                                *
+ERROR en línea 1:
+ORA-00923: palabra clave FROM no encontrada donde se esperaba 
+
+
+SQL> select upper(apellidos) as apellidos_mayusculas from personas where cod_hospital=1;
+
+APELLIDOS_MAYUSCULAS                                                                                                                                                                                    
+--------------------------------------------------                                                                                                                                                      
+GARC¡A HERN NDEZ, ELADIO                                                                                                                                                                                
+FUENTES BERMEJO, CARLOS                                                                                                                                                                                 
+CASTILLO MONTES, PEDRO                                                                                                                                                                                  
+
+SQL> rem Con una consulta devuelve los apellidos de todas las personas. Al lado debe aparecer la longitud de cada apellido.
+SQL> select length(apellidos) as longitud_apellidos from personas;
+
+LONGITUD_APELLIDOS                                                                                                                                                                                      
+------------------                                                                                                                                                                                      
+                24                                                                                                                                                                                      
+                23                                                                                                                                                                                      
+                22                                                                                                                                                                                      
+                22                                                                                                                                                                                      
+                19                                                                                                                                                                                      
+                23                                                                                                                                                                                      
+                23                                                                                                                                                                                      
+                23                                                                                                                                                                                      
+                23                                                                                                                                                                                      
+                24                                                                                                                                                                                      
+                23                                                                                                                                                                                      
+
+11 filas seleccionadas.
+
+SQL> SELECT apellidos, LENGTH(apellidos) AS longitud_apellidos
+  2  FROM personas;
+
+APELLIDOS                                          LONGITUD_APELLIDOS                                                                                                                                   
+-------------------------------------------------- ------------------                                                                                                                                   
+Garc¡a Hern ndez, Eladio                                           24                                                                                                                                   
+Fuentes Bermejo, Carlos                                            23                                                                                                                                   
+Gonz lez Mar¡n, Alicia                                             22                                                                                                                                   
+Castillo Montes, Pedro                                             22                                                                                                                                   
+Trist n Garc¡a, Ana                                                19                                                                                                                                   
+Ruiz Hern ndez, Caridad                                            23                                                                                                                                   
+Serrano D¡az, Alejandro                                            23                                                                                                                                   
+Mesa del Castillo, Juan                                            23                                                                                                                                   
+Mart¡nez Molina, Andr‚s                                            23                                                                                                                                   
+Jim‚nez Jim‚nez, Dolores                                           24                                                                                                                                   
+Mart¡nez Molina, Gloria                                            23                                                                                                                                   
+
+11 filas seleccionadas.
+
+SQL> rem Obtener los apellidos y localidad en min£scula de todas aquellas personas que no trabajen en el hospital n£meroÿ1.
+SQL> select lower (apellidos) as apellidos_minusculas, lower (localidad) as localidad_minusculas where cod_hospital not in (1);
+select lower (apellidos) as apellidos_minusculas, lower (localidad) as localidad_minusculas where cod_hospital not in (1)
+                                                                                            *
+ERROR en línea 1:
+ORA-00923: palabra clave FROM no encontrada donde se esperaba 
+
+
+SQL> select lower (apellidos) as apellidos_minusculas, lower (localidad) as localidad_minusculas where cod_hospital != 1;
+select lower (apellidos) as apellidos_minusculas, lower (localidad) as localidad_minusculas where cod_hospital != 1
+                                                                                            *
+ERROR en línea 1:
+ORA-00923: palabra clave FROM no encontrada donde se esperaba 
+
+
+SQL> select lower (apellidos) as apellidos_minusculas, lower (localidad) as localidad_minusculas from personas where cod_hospital not in (1);
+
+APELLIDOS_MINUSCULAS                               LOCALIDAD_MINUSCULAS                                                                                                                                 
+-------------------------------------------------- --------------------                                                                                                                                 
+gonz lez mar¡n, alicia                             murcia                                                                                                                                               
+trist n garc¡a, ana                                murcia                                                                                                                                               
+ruiz hern ndez, caridad                            lorca                                                                                                                                                
+serrano d¡az, alejandro                            cartagena                                                                                                                                            
+mesa del castillo, juan                            lorca                                                                                                                                                
+mart¡nez molina, andr‚s                            cartagena                                                                                                                                            
+jim‚nez jim‚nez, dolores                           murcia                                                                                                                                               
+mart¡nez molina, gloria                            murcia                                                                                                                                               
+
+8 filas seleccionadas.
+
+SQL> select lower (apellidos) as apellidos_minusculas, lower (localidad) as localidad_minusculas from personas where cod_hospital !=1;
+
+APELLIDOS_MINUSCULAS                               LOCALIDAD_MINUSCULAS                                                                                                                                 
+-------------------------------------------------- --------------------                                                                                                                                 
+gonz lez mar¡n, alicia                             murcia                                                                                                                                               
+trist n garc¡a, ana                                murcia                                                                                                                                               
+ruiz hern ndez, caridad                            lorca                                                                                                                                                
+serrano d¡az, alejandro                            cartagena                                                                                                                                            
+mesa del castillo, juan                            lorca                                                                                                                                                
+mart¡nez molina, andr‚s                            cartagena                                                                                                                                            
+jim‚nez jim‚nez, dolores                           murcia                                                                                                                                               
+mart¡nez molina, gloria                            murcia                                                                                                                                               
+
+8 filas seleccionadas.
+
+SQL> rem Obtener los datos de las personas que trabajen en los hospitales 1 ¢ 2 y tengan un salario superior a 1500 euros.
+SQL> select * from personas where (cod_hospital=1 or cod_hospital=2) and salario>1500;
+
+COD_HOSPITAL        DNI APELLIDOS                                          FUNCION                           SALARIO LOCALIDAD                                                                          
+------------ ---------- -------------------------------------------------- ------------------------------ ---------- --------------------                                                               
+           1   87654321 Fuentes Bermejo, Carlos                            DIRECTOR                             2000 MURCIA                                                                             
+           1   66655544 Castillo Montes, Pedro                             MEDICO                               1700 MURCIA                                                                             
+           2   22233322 Trist n Garc¡a, Ana                                MEDICO                               1900 MURCIA                                                                             
+           2   22233333 Mart¡nez Molina, Andr‚s                            MEDICO                               1600 CARTAGENA                                                                          
+
+SQL> rem Visualizar los datos de aquellas personas que no trabajen en el hospital n£mero 2 y que sean de MURCIA.
+SQL> select * from personas where cod_hospital not int (2) and localidad = 'MURCIA';
+select * from personas where cod_hospital not int (2) and localidad = 'MURCIA'
+                                              *
+ERROR en línea 1:
+ORA-00920: operador relacional no válido 
+
+
+SQL> select * from personas where cod_hospital not in (2) and localidad = 'MURCIA';
+
+COD_HOSPITAL        DNI APELLIDOS                                          FUNCION                           SALARIO LOCALIDAD                                                                          
+------------ ---------- -------------------------------------------------- ------------------------------ ---------- --------------------                                                               
+           1   87654321 Fuentes Bermejo, Carlos                            DIRECTOR                             2000 MURCIA                                                                             
+           1   66655544 Castillo Montes, Pedro                             MEDICO                               1700 MURCIA                                                                             
+           4   55544412 Jim‚nez Jim‚nez, Dolores                           CONSERJE                             1200 MURCIA                                                                             
+           4   22233311 Mart¡nez Molina, Gloria                            MEDICO                               1600 MURCIA                                                                             
+
+SQL> exit

@@ -1,0 +1,168 @@
+SQL> connect adrian
+Conectado.
+SQL> CREATE TABLE D3 (
+  2   DEPT_NO  NUMBER(2) primary key,
+  3   DNOMBRE  VARCHAR2(14),
+  4   LOC      VARCHAR2(14) ) ;
+
+Tabla creada.
+
+SQL> INSERT INTO D3 VALUES (10,'CONTABILIDAD','SEVILLA');
+
+1 fila creada.
+
+SQL> INSERT INTO D3 VALUES (20,'INVESTIGACIàN','MADRID');
+
+1 fila creada.
+
+SQL> INSERT INTO D3 VALUES (30,'VENTAS','BARCELONA');
+
+1 fila creada.
+
+SQL> INSERT INTO D3 VALUES (40,'PRODUCCIàN','BILBAO');
+
+1 fila creada.
+
+SQL> INSERT INTO D3 VALUES (50,'otros',null)
+  2  ;
+
+1 fila creada.
+
+SQL> INSERT INTO D3 VALUES (10,'Contabilidad','SEVILLA');
+INSERT INTO D3 VALUES (10,'Contabilidad','SEVILLA')
+*
+ERROR en línea 1:
+ORA-00001: restricción única (ADRIAN.SYS_C004273) violada 
+
+
+SQL> INSERT INTO D3 VALUES (11,'Contabilidad','SEVILLA');
+
+1 fila creada.
+
+SQL> CREATE TABLE 3M (
+  2   EMP_NO    NUMBER(4) primary key,
+  3   APELLIDO  VARCHAR2(10)  ,
+  4   OFICIO    VARCHAR2(10)  ,
+  5   DIR       NUMBER(4) ,
+  6   FECHA_ALT DATE      ,
+  7   SALARIO   NUMBER(10),
+  8   COMISION  NUMBER(10),
+  9   DEPT_NO  NUMBER(2),
+ 10   foreign key (DEPT_NO) references depart);
+CREATE TABLE 3M (
+             *
+ERROR en línea 1:
+ORA-00903: nombre de tabla no válido 
+
+
+SQL> CREATE TABLE 3M (
+  2   EMP_NO    NUMBER(4) primary key,
+  3   APELLIDO  VARCHAR2(10)  ,
+  4   OFICIO    VARCHAR2(10)  ,
+  5   DIR       NUMBER(4) ,
+  6   FECHA_ALT DATE      ,
+  7   SALARIO   NUMBER(10),
+  8   COMISION  NUMBER(10),
+  9   DEPT_NO  NUMBER(2),
+ 10   foreign key (DEPT_NO) references D3);
+CREATE TABLE 3M (
+             *
+ERROR en línea 1:
+ORA-00903: nombre de tabla no válido 
+
+
+SQL> CREATE TABLE 3M (
+  2   EMP_NO    NUMBER(4) primary key,
+  3   APELLIDO  VARCHAR2(10)  ,
+  4   OFICIO    VARCHAR2(10)  ,
+  5   DIR       NUMBER(4) ,
+  6   FECHA_ALT DATE      ,
+  7   SALARIO   NUMBER(10),
+  8   COMISION  NUMBER(10),
+  9   DEPT_NO  NUMBER(2),
+ 10   foreign key (DEPT_NO) references d3;
+CREATE TABLE 3M (
+             *
+ERROR en línea 1:
+ORA-00903: nombre de tabla no válido 
+
+
+SQL> CREATE TABLE 3M (
+  2   EMP_NO    NUMBER(4) primary key,
+  3   APELLIDO  VARCHAR2(10)  ,
+  4   OFICIO    VARCHAR2(10)  ,
+  5   DIR       NUMBER(4) ,
+  6   FECHA_ALT DATE      ,
+  7   SALARIO   NUMBER(10),
+  8   COMISION  NUMBER(10),
+  9   DEPT_NO  NUMBER(2),
+ 10   foreign key (DEPT_NO) references d3);
+CREATE TABLE 3M (
+             *
+ERROR en línea 1:
+ORA-00903: nombre de tabla no válido 
+
+
+SQL> CREATE TABLE 3M (
+  2   EMP_NO    NUMBER(4) primary key,
+  3   APELLIDO  VARCHAR2(10)  ,
+  4   OFICIO    VARCHAR2(10)  ,
+  5   DIR       NUMBER(4) ,
+  6   FECHA_ALT DATE      ,
+  7   SALARIO   NUMBER(10),
+  8   COMISION  NUMBER(10),
+  9   DEPT_NO  NUMBER(2),
+ 10   DEPT_NO  NUMBER(2
+ 11  ;
+CREATE TABLE 3M (
+             *
+ERROR en línea 1:
+ORA-00903: nombre de tabla no válido 
+
+
+SQL> CREATE TABLE M3 (
+  2   EMP_NO    NUMBER(4) primary key,
+  3   APELLIDO  VARCHAR2(10)  ,
+  4   OFICIO    VARCHAR2(10)  ,
+  5   DIR       NUMBER(4) ,
+  6   FECHA_ALT DATE      ,
+  7   SALARIO   NUMBER(10),
+  8   COMISION  NUMBER(10),
+  9   DEPT_NO  NUMBER(2),
+ 10   foreign key (DEPT_NO) references d3);
+
+Tabla creada.
+
+SQL> INSERT INTO M3 VALUES (7369,'SANCHEZ','EMPLEADO',7902,'17/12/1980',104000,NULL,20);
+
+1 fila creada.
+
+SQL> INSERT INTO M3 VALUES (7499,'ARROYO','VENDEDOR',7698,'20/02/1980',208000,39000,30);
+
+1 fila creada.
+
+SQL> INSERT INTO M3 VALUES (7521,'SALA','VENDEDOR',7698,'22/02/1981',162500,65000,30);
+
+1 fila creada.
+
+SQL> CREATE TABLE PR0 (
+  2  Codigo VARCHAR2(3) primary key,
+  3  nombre VARCHAR2(15),
+  4  precio NUMBER(10));
+
+Tabla creada.
+
+SQL> CREATE TABLE W0R
+  2  (EMP_NO NUMBER(4),
+  3  CODIGO VARCHAR2(3),
+  4  PRIMARY KEY (EMP_NO, CODIGO),
+  5  FOREIGN KEY (EMP_NO) references M3,
+  6  FOREIGN KEY (CODIGO) references PR0);
+
+Tabla creada.
+
+SQL> DELETE EMPLE;
+
+17 filas suprimidas.
+
+SQL> exit

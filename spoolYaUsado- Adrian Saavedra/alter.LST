@@ -1,0 +1,6 @@
+SQL> ALTER TABLE TRATAR_PRUEBA
+  2  RENAME TO TRATAR;
+
+Tabla modificada.
+
+SQL> EXIT

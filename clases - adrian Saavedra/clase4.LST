@@ -1,0 +1,953 @@
+SQL> select add_months('2020/10/10'),5) from dual;
+select add_months('2020/10/10'),5) from dual
+       *
+ERROR en línea 1:
+ORA-00909: número de argumentos no válido 
+
+
+SQL> SELECT ADD_MONTHS(DATE '2020-10-10', 5) FROM dual;
+
+ADD_MONT                                                                                                                                                                                                
+--------                                                                                                                                                                                                
+10/03/21                                                                                                                                                                                                
+
+SQL> SELECT ADD_MONTHS(DATE '2020/10/10', 5) FROM dual;
+SELECT ADD_MONTHS(DATE '2020/10/10', 5) FROM dual
+                       *
+ERROR en línea 1:
+ORA-01861: el literal no coincide con la cadena de formato 
+
+
+SQL> SELECT ADD_MONTHS(DATE '10/10/2020', 5) FROM dual;
+SELECT ADD_MONTHS(DATE '10/10/2020', 5) FROM dual
+                       *
+ERROR en línea 1:
+ORA-01861: el literal no coincide con la cadena de formato 
+
+
+SQL> SELECT ADD_MONTHS(DATE '2020-10-10', 5) FROM dual;
+
+ADD_MONT                                                                                                                                                                                                
+--------                                                                                                                                                                                                
+10/03/21                                                                                                                                                                                                
+
+SQL> SELECT ADD_MONTHS(DATE '2020-10-10', -5) FROM dual;
+
+ADD_MONT                                                                                                                                                                                                
+--------                                                                                                                                                                                                
+10/05/20                                                                                                                                                                                                
+
+SQL> SELECT ADD_MONTHS(DATE '2017-10-10', -5) FROM dual;
+
+ADD_MONT                                                                                                                                                                                                
+--------                                                                                                                                                                                                
+10/05/17                                                                                                                                                                                                
+
+SQL> select last_day(DATE '2020-02-09') from dual;
+
+LAST_DAY                                                                                                                                                                                                
+--------                                                                                                                                                                                                
+29/02/20                                                                                                                                                                                                
+
+SQL> select months_between(DATE '2020-05-19',DATE '2020-08-19') from dual;
+
+MONTHS_BETWEEN(DATE'2020-05-19',DATE'2020-08-19')                                                                                                                                                       
+-------------------------------------------------                                                                                                                                                       
+                                               -3                                                                                                                                                       
+
+SQL> select next_day(DATE '2020-08-10','MONDAY') from dual;
+select next_day(DATE '2020-08-10','MONDAY') from dual
+                                  *
+ERROR en línea 1:
+ORA-01846: día de la semana no válido 
+
+
+SQL> SELECT NEXT_DAY(DATE '2020-08-10', 'MONDAY') FROM dual;
+SELECT NEXT_DAY(DATE '2020-08-10', 'MONDAY') FROM dual
+                                   *
+ERROR en línea 1:
+ORA-01846: día de la semana no válido 
+
+
+SQL> SELECT NEXT_DAY(DATE '2020-08-10', 'MON') FROM dual;
+SELECT NEXT_DAY(DATE '2020-08-10', 'MON') FROM dual
+                                   *
+ERROR en línea 1:
+ORA-01846: día de la semana no válido 
+
+
+SQL> SELECT NEXT_DAY((DATE '2020-08-10'), 'MONDAY') FROM dual;
+SELECT NEXT_DAY((DATE '2020-08-10'), 'MONDAY') FROM dual
+                                     *
+ERROR en línea 1:
+ORA-01846: día de la semana no válido 
+
+
+SQL> SELECT NEXT_DAY(to_date('10/08/2020',dd/mm/yyyy),'MONDAY') FROM dual;
+SELECT NEXT_DAY(to_date('10/08/2020',dd/mm/yyyy),'MONDAY') FROM dual
+                                           *
+ERROR en línea 1:
+ORA-00904: "YYYY": identificador no válido 
+
+
+SQL> SELECT NEXT_DAY(TO_DATE('2020-08-10', 'YYYY-MM-DD'), 'MONDAY') FROM dual;
+SELECT NEXT_DAY(TO_DATE('2020-08-10', 'YYYY-MM-DD'), 'MONDAY') FROM dual
+                                                     *
+ERROR en línea 1:
+ORA-01846: día de la semana no válido 
+
+
+SQL> SELECT NEXT_DAY(DATE '2020-08-10', 'LUNES') FROM dual;
+
+NEXT_DAY                                                                                                                                                                                                
+--------                                                                                                                                                                                                
+17/08/20                                                                                                                                                                                                
+
+SQL> SELECT NEXT_DAY(DATE '2020-08-10', 'MARTES') FROM dual;
+
+NEXT_DAY                                                                                                                                                                                                
+--------                                                                                                                                                                                                
+11/08/20                                                                                                                                                                                                
+
+SQL> SELECT CURRENT_DATE FROM DUAL;
+
+CURRENT_                                                                                                                                                                                                
+--------                                                                                                                                                                                                
+04/03/24                                                                                                                                                                                                
+
+SQL> SELECT SYSDATE FROM DUAL;
+
+SYSDATE                                                                                                                                                                                                 
+--------                                                                                                                                                                                                
+04/03/24                                                                                                                                                                                                
+
+SQL> SELECT CURRENT_TIMESTAMP FROM DUAL;
+
+CURRENT_TIMESTAMP                                                                                                                                                                                       
+---------------------------------------------------------------------------                                                                                                                             
+04/03/24 20:16:33,118000 +01:00                                                                                                                                                                         
+
+SQL> SELECT SYSTIMESTAMP FROM DUAL;
+
+SYSTIMESTAMP                                                                                                                                                                                            
+---------------------------------------------------------------------------                                                                                                                             
+04/03/24 20:16:58,452000 +01:00                                                                                                                                                                         
+
+SQL> SELECT TO_CHAR('10/10/2020') FROM DUAL;
+
+TO_CHAR('1                                                                                                                                                                                              
+----------                                                                                                                                                                                              
+10/10/2020                                                                                                                                                                                              
+
+SQL> CREATE TABLE ARTICULOS(
+  2  ID_ARTICULO	INT NOT NULL PRIMARY KEY,
+  3  ARTICULO VARCHAR2(50) NOT NULL,
+  4  COD_FABRICANTE	NUMBER(10) NOT NULL,
+  5  PESO NUMBER(4) NOT NULL,
+  6  CATEGORIA	VARCHAR2(50),
+  7  PRECIO_VENTA NUMBER(6,2),
+  8  PRECIO_COSTO NUMBER(6,2),
+  9  EXISTENCIAS	NUMBER(5)
+ 10  );
+CREATE TABLE ARTICULOS(
+             *
+ERROR en línea 1:
+ORA-00955: este nombre ya lo está utilizando otro objeto existente 
+
+
+SQL> 
+SQL> insert into articulos values(2,'TALADRO WALT',1012546955,45,'CONSTRUCCION',400,560,20);
+insert into articulos values(2,'TALADRO WALT',1012546955,45,'CONSTRUCCION',400,560,20)
+            *
+ERROR en línea 1:
+ORA-00913: demasiados valores 
+
+
+SQL> insert into articulos values(3,'ALICATE ACE',1012432365,23,'MECANICA',200,350.25,120);
+insert into articulos values(3,'ALICATE ACE',1012432365,23,'MECANICA',200,350.25,120)
+            *
+ERROR en línea 1:
+ORA-00913: demasiados valores 
+
+
+SQL> insert into articulos values(4,'PALA SENIC',1012345678,16,'CONSTRUCCION',100,230.5,200);
+insert into articulos values(4,'PALA SENIC',1012345678,16,'CONSTRUCCION',100,230.5,200)
+            *
+ERROR en línea 1:
+ORA-00913: demasiados valores 
+
+
+SQL> insert into articulos values(5,'TALADRO MILLWAKEE',1012545210,55,'CONSTRUCCION',300,423.5,50);
+insert into articulos values(5,'TALADRO MILLWAKEE',1012545210,55,'CONSTRUCCION',300,423.5,50)
+            *
+ERROR en línea 1:
+ORA-00913: demasiados valores 
+
+
+SQL> insert into articulos values(6,'GRIFO APERTURA MANOS',1010023654,26,'PLOMERIA',400,560.25,90);
+insert into articulos values(6,'GRIFO APERTURA MANOS',1010023654,26,'PLOMERIA',400,560.25,90)
+            *
+ERROR en línea 1:
+ORA-00913: demasiados valores 
+
+
+SQL> insert into articulos values(7,'FREGADERO MURAL',1015487966,200,'PLOMERIA',600,780.50,52);
+insert into articulos values(7,'FREGADERO MURAL',1015487966,200,'PLOMERIA',600,780.50,52)
+            *
+ERROR en línea 1:
+ORA-00913: demasiados valores 
+
+
+SQL> insert into articulos values(8,'TALADRO ELECTRICO BOSCH',1025493013,34,'CONSTRUCCION',250,380.25,41);
+insert into articulos values(8,'TALADRO ELECTRICO BOSCH',1025493013,34,'CONSTRUCCION',250,380.25,41)
+            *
+ERROR en línea 1:
+ORA-00913: demasiados valores 
+
+
+SQL> insert into articulos values(9,'CEPILLO CONICO ONDULADO',1025852000,44,'EBANISTERIA',150,240.25,88);
+insert into articulos values(9,'CEPILLO CONICO ONDULADO',1025852000,44,'EBANISTERIA',150,240.25,88)
+            *
+ERROR en línea 1:
+ORA-00913: demasiados valores 
+
+
+SQL> insert into articulos values(10,'CEPILLO TAZA ONDULADO',122247789,49,'EBANISTERIA',148,240.50,90);
+insert into articulos values(10,'CEPILLO TAZA ONDULADO',122247789,49,'EBANISTERIA',148,240.50,90)
+            *
+ERROR en línea 1:
+ORA-00913: demasiados valores 
+
+
+SQL> insert into articulos values(11,'CEPILLO TAZA TRENZADA',1016467985,	42,'EBANISTERIA',139,210.50,89);
+insert into articulos values(11,'CEPILLO TAZA TRENZADA',1016467985,	42,'EBANISTERIA',139,210.50,89)
+            *
+ERROR en línea 1:
+ORA-00913: demasiados valores 
+
+
+SQL> select table_name from user_tables;
+
+TABLE_NAME                                                                                                                                                                                              
+------------------------------                                                                                                                                                                          
+EQUIPOS                                                                                                                                                                                                 
+ESTADIOS                                                                                                                                                                                                
+KK                                                                                                                                                                                                      
+TRATAR                                                                                                                                                                                                  
+MEDICO                                                                                                                                                                                                  
+PACIENTE                                                                                                                                                                                                
+D3                                                                                                                                                                                                      
+M3                                                                                                                                                                                                      
+PR0                                                                                                                                                                                                     
+W0R                                                                                                                                                                                                     
+MI_PRIMERA_TABLA                                                                                                                                                                                        
+EJEMPLOEMPLEADOS                                                                                                                                                                                        
+MEDICAMENTOS                                                                                                                                                                                            
+LIBROS                                                                                                                                                                                                  
+VISITANTES                                                                                                                                                                                              
+PERSONAS                                                                                                                                                                                                
+ALUMNOS2                                                                                                                                                                                                
+DEPART                                                                                                                                                                                                  
+EMPLE                                                                                                                                                                                                   
+NOTAS_ALUMNOS                                                                                                                                                                                           
+LIBRERIA                                                                                                                                                                                                
+ALUMNOS                                                                                                                                                                                                 
+ASIGNATURAS                                                                                                                                                                                             
+NOTAS                                                                                                                                                                                                   
+ARTICULOS                                                                                                                                                                                               
+
+25 filas seleccionadas.
+
+SQL> select * from articulos;
+
+ninguna fila seleccionada
+
+SQL> drop table articulos;
+
+Tabla borrada.
+
+SQL> CREATE TABLE ARTICULOS(
+  2  ID_ARTICULO	INT NOT NULL PRIMARY KEY,
+  3  ARTICULO VARCHAR2(50) NOT NULL,
+  4  COD_FABRICANTE	NUMBER(10) NOT NULL,
+  5  PESO NUMBER(4) NOT NULL,
+  6  CATEGORIA	VARCHAR2(50),
+  7  PRECIO_VENTA NUMBER(6,2),
+  8  PRECIO_COSTO NUMBER(6,2),
+  9  EXISTENCIAS	NUMBER(5)
+ 10  );
+
+Tabla creada.
+
+SQL> 
+SQL> insert into articulos values(2,'TALADRO WALT',1012546955,45,'CONSTRUCCION',400,560,20);
+
+1 fila creada.
+
+SQL> insert into articulos values(3,'ALICATE ACE',1012432365,23,'MECANICA',200,350.25,120);
+
+1 fila creada.
+
+SQL> insert into articulos values(4,'PALA SENIC',1012345678,16,'CONSTRUCCION',100,230.5,200);
+
+1 fila creada.
+
+SQL> insert into articulos values(5,'TALADRO MILLWAKEE',1012545210,55,'CONSTRUCCION',300,423.5,50);
+
+1 fila creada.
+
+SQL> insert into articulos values(6,'GRIFO APERTURA MANOS',1010023654,26,'PLOMERIA',400,560.25,90);
+
+1 fila creada.
+
+SQL> insert into articulos values(7,'FREGADERO MURAL',1015487966,200,'PLOMERIA',600,780.50,52);
+
+1 fila creada.
+
+SQL> insert into articulos values(8,'TALADRO ELECTRICO BOSCH',1025493013,34,'CONSTRUCCION',250,380.25,41);
+
+1 fila creada.
+
+SQL> insert into articulos values(9,'CEPILLO CONICO ONDULADO',1025852000,44,'EBANISTERIA',150,240.25,88);
+
+1 fila creada.
+
+SQL> insert into articulos values(10,'CEPILLO TAZA ONDULADO',122247789,49,'EBANISTERIA',148,240.50,90);
+
+1 fila creada.
+
+SQL> insert into articulos values(11,'CEPILLO TAZA TRENZADA',1016467985,	42,'EBANISTERIA',139,210.50,89);
+
+1 fila creada.
+
+SQL> select * from articulos;
+
+ID_ARTICULO ARTICULO                                           COD_FABRICANTE       PESO CATEGORIA                                          PRECIO_VENTA PRECIO_COSTO EXISTENCIAS                       
+----------- -------------------------------------------------- -------------- ---------- -------------------------------------------------- ------------ ------------ -----------                       
+          2 TALADRO WALT                                           1012546955         45 CONSTRUCCION                                                400          560          20                       
+          3 ALICATE ACE                                            1012432365         23 MECANICA                                                    200       350,25         120                       
+          4 PALA SENIC                                             1012345678         16 CONSTRUCCION                                                100        230,5         200                       
+          5 TALADRO MILLWAKEE                                      1012545210         55 CONSTRUCCION                                                300        423,5          50                       
+          6 GRIFO APERTURA MANOS                                   1010023654         26 PLOMERIA                                                    400       560,25          90                       
+          7 FREGADERO MURAL                                        1015487966        200 PLOMERIA                                                    600        780,5          52                       
+          8 TALADRO ELECTRICO BOSCH                                1025493013         34 CONSTRUCCION                                                250       380,25          41                       
+          9 CEPILLO CONICO ONDULADO                                1025852000         44 EBANISTERIA                                                 150       240,25          88                       
+         10 CEPILLO TAZA ONDULADO                                   122247789         49 EBANISTERIA                                                 148        240,5          90                       
+         11 CEPILLO TAZA TRENZADA                                  1016467985         42 EBANISTERIA                                                 139        210,5          89                       
+
+10 filas seleccionadas.
+
+SQL> set pagesize 200
+SQL> set linesize 200
+SQL> select * from articulos;
+
+ID_ARTICULO ARTICULO                                           COD_FABRICANTE       PESO CATEGORIA                                          PRECIO_VENTA PRECIO_COSTO EXISTENCIAS                       
+----------- -------------------------------------------------- -------------- ---------- -------------------------------------------------- ------------ ------------ -----------                       
+          2 TALADRO WALT                                           1012546955         45 CONSTRUCCION                                                400          560          20                       
+          3 ALICATE ACE                                            1012432365         23 MECANICA                                                    200       350,25         120                       
+          4 PALA SENIC                                             1012345678         16 CONSTRUCCION                                                100        230,5         200                       
+          5 TALADRO MILLWAKEE                                      1012545210         55 CONSTRUCCION                                                300        423,5          50                       
+          6 GRIFO APERTURA MANOS                                   1010023654         26 PLOMERIA                                                    400       560,25          90                       
+          7 FREGADERO MURAL                                        1015487966        200 PLOMERIA                                                    600        780,5          52                       
+          8 TALADRO ELECTRICO BOSCH                                1025493013         34 CONSTRUCCION                                                250       380,25          41                       
+          9 CEPILLO CONICO ONDULADO                                1025852000         44 EBANISTERIA                                                 150       240,25          88                       
+         10 CEPILLO TAZA ONDULADO                                   122247789         49 EBANISTERIA                                                 148        240,5          90                       
+         11 CEPILLO TAZA TRENZADA                                  1016467985         42 EBANISTERIA                                                 139        210,5          89                       
+
+10 filas seleccionadas.
+
+SQL> select * from articulo order by articulo;
+select * from articulo order by articulo
+              *
+ERROR en línea 1:
+ORA-00942: la tabla o vista no existe 
+
+
+SQL> select * from articulos order by articulo;
+
+ID_ARTICULO ARTICULO                                           COD_FABRICANTE       PESO CATEGORIA                                          PRECIO_VENTA PRECIO_COSTO EXISTENCIAS                       
+----------- -------------------------------------------------- -------------- ---------- -------------------------------------------------- ------------ ------------ -----------                       
+          3 ALICATE ACE                                            1012432365         23 MECANICA                                                    200       350,25         120                       
+          9 CEPILLO CONICO ONDULADO                                1025852000         44 EBANISTERIA                                                 150       240,25          88                       
+         10 CEPILLO TAZA ONDULADO                                   122247789         49 EBANISTERIA                                                 148        240,5          90                       
+         11 CEPILLO TAZA TRENZADA                                  1016467985         42 EBANISTERIA                                                 139        210,5          89                       
+          7 FREGADERO MURAL                                        1015487966        200 PLOMERIA                                                    600        780,5          52                       
+          6 GRIFO APERTURA MANOS                                   1010023654         26 PLOMERIA                                                    400       560,25          90                       
+          4 PALA SENIC                                             1012345678         16 CONSTRUCCION                                                100        230,5         200                       
+          8 TALADRO ELECTRICO BOSCH                                1025493013         34 CONSTRUCCION                                                250       380,25          41                       
+          5 TALADRO MILLWAKEE                                      1012545210         55 CONSTRUCCION                                                300        423,5          50                       
+          2 TALADRO WALT                                           1012546955         45 CONSTRUCCION                                                400          560          20                       
+
+10 filas seleccionadas.
+
+SQL> select * from articulos order by id_articulo;
+
+ID_ARTICULO ARTICULO                                           COD_FABRICANTE       PESO CATEGORIA                                          PRECIO_VENTA PRECIO_COSTO EXISTENCIAS                       
+----------- -------------------------------------------------- -------------- ---------- -------------------------------------------------- ------------ ------------ -----------                       
+          2 TALADRO WALT                                           1012546955         45 CONSTRUCCION                                                400          560          20                       
+          3 ALICATE ACE                                            1012432365         23 MECANICA                                                    200       350,25         120                       
+          4 PALA SENIC                                             1012345678         16 CONSTRUCCION                                                100        230,5         200                       
+          5 TALADRO MILLWAKEE                                      1012545210         55 CONSTRUCCION                                                300        423,5          50                       
+          6 GRIFO APERTURA MANOS                                   1010023654         26 PLOMERIA                                                    400       560,25          90                       
+          7 FREGADERO MURAL                                        1015487966        200 PLOMERIA                                                    600        780,5          52                       
+          8 TALADRO ELECTRICO BOSCH                                1025493013         34 CONSTRUCCION                                                250       380,25          41                       
+          9 CEPILLO CONICO ONDULADO                                1025852000         44 EBANISTERIA                                                 150       240,25          88                       
+         10 CEPILLO TAZA ONDULADO                                   122247789         49 EBANISTERIA                                                 148        240,5          90                       
+         11 CEPILLO TAZA TRENZADA                                  1016467985         42 EBANISTERIA                                                 139        210,5          89                       
+
+10 filas seleccionadas.
+
+SQL> select * from articulos order by id_articulo desc;
+
+ID_ARTICULO ARTICULO                                           COD_FABRICANTE       PESO CATEGORIA                                          PRECIO_VENTA PRECIO_COSTO EXISTENCIAS                       
+----------- -------------------------------------------------- -------------- ---------- -------------------------------------------------- ------------ ------------ -----------                       
+         11 CEPILLO TAZA TRENZADA                                  1016467985         42 EBANISTERIA                                                 139        210,5          89                       
+         10 CEPILLO TAZA ONDULADO                                   122247789         49 EBANISTERIA                                                 148        240,5          90                       
+          9 CEPILLO CONICO ONDULADO                                1025852000         44 EBANISTERIA                                                 150       240,25          88                       
+          8 TALADRO ELECTRICO BOSCH                                1025493013         34 CONSTRUCCION                                                250       380,25          41                       
+          7 FREGADERO MURAL                                        1015487966        200 PLOMERIA                                                    600        780,5          52                       
+          6 GRIFO APERTURA MANOS                                   1010023654         26 PLOMERIA                                                    400       560,25          90                       
+          5 TALADRO MILLWAKEE                                      1012545210         55 CONSTRUCCION                                                300        423,5          50                       
+          4 PALA SENIC                                             1012345678         16 CONSTRUCCION                                                100        230,5         200                       
+          3 ALICATE ACE                                            1012432365         23 MECANICA                                                    200       350,25         120                       
+          2 TALADRO WALT                                           1012546955         45 CONSTRUCCION                                                400          560          20                       
+
+10 filas seleccionadas.
+
+SQL> select * from articulos order by 1 desc;
+
+ID_ARTICULO ARTICULO                                           COD_FABRICANTE       PESO CATEGORIA                                          PRECIO_VENTA PRECIO_COSTO EXISTENCIAS                       
+----------- -------------------------------------------------- -------------- ---------- -------------------------------------------------- ------------ ------------ -----------                       
+         11 CEPILLO TAZA TRENZADA                                  1016467985         42 EBANISTERIA                                                 139        210,5          89                       
+         10 CEPILLO TAZA ONDULADO                                   122247789         49 EBANISTERIA                                                 148        240,5          90                       
+          9 CEPILLO CONICO ONDULADO                                1025852000         44 EBANISTERIA                                                 150       240,25          88                       
+          8 TALADRO ELECTRICO BOSCH                                1025493013         34 CONSTRUCCION                                                250       380,25          41                       
+          7 FREGADERO MURAL                                        1015487966        200 PLOMERIA                                                    600        780,5          52                       
+          6 GRIFO APERTURA MANOS                                   1010023654         26 PLOMERIA                                                    400       560,25          90                       
+          5 TALADRO MILLWAKEE                                      1012545210         55 CONSTRUCCION                                                300        423,5          50                       
+          4 PALA SENIC                                             1012345678         16 CONSTRUCCION                                                100        230,5         200                       
+          3 ALICATE ACE                                            1012432365         23 MECANICA                                                    200       350,25         120                       
+          2 TALADRO WALT                                           1012546955         45 CONSTRUCCION                                                400          560          20                       
+
+10 filas seleccionadas.
+
+SQL> select * from articulos order by 4 desc;
+
+ID_ARTICULO ARTICULO                                           COD_FABRICANTE       PESO CATEGORIA                                          PRECIO_VENTA PRECIO_COSTO EXISTENCIAS                       
+----------- -------------------------------------------------- -------------- ---------- -------------------------------------------------- ------------ ------------ -----------                       
+          7 FREGADERO MURAL                                        1015487966        200 PLOMERIA                                                    600        780,5          52                       
+          5 TALADRO MILLWAKEE                                      1012545210         55 CONSTRUCCION                                                300        423,5          50                       
+         10 CEPILLO TAZA ONDULADO                                   122247789         49 EBANISTERIA                                                 148        240,5          90                       
+          2 TALADRO WALT                                           1012546955         45 CONSTRUCCION                                                400          560          20                       
+          9 CEPILLO CONICO ONDULADO                                1025852000         44 EBANISTERIA                                                 150       240,25          88                       
+         11 CEPILLO TAZA TRENZADA                                  1016467985         42 EBANISTERIA                                                 139        210,5          89                       
+          8 TALADRO ELECTRICO BOSCH                                1025493013         34 CONSTRUCCION                                                250       380,25          41                       
+          6 GRIFO APERTURA MANOS                                   1010023654         26 PLOMERIA                                                    400       560,25          90                       
+          3 ALICATE ACE                                            1012432365         23 MECANICA                                                    200       350,25         120                       
+          4 PALA SENIC                                             1012345678         16 CONSTRUCCION                                                100        230,5         200                       
+
+10 filas seleccionadas.
+
+SQL> create table peliculas(
+  2    codigo number(4) primary key,
+  3    titulo varchar2(40) not null,
+  4    actor varchar2(20),
+  5    duracion number(3)
+  6    );
+
+Tabla creada.
+
+SQL> 
+SQL> 
+SQL> 
+SQL>  insert into peliculas values(1020,'Mision imposible','Tom Cruise',120);
+
+1 fila creada.
+
+SQL>  insert into peliculas values(1021,'Harry Potter y la piedra filosofal','Daniel R.',180);
+
+1 fila creada.
+
+SQL>  insert into peliculas values(1022,'Harry Potter y la camara secreta','Daniel R.',190);
+
+1 fila creada.
+
+SQL>  insert into peliculas values(1200,'Mision imposible 2','Tom Cruise',120);
+
+1 fila creada.
+
+SQL>  insert into peliculas values(1234,'Mujer bonita','Richard Gere',120);
+
+1 fila creada.
+
+SQL>  insert into peliculas values(900,'Tootsie','D. Hoffman',90);
+
+1 fila creada.
+
+SQL>  insert into peliculas values(1300,'Un oso rojo','Julio Chavez',100);
+
+1 fila creada.
+
+SQL>  insert into peliculas values(1301,'Elsa y Fred','China Zorrilla',110);
+
+1 fila creada.
+
+SQL> select * from peliculas;
+
+    CODIGO TITULO                                   ACTOR                  DURACION                                                                                                                     
+---------- ---------------------------------------- -------------------- ----------                                                                                                                     
+      1020 Mision imposible                         Tom Cruise                  120                                                                                                                     
+      1021 Harry Potter y la piedra filosofal       Daniel R.                   180                                                                                                                     
+      1022 Harry Potter y la camara secreta         Daniel R.                   190                                                                                                                     
+      1200 Mision imposible 2                       Tom Cruise                  120                                                                                                                     
+      1234 Mujer bonita                             Richard Gere                120                                                                                                                     
+       900 Tootsie                                  D. Hoffman                   90                                                                                                                     
+      1300 Un oso rojo                              Julio Chavez                100                                                                                                                     
+      1301 Elsa y Fred                              China Zorrilla              110                                                                                                                     
+
+8 filas seleccionadas.
+
+SQL> select * from peliculas where actor = 'Tom Cruise' or actor = 'Richard Gere';
+
+    CODIGO TITULO                                   ACTOR                  DURACION                                                                                                                     
+---------- ---------------------------------------- -------------------- ----------                                                                                                                     
+      1020 Mision imposible                         Tom Cruise                  120                                                                                                                     
+      1200 Mision imposible 2                       Tom Cruise                  120                                                                                                                     
+      1234 Mujer bonita                             Richard Gere                120                                                                                                                     
+
+SQL> select
+  2  * from peliculas where actor = 'Tom Cruise' and duracion=100;
+
+ninguna fila seleccionada
+
+SQL> select * from peliculas where actor = 'Tom Cruise' and duracion<100;
+
+ninguna fila seleccionada
+
+SQL> select * from peliculas where actor = 'Tom Cruise' and duracion>100;
+
+    CODIGO TITULO                                   ACTOR                  DURACION                                                                                                                     
+---------- ---------------------------------------- -------------------- ----------                                                                                                                     
+      1020 Mision imposible                         Tom Cruise                  120                                                                                                                     
+      1200 Mision imposible 2                       Tom Cruise                  120                                                                                                                     
+
+SQL> select * from peliculas where actor not in ('Daniel R.');
+
+    CODIGO TITULO                                   ACTOR                  DURACION                                                                                                                     
+---------- ---------------------------------------- -------------------- ----------                                                                                                                     
+      1020 Mision imposible                         Tom Cruise                  120                                                                                                                     
+      1200 Mision imposible 2                       Tom Cruise                  120                                                                                                                     
+      1234 Mujer bonita                             Richard Gere                120                                                                                                                     
+       900 Tootsie                                  D. Hoffman                   90                                                                                                                     
+      1300 Un oso rojo                              Julio Chavez                100                                                                                                                     
+      1301 Elsa y Fred                              China Zorrilla              110                                                                                                                     
+
+6 filas seleccionadas.
+
+SQL> select * from peliculas where actor not in ('Daniel R.');
+
+    CODIGO TITULO                                   ACTOR                  DURACION                                                                                                                     
+---------- ---------------------------------------- -------------------- ----------                                                                                                                     
+      1020 Mision imposible                         Tom Cruise                  120                                                                                                                     
+      1200 Mision imposible 2                       Tom Cruise                  120                                                                                                                     
+      1234 Mujer bonita                             Richard Gere                120                                                                                                                     
+       900 Tootsie                                  D. Hoffman                   90                                                                                                                     
+      1300 Un oso rojo                              Julio Chavez                100                                                                                                                     
+      1301 Elsa y Fred                              China Zorrilla              110                                                                                                                     
+
+6 filas seleccionadas.
+
+SQL> select * from peliculas where actor in ('Daniel R.');
+
+    CODIGO TITULO                                   ACTOR                  DURACION                                                                                                                     
+---------- ---------------------------------------- -------------------- ----------                                                                                                                     
+      1021 Harry Potter y la piedra filosofal       Daniel R.                   180                                                                                                                     
+      1022 Harry Potter y la camara secreta         Daniel R.                   190                                                                                                                     
+
+SQL> select * from peliculas where actor in ('Daniel R.') and duracion = 180;
+
+    CODIGO TITULO                                   ACTOR                  DURACION                                                                                                                     
+---------- ---------------------------------------- -------------------- ----------                                                                                                                     
+      1021 Harry Potter y la piedra filosofal       Daniel R.                   180                                                                                                                     
+
+SQL> select * from peliculas where actor in ('Daniel R.') and duracion > 180;
+
+    CODIGO TITULO                                   ACTOR                  DURACION                                                                                                                     
+---------- ---------------------------------------- -------------------- ----------                                                                                                                     
+      1022 Harry Potter y la camara secreta         Daniel R.                   190                                                                                                                     
+
+SQL> select * from peliculas where duracion>=100 and duracion<=120;
+
+    CODIGO TITULO                                   ACTOR                  DURACION                                                                                                                     
+---------- ---------------------------------------- -------------------- ----------                                                                                                                     
+      1020 Mision imposible                         Tom Cruise                  120                                                                                                                     
+      1200 Mision imposible 2                       Tom Cruise                  120                                                                                                                     
+      1234 Mujer bonita                             Richard Gere                120                                                                                                                     
+      1300 Un oso rojo                              Julio Chavez                100                                                                                                                     
+      1301 Elsa y Fred                              China Zorrilla              110                                                                                                                     
+
+SQL> select * from peliculas where duracion between (100 and 120);
+select * from peliculas where duracion between (100 and 120)
+                                                    *
+ERROR en línea 1:
+ORA-00907: falta el paréntesis derecho 
+
+
+SQL> select * from peliculas where duracion between 100 and 120;
+
+    CODIGO TITULO                                   ACTOR                  DURACION                                                                                                                     
+---------- ---------------------------------------- -------------------- ----------                                                                                                                     
+      1020 Mision imposible                         Tom Cruise                  120                                                                                                                     
+      1200 Mision imposible 2                       Tom Cruise                  120                                                                                                                     
+      1234 Mujer bonita                             Richard Gere                120                                                                                                                     
+      1300 Un oso rojo                              Julio Chavez                100                                                                                                                     
+      1301 Elsa y Fred                              China Zorrilla              110                                                                                                                     
+
+SQL> select * from medicamentos
+  2  ;
+
+    CODIGO NOMBRE               LABORATORIO              PRECIO   CANTIDAD                                                                                                                              
+---------- -------------------- -------------------- ---------- ----------                                                                                                                              
+         1 Sertal gotas                                                100                                                                                                                              
+         2 Sertal compuesto                                 8,9        150                                                                                                                              
+         3 Buscapina            Roche                                  200                                                                                                                              
+
+SQL> drop table medicamentos;
+
+Tabla borrada.
+
+SQL> create table medicamentos(
+  2    codigo number(6) not null,
+  3    nombre varchar2(20),
+  4    laboratorio varchar2(20),
+  5    precio number(6,2),
+  6    cantidad number(4),
+  7    fechavencimiento date not null,
+  8    primary key(codigo)
+  9   );
+
+Tabla creada.
+
+SQL> 
+SQL>  insert into medicamentos
+  2    values(102,'Sertal','Roche',5.2,10,to_date('01/02/2020','dd/mm/yyyy'));
+
+1 fila creada.
+
+SQL>  insert into medicamentos
+  2    values(120,'Buscapina','Roche',4.10,200,to_date('01/12/2017','dd/mm/yyyy'));
+
+1 fila creada.
+
+SQL>  insert into medicamentos
+  2    values(230,'Amoxidal 500','Bayer',15.60,100,to_date('28/12/2017','dd/mm/yyyy'));
+
+1 fila creada.
+
+SQL>  insert into medicamentos
+  2    values(250,'Paracetamol 500','Bago',1.90,20,to_date('01/02/2018','dd/mm/yyyy'));
+
+1 fila creada.
+
+SQL>  insert into medicamentos
+  2    values(350,'Bayaspirina','Bayer',2.10,150,to_date('01/12/2019','dd/mm/yyyy'));
+
+1 fila creada.
+
+SQL>  insert into medicamentos
+  2    values(456,'Amoxidal jarabe','Bayer',5.10,250,to_date('01/10/2020','dd/mm/yyyy'));
+
+1 fila creada.
+
+SQL> select * from medicamentos;
+
+    CODIGO NOMBRE               LABORATORIO              PRECIO   CANTIDAD FECHAVEN                                                                                                                     
+---------- -------------------- -------------------- ---------- ---------- --------                                                                                                                     
+       102 Sertal               Roche                       5,2         10 01/02/20                                                                                                                     
+       120 Buscapina            Roche                       4,1        200 01/12/17                                                                                                                     
+       230 Amoxidal 500         Bayer                      15,6        100 28/12/17                                                                                                                     
+       250 Paracetamol 500      Bago                        1,9         20 01/02/18                                                                                                                     
+       350 Bayaspirina          Bayer                       2,1        150 01/12/19                                                                                                                     
+       456 Amoxidal jarabe      Bayer                       5,1        250 01/10/20                                                                                                                     
+
+6 filas seleccionadas.
+
+SQL> select * from medicamentos where fechavencimiento between '01/11/17' and '01/01/2019';
+
+    CODIGO NOMBRE               LABORATORIO              PRECIO   CANTIDAD FECHAVEN                                                                                                                     
+---------- -------------------- -------------------- ---------- ---------- --------                                                                                                                     
+       120 Buscapina            Roche                       4,1        200 01/12/17                                                                                                                     
+       230 Amoxidal 500         Bayer                      15,6        100 28/12/17                                                                                                                     
+       250 Paracetamol 500      Bago                        1,9         20 01/02/18                                                                                                                     
+
+SQL> select * from medicamentos where (precio between 5 and 15);
+
+    CODIGO NOMBRE               LABORATORIO              PRECIO   CANTIDAD FECHAVEN                                                                                                                     
+---------- -------------------- -------------------- ---------- ---------- --------                                                                                                                     
+       102 Sertal               Roche                       5,2         10 01/02/20                                                                                                                     
+       456 Amoxidal jarabe      Bayer                       5,1        250 01/10/20                                                                                                                     
+
+SQL> select * from medicamentos where cantidad between 100 and 200;
+
+    CODIGO NOMBRE               LABORATORIO              PRECIO   CANTIDAD FECHAVEN                                                                                                                     
+---------- -------------------- -------------------- ---------- ---------- --------                                                                                                                     
+       120 Buscapina            Roche                       4,1        200 01/12/17                                                                                                                     
+       230 Amoxidal 500         Bayer                      15,6        100 28/12/17                                                                                                                     
+       350 Bayaspirina          Bayer                       2,1        150 01/12/19                                                                                                                     
+
+SQL> select * from medicamentos where fechavencimiento between '01/dic/17' and '01/feb/2019';
+
+    CODIGO NOMBRE               LABORATORIO              PRECIO   CANTIDAD FECHAVEN                                                                                                                     
+---------- -------------------- -------------------- ---------- ---------- --------                                                                                                                     
+       120 Buscapina            Roche                       4,1        200 01/12/17                                                                                                                     
+       230 Amoxidal 500         Bayer                      15,6        100 28/12/17                                                                                                                     
+       250 Paracetamol 500      Bago                        1,9         20 01/02/18                                                                                                                     
+
+SQL> select * from medicamentos where fechavencimiento between '01/ene/17' and '01/feb/2019';
+
+    CODIGO NOMBRE               LABORATORIO              PRECIO   CANTIDAD FECHAVEN                                                                                                                     
+---------- -------------------- -------------------- ---------- ---------- --------                                                                                                                     
+       120 Buscapina            Roche                       4,1        200 01/12/17                                                                                                                     
+       230 Amoxidal 500         Bayer                      15,6        100 28/12/17                                                                                                                     
+       250 Paracetamol 500      Bago                        1,9         20 01/02/18                                                                                                                     
+
+SQL> select * from medicamentos;
+
+    CODIGO NOMBRE               LABORATORIO              PRECIO   CANTIDAD FECHAVEN                                                                                                                     
+---------- -------------------- -------------------- ---------- ---------- --------                                                                                                                     
+       102 Sertal               Roche                       5,2         10 01/02/20                                                                                                                     
+       120 Buscapina            Roche                       4,1        200 01/12/17                                                                                                                     
+       230 Amoxidal 500         Bayer                      15,6        100 28/12/17                                                                                                                     
+       250 Paracetamol 500      Bago                        1,9         20 01/02/18                                                                                                                     
+       350 Bayaspirina          Bayer                       2,1        150 01/12/19                                                                                                                     
+       456 Amoxidal jarabe      Bayer                       5,1        250 01/10/20                                                                                                                     
+
+6 filas seleccionadas.
+
+SQL> select * from medicamentos where laboratorio in ('Bayer','Bago');
+
+    CODIGO NOMBRE               LABORATORIO              PRECIO   CANTIDAD FECHAVEN                                                                                                                     
+---------- -------------------- -------------------- ---------- ---------- --------                                                                                                                     
+       230 Amoxidal 500         Bayer                      15,6        100 28/12/17                                                                                                                     
+       250 Paracetamol 500      Bago                        1,9         20 01/02/18                                                                                                                     
+       350 Bayaspirina          Bayer                       2,1        150 01/12/19                                                                                                                     
+       456 Amoxidal jarabe      Bayer                       5,1        250 01/10/20                                                                                                                     
+
+SQL> select * from medicamentos where laboratorio not in ('Bayer','Bago');
+
+    CODIGO NOMBRE               LABORATORIO              PRECIO   CANTIDAD FECHAVEN                                                                                                                     
+---------- -------------------- -------------------- ---------- ---------- --------                                                                                                                     
+       102 Sertal               Roche                       5,2         10 01/02/20                                                                                                                     
+       120 Buscapina            Roche                       4,1        200 01/12/17                                                                                                                     
+
+SQL> select * from medicamentos where extract (year from fechavencimiento) in (2019,2020);
+
+    CODIGO NOMBRE               LABORATORIO              PRECIO   CANTIDAD FECHAVEN                                                                                                                     
+---------- -------------------- -------------------- ---------- ---------- --------                                                                                                                     
+       102 Sertal               Roche                       5,2         10 01/02/20                                                                                                                     
+       350 Bayaspirina          Bayer                       2,1        150 01/12/19                                                                                                                     
+       456 Amoxidal jarabe      Bayer                       5,1        250 01/10/20                                                                                                                     
+
+SQL> select * from medicamentos where extract (year from fechavencimiento) between 2019 and 2020;
+
+    CODIGO NOMBRE               LABORATORIO              PRECIO   CANTIDAD FECHAVEN                                                                                                                     
+---------- -------------------- -------------------- ---------- ---------- --------                                                                                                                     
+       102 Sertal               Roche                       5,2         10 01/02/20                                                                                                                     
+       350 Bayaspirina          Bayer                       2,1        150 01/12/19                                                                                                                     
+       456 Amoxidal jarabe      Bayer                       5,1        250 01/10/20                                                                                                                     
+
+SQL> select * from medicamentos where extract (day from fechavencimiento) between 01 and 25;
+
+    CODIGO NOMBRE               LABORATORIO              PRECIO   CANTIDAD FECHAVEN                                                                                                                     
+---------- -------------------- -------------------- ---------- ---------- --------                                                                                                                     
+       102 Sertal               Roche                       5,2         10 01/02/20                                                                                                                     
+       120 Buscapina            Roche                       4,1        200 01/12/17                                                                                                                     
+       250 Paracetamol 500      Bago                        1,9         20 01/02/18                                                                                                                     
+       350 Bayaspirina          Bayer                       2,1        150 01/12/19                                                                                                                     
+       456 Amoxidal jarabe      Bayer                       5,1        250 01/10/20                                                                                                                     
+
+SQL> select * from medicamentos where extract (month from fechavencimiento) between 01 and 11;
+
+    CODIGO NOMBRE               LABORATORIO              PRECIO   CANTIDAD FECHAVEN                                                                                                                     
+---------- -------------------- -------------------- ---------- ---------- --------                                                                                                                     
+       102 Sertal               Roche                       5,2         10 01/02/20                                                                                                                     
+       250 Paracetamol 500      Bago                        1,9         20 01/02/18                                                                                                                     
+       456 Amoxidal jarabe      Bayer                       5,1        250 01/10/20                                                                                                                     
+
+SQL> select * from empleados;
+select * from empleados
+              *
+ERROR en línea 1:
+ORA-00942: la tabla o vista no existe 
+
+
+SQL> select * from empleado;
+select * from empleado
+              *
+ERROR en línea 1:
+ORA-00942: la tabla o vista no existe 
+
+
+SQL>  create table empleados(
+  2    nombre varchar2(30),
+  3    documento char(8) not null,
+  4    domicilio varchar2(30),
+  5    fechaingreso date,
+  6    seccion varchar2(20),
+  7    sueldo number(6,2),
+  8    primary key(documento)
+  9   );
+
+Tabla creada.
+
+SQL>   insert into empleados
+  2    values('Juan Perez','22333444','Colon 123',to_date('08/10/1990','dd/mm/yyyy'),'Gerencia',900.50);
+
+1 fila creada.
+
+SQL>  insert into empleados
+  2    values('Ana Acosta','23444555','Caseros 987',to_date('18/12/1995','dd/mm/yyyy'),'Secretaria',590.30);
+
+1 fila creada.
+
+SQL>  insert into empleados
+  2    values('Lucas Duarte','25666777','Sucre 235',to_date('15/05/2005','dd/mm/yyyy'),'Sistemas',790);
+
+1 fila creada.
+
+SQL>  insert into empleados
+  2    values('Pamela Gonzalez','26777888','Sarmiento 873',to_date('12/02/1999','dd/mm/yyyy'),'Secretaria',550);
+
+1 fila creada.
+
+SQL>  insert into empleados
+  2    values('Marcos Juarez','30000111','Rivadavia 801',to_date('22/09/2002','dd/mm/yyyy'),'Contaduria',630.70);
+
+1 fila creada.
+
+SQL>  insert into empleados
+  2    values('Yolanda perez','35111222','Colon 180',to_date('08/10/1990','dd/mm/yyyy'),'Administracion',400);
+
+1 fila creada.
+
+SQL>  insert into empleados
+  2    values('Rodolfo perez','35555888','Coronel Olmedo 588',to_date('28/05/1990','dd/mm/yyyy'),'Sistemas',800);
+
+1 fila creada.
+
+SQL> select * from empleados where nombre like '%Perez%';
+
+NOMBRE                         DOCUMENT DOMICILIO                      FECHAING SECCION                  SUELDO                                                                                         
+------------------------------ -------- ------------------------------ -------- -------------------- ----------                                                                                         
+Juan Perez                     22333444 Colon 123                      08/10/90 Gerencia                  900,5                                                                                         
+
+SQL> select * from empleados where nombre like '%perez%';
+
+NOMBRE                         DOCUMENT DOMICILIO                      FECHAING SECCION                  SUELDO                                                                                         
+------------------------------ -------- ------------------------------ -------- -------------------- ----------                                                                                         
+Yolanda perez                  35111222 Colon 180                      08/10/90 Administracion              400                                                                                         
+Rodolfo perez                  35555888 Coronel Olmedo 588             28/05/90 Sistemas                    800                                                                                         
+
+SQL> select * from empleados where nombre not like '%perez%';
+
+NOMBRE                         DOCUMENT DOMICILIO                      FECHAING SECCION                  SUELDO                                                                                         
+------------------------------ -------- ------------------------------ -------- -------------------- ----------                                                                                         
+Juan Perez                     22333444 Colon 123                      08/10/90 Gerencia                  900,5                                                                                         
+Ana Acosta                     23444555 Caseros 987                    18/12/95 Secretaria                590,3                                                                                         
+Lucas Duarte                   25666777 Sucre 235                      15/05/05 Sistemas                    790                                                                                         
+Pamela Gonzalez                26777888 Sarmiento 873                  12/02/99 Secretaria                  550                                                                                         
+Marcos Juarez                  30000111 Rivadavia 801                  22/09/02 Contaduria                630,7                                                                                         
+
+SQL> select * from empleados where nombre like not '%perez%';
+select * from empleados where nombre like not '%perez%'
+                                          *
+ERROR en línea 1:
+ORA-00936: falta una expresión 
+
+
+SQL> select * from empleados where nombre like not in ('%perez%');
+select * from empleados where nombre like not in ('%perez%')
+                                          *
+ERROR en línea 1:
+ORA-00936: falta una expresión 
+
+
+SQL> select * from empleados where nombre not like in ('%perez%');
+select * from empleados where nombre not like in ('%perez%')
+                                              *
+ERROR en línea 1:
+ORA-00936: falta una expresión 
+
+
+SQL> select * from empleados where documento like '35%';
+
+NOMBRE                         DOCUMENT DOMICILIO                      FECHAING SECCION                  SUELDO                                                                                         
+------------------------------ -------- ------------------------------ -------- -------------------- ----------                                                                                         
+Yolanda perez                  35111222 Colon 180                      08/10/90 Administracion              400                                                                                         
+Rodolfo perez                  35555888 Coronel Olmedo 588             28/05/90 Sistemas                    800                                                                                         
+
+SQL> select * from empleados where documento like '%888';
+
+NOMBRE                         DOCUMENT DOMICILIO                      FECHAING SECCION                  SUELDO                                                                                         
+------------------------------ -------- ------------------------------ -------- -------------------- ----------                                                                                         
+Pamela Gonzalez                26777888 Sarmiento 873                  12/02/99 Secretaria                  550                                                                                         
+Rodolfo perez                  35555888 Coronel Olmedo 588             28/05/90 Sistemas                    800                                                                                         
+
+SQL> select * from empleados where domicilio like 'Co%8%';
+
+NOMBRE                         DOCUMENT DOMICILIO                      FECHAING SECCION                  SUELDO                                                                                         
+------------------------------ -------- ------------------------------ -------- -------------------- ----------                                                                                         
+Yolanda perez                  35111222 Colon 180                      08/10/90 Administracion              400                                                                                         
+Rodolfo perez                  35555888 Coronel Olmedo 588             28/05/90 Sistemas                    800                                                                                         
+
+SQL> select * from empleados where domicilio like 'Co%' and domicilio like '%8%';
+
+NOMBRE                         DOCUMENT DOMICILIO                      FECHAING SECCION                  SUELDO                                                                                         
+------------------------------ -------- ------------------------------ -------- -------------------- ----------                                                                                         
+Yolanda perez                  35111222 Colon 180                      08/10/90 Administracion              400                                                                                         
+Rodolfo perez                  35555888 Coronel Olmedo 588             28/05/90 Sistemas                    800                                                                                         
+
+SQL> select * from empleados where seccion like 'G_______';
+
+NOMBRE                         DOCUMENT DOMICILIO                      FECHAING SECCION                  SUELDO                                                                                         
+------------------------------ -------- ------------------------------ -------- -------------------- ----------                                                                                         
+Juan Perez                     22333444 Colon 123                      08/10/90 Gerencia                  900,5                                                                                         
+
+SQL> select * from empleados where seccion like 'G_______%';
+
+NOMBRE                         DOCUMENT DOMICILIO                      FECHAING SECCION                  SUELDO                                                                                         
+------------------------------ -------- ------------------------------ -------- -------------------- ----------                                                                                         
+Juan Perez                     22333444 Colon 123                      08/10/90 Gerencia                  900,5                                                                                         
+
+SQL> select * from empleados where seccion like 'S_________%';
+
+NOMBRE                         DOCUMENT DOMICILIO                      FECHAING SECCION                  SUELDO                                                                                         
+------------------------------ -------- ------------------------------ -------- -------------------- ----------                                                                                         
+Ana Acosta                     23444555 Caseros 987                    18/12/95 Secretaria                590,3                                                                                         
+Pamela Gonzalez                26777888 Sarmiento 873                  12/02/99 Secretaria                  550                                                                                         
+
+SQL> select * from empleados where seccion like '%______ia';
+
+NOMBRE                         DOCUMENT DOMICILIO                      FECHAING SECCION                  SUELDO                                                                                         
+------------------------------ -------- ------------------------------ -------- -------------------- ----------                                                                                         
+Juan Perez                     22333444 Colon 123                      08/10/90 Gerencia                  900,5                                                                                         
+Ana Acosta                     23444555 Caseros 987                    18/12/95 Secretaria                590,3                                                                                         
+Pamela Gonzalez                26777888 Sarmiento 873                  12/02/99 Secretaria                  550                                                                                         
+Marcos Juarez                  30000111 Rivadavia 801                  22/09/02 Contaduria                630,7                                                                                         
+
+SQL> select * from empleados where seccion like '______ia';
+
+NOMBRE                         DOCUMENT DOMICILIO                      FECHAING SECCION                  SUELDO                                                                                         
+------------------------------ -------- ------------------------------ -------- -------------------- ----------                                                                                         
+Juan Perez                     22333444 Colon 123                      08/10/90 Gerencia                  900,5                                                                                         
+
+SQL> select * from empleados where sueldo like '%5__%';
+
+NOMBRE                         DOCUMENT DOMICILIO                      FECHAING SECCION                  SUELDO                                                                                         
+------------------------------ -------- ------------------------------ -------- -------------------- ----------                                                                                         
+Ana Acosta                     23444555 Caseros 987                    18/12/95 Secretaria                590,3                                                                                         
+Pamela Gonzalez                26777888 Sarmiento 873                  12/02/99 Secretaria                  550                                                                                         
+
+SQL> exi
+SP2-0042: comando desconocido "exi" - resto de la línea ignorado.
+SQL> exit

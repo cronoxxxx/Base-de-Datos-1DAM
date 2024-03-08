@@ -1,0 +1,61 @@
+SQL> rem mi segunda tabla
+SQL> create table depart (dept_no number(2) primary key,
+  2  
+SQL> create table depart (
+  2  dept_no number(2) primary key,
+  3  dnombre varchar2(14),
+  4  loc varchar2(14));
+
+Tabla creada.
+
+SQL> INSERT INTO DEPART VALUES (10,'CONTABILIDAD','SEVILLA');
+
+1 fila creada.
+
+SQL> INSERT INTO DEPART VALUES (20,'INVESTIGACIàN','MADRID');
+
+1 fila creada.
+
+SQL> INSERT INTO DEPART VALUES (30,'VENTAS','BARCELONA');
+
+1 fila creada.
+
+SQL> INSERT INTO DEPART VALUES (40,'PRODUCCIàN','BILBAO');
+
+1 fila creada.
+
+SQL> INSERT INTO DEPART VALUES (50,'otros',null)
+  2  d
+  3  sfdsdf
+  4  INSERT INTO DEPART VALUES (50,'otros',null);
+d
+*
+ERROR en línea 2:
+ORA-00933: comando SQL no terminado correctamente 
+
+
+SQL> INSERT INTO DEPART VALUES (50,'otros',null);
+
+1 fila creada.
+
+SQL> rem************incluir mas regristros con distintos casos, minusculas, nulos....
+SQL> INSERT INTO DEPART VALUES (10,'Contabilidad','SEVILLA');
+INSERT INTO DEPART VALUES (10,'Contabilidad','SEVILLA')
+*
+ERROR en línea 1:
+ORA-00001: restricción única (ADRIAN.SYS_C004053) violada 
+
+
+SQL> INSERT INTO DEPART VALUES (10,'Contabilidad','SEVILLA');
+INSERT INTO DEPART VALUES (10,'Contabilidad','SEVILLA')
+*
+ERROR en línea 1:
+ORA-00001: restricción única (ADRIAN.SYS_C004053) violada 
+
+
+SQL> INSERT INTO DEPART VALUES (10,'CONTABILIDAD,'SEVILLA');
+ERROR:
+ORA-01756: la cadena entrecomillada no está terminada correctamente 
+
+
+SQL> 

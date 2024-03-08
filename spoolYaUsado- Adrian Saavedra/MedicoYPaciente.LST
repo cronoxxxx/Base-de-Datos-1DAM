@@ -1,0 +1,398 @@
+SQL> rem nos hemos conectado con el usuario local que creamos en la primera sesion
+SQL> select table_name from user_tables;
+
+TABLE_NAME                                                                      
+------------------------------                                                  
+DEPART                                                                          
+DEPAR                                                                           
+DEPARTAMENT                                                                     
+DEP                                                                             
+EMPLE                                                                           
+EQUIPOS                                                                         
+ESTADIOS                                                                        
+KK                                                                              
+D3                                                                              
+M3                                                                              
+PR0                                                                             
+
+TABLE_NAME                                                                      
+------------------------------                                                  
+W0R                                                                             
+
+12 filas seleccionadas.
+
+SQL> rem crear tabla MEDICO
+SQL> CREATE TABLE MEDICO (
+  2  ID_MEDICO NUMBER(4) primary key,
+  3  Nombre VARCHAR2(10) NOT NULL,
+  4  Apellidos VARCHAR2(15) NOT NULL,
+  5  Especialidad VARCHAR2(15) NOT NULL);
+
+Tabla creada.
+
+SQL> CREATE TABLE PACIENTE (
+  2  ID_PACIENTE NUMBER(4) primary key,
+  3  Nombre VARCHAR2(10) NOT NULL,
+  4  Apellidos VARCHAR2(15) NOT NULL,
+  5  Fecha_nacimiento DATE,
+  6  SEXO VARCHAR2(1) CHECK (sexo in (`M , `F , `I )),
+  7  Observaciones VARCHAR2(20));
+SEXO VARCHAR2(1) CHECK (sexo in (`M , `F , `I )),
+                                 *
+ERROR en l nea 6:
+ORA-00911: car cter no v lido 
+
+
+SQL> CREATE TABLE PACIENTE (
+  2    2  ID_PACIENTE NUMBER(4) primary key,
+  3    3  Nombre VARCHAR2(10) NOT NULL,
+  4    4  Apellidos VARCHAR2(15) NOT NULL,
+  5    5  Fecha_nacimiento DATE,
+  6    6  SEXO VARCHAR2(1) CHECK (sexo in (`M , `F , `I )),
+  7    7  Observaciones VARCHAR2(20));
+  2  ID_PACIENTE NUMBER(4) primary key,
+  *
+ERROR en l nea 2:
+ORA-00904: : identificador no v lido 
+
+
+SQL> CREATE TABLE PACIENTE (
+  2    2  ID_PACIENTE NUMBER(4) primary key,
+  3    3  Nombre VARCHAR2(10) NOT NULL,
+  4    4  Apellidos VARCHAR2(15) NOT NULL,
+  5    5  Fecha_nacimiento DATE,
+  6    6  SEXO VARCHAR2(1) CHECK (sexo in ('M', 'F', 'I')),
+  7  sa
+  8  ;
+  2  ID_PACIENTE NUMBER(4) primary key,
+  *
+ERROR en l nea 2:
+ORA-00904: : identificador no v lido 
+
+
+SQL> CREATE TABLE PACIENTE (
+  2    ID_PACIENTE NUMBER(4) PRIMARY KEY,
+  3    Nombre VARCHAR2(10) NOT NULL,
+  4    Apellidos VARCHAR2(15) NOT NULL,
+  5    Fecha_nacimiento DATE,
+  6    SEXO CHAR(1) CHECK (SEXO IN ('M', 'F', 'I')),
+  7    Observaciones VARCHAR2(20)
+  8  );
+
+Tabla creada.
+
+SQL> CREATE TABLE TRATAR (
+  2  ID_MEDICO NUMBER(3),
+  3  ID_PACIENT;
+ID_PACIENT
+         *
+ERROR en l nea 3:
+ORA-00907: falta el par ntesis derecho 
+
+
+SQL> CREATE TABLE TRATAR (
+  2  ID_MEDICO NUMBER (4),
+  3  ID_PACIENTE NUMBER(4),
+  4  primary key (ID_MEDICO, ID_PACIENTE),
+  5  Fecha_cita DATE,
+  6  Diagnostico VARCHAR2(10),
+  7  Tratamiento VARCHAR2(20),
+  8  FOREIGN KEY (ID_MEDICO) references MEDICO,
+  9  FOREIGN KEY (ID_PACIENTE) references PACIENTE);
+
+Tabla creada.
+
+SQL> select table_name from user_tables;
+
+TABLE_NAME                                                                      
+------------------------------                                                  
+DEPART                                                                          
+DEPAR                                                                           
+DEPARTAMENT                                                                     
+DEP                                                                             
+EMPLE                                                                           
+EQUIPOS                                                                         
+ESTADIOS                                                                        
+KK                                                                              
+MEDICO                                                                          
+PACIENTE                                                                        
+TRATAR                                                                          
+
+TABLE_NAME                                                                      
+------------------------------                                                  
+D3                                                                              
+M3                                                                              
+PR0                                                                             
+W0R                                                                             
+
+15 filas seleccionadas.
+
+SQL> desc medico
+ Nombre                                     Nulo?   Tipo
+ ----------------------------------------- -------- ----------------------------
+ ID_MEDICO                                 NOT NULL NUMBER(4)
+ NOMBRE                                    NOT NULL VARCHAR2(10)
+ APELLIDOS                                 NOT NULL VARCHAR2(15)
+ ESPECIALIDAD                              NOT NULL VARCHAR2(15)
+
+SQL> desc paciente
+ Nombre                                     Nulo?   Tipo
+ ----------------------------------------- -------- ----------------------------
+ ID_PACIENTE                               NOT NULL NUMBER(4)
+ NOMBRE                                    NOT NULL VARCHAR2(10)
+ APELLIDOS                                 NOT NULL VARCHAR2(15)
+ FECHA_NACIMIENTO                                   DATE
+ SEXO                                               CHAR(1)
+ OBSERVACIONES                                      VARCHAR2(20)
+
+SQL> desc tratar
+ Nombre                                     Nulo?   Tipo
+ ----------------------------------------- -------- ----------------------------
+ ID_MEDICO                                 NOT NULL NUMBER(4)
+ ID_PACIENTE                               NOT NULL NUMBER(4)
+ FECHA_CITA                                         DATE
+ DIAGNOSTICO                                        VARCHAR2(10)
+ TRATAMIENTO                                        VARCHAR2(20)
+
+SQL> INSERT INTO MEDICO VALUES (1,'Ernesto','Olmo Noriega','Cardiologia');
+
+1 fila creada.
+
+SQL> INSERT INTO MEDICO VALUES (2,'Marta','Mu oz Peral','Pediatria');
+
+1 fila creada.
+
+SQL> INSERT INTO PACIENTE VALUES (1,'Juan','Perez Acacia',TO_DATE ('1990-05-15','YYYY-MM-DD'),'M','Dolor de Cabeza');
+
+1 fila creada.
+
+SQL> INSERT INTO PACIENTE VALUES (22, 'Pepe', 'Roble Valle', '19/01/37','M','Fiebre');
+
+1 fila creada.
+
+SQL> INSERT INTO PACIENTE VALUES (3, 'Adrian', 'Saavedra Mateo', '20/09/04','M',NULL);
+
+1 fila creada.
+
+SQL> INSERT INTO PACIENTE VALUES (4, 'Maria','Calvo Ruiz', TO_DATE ('22-08-40'),'F','Artritis');
+
+1 fila creada.
+
+SQL> INSERT INTO TRATAR VALUES (1,1,SYSDATE,'Cefalea','Mec. y Reposo');
+
+1 fila creada.
+
+SQL> INSERT INTO TRATAR VALUES (2,2,SYSDATE,'Inf. Viral','Antibioticos');
+INSERT INTO TRATAR VALUES (2,2,SYSDATE,'Inf. Viral','Antibioticos')
+*
+ERROR en l nea 1:
+ORA-02291: restricci n de integridad (ADRIAN.SYS_C004326) violada - clave 
+principal no encontrada 
+
+
+SQL> INSERT INTO TRATAR VALUES (3,3,SYSDATE,'Inf. Viral','Antibioticos');
+INSERT INTO TRATAR VALUES (3,3,SYSDATE,'Inf. Viral','Antibioticos')
+*
+ERROR en l nea 1:
+ORA-02291: restricci n de integridad (ADRIAN.SYS_C004325) violada - clave 
+principal no encontrada 
+
+
+SQL> INSERT INTO MEDICO VALUES (3,'Ele','Ele','Quirofano');
+
+1 fila creada.
+
+SQL> INSERT INTO TRATAR VALUES (3,3,SYSDATE,'Inf. Viral','Antibioticos');
+
+1 fila creada.
+
+SQL> INSERT INTO MEDICO VALUES (4,'Maria','Delgado','Urologia');
+
+1 fila creada.
+
+SQL> INSERT INTO TRATAR VALUES (4,4,SYSDATE,'Cancer','Cirugia');
+
+1 fila creada.
+
+SQL> set pagesize 200
+SQL> set linesize 200
+SQL> select all_tables;
+select all_tables
+                *
+ERROR en l nea 1:
+ORA-00923: palabra clave FROM no encontrada donde se esperaba 
+
+
+SQL> SELECT * FROM MEDICO
+  2  ;
+
+ ID_MEDICO NOMBRE     APELLIDOS       ESPECIALIDAD                                                                                                                                                      
+---------- ---------- --------------- ---------------                                                                                                                                                   
+         1 Ernesto    Olmo Noriega    Cardiologia                                                                                                                                                       
+         2 Marta      Mu oz Peral     Pediatria                                                                                                                                                         
+         3 Ele        Ele             Quirofano                                                                                                                                                         
+         4 Maria      Delgado         Urologia                                                                                                                                                          
+
+SQL> SELECT * FROM PACIENTE
+  2  ;
+
+ID_PACIENTE NOMBRE     APELLIDOS       FECHA_NA S OBSERVACIONES                                                                                                                                         
+----------- ---------- --------------- -------- - --------------------                                                                                                                                  
+          1 Juan       Perez Acacia    15/05/90 M Dolor de Cabeza                                                                                                                                       
+         22 Pepe       Roble Valle     19/01/37 M Fiebre                                                                                                                                                
+          3 Adrian     Saavedra Mateo  20/09/04 M                                                                                                                                                       
+          4 Maria      Calvo Ruiz      22/08/40 F Artritis                                                                                                                                              
+
+SQL> SELECT * FROM TRATAR;
+
+ ID_MEDICO ID_PACIENTE FECHA_CI DIAGNOSTIC TRATAMIENTO                                                                                                                                                  
+---------- ----------- -------- ---------- --------------------                                                                                                                                         
+         1           1 16/01/24 Cefalea    Mec. y Reposo                                                                                                                                                
+         3           3 16/01/24 Inf. Viral Antibioticos                                                                                                                                                 
+         4           4 16/01/24 Cancer     Cirugia                                                                                                                                                      
+
+SQL> DELETE DEP
+  2  ;
+
+7 filas suprimidas.
+
+SQL> select table_name from user_tables;
+
+TABLE_NAME                                                                                                                                                                                              
+------------------------------                                                                                                                                                                          
+DEPART                                                                                                                                                                                                  
+DEPAR                                                                                                                                                                                                   
+DEPARTAMENT                                                                                                                                                                                             
+DEP                                                                                                                                                                                                     
+EMPLE                                                                                                                                                                                                   
+EQUIPOS                                                                                                                                                                                                 
+ESTADIOS                                                                                                                                                                                                
+KK                                                                                                                                                                                                      
+MEDICO                                                                                                                                                                                                  
+PACIENTE                                                                                                                                                                                                
+TRATAR                                                                                                                                                                                                  
+D3                                                                                                                                                                                                      
+M3                                                                                                                                                                                                      
+PR0                                                                                                                                                                                                     
+W0R                                                                                                                                                                                                     
+
+15 filas seleccionadas.
+
+SQL> DROP DEP;
+DROP DEP
+     *
+ERROR en l nea 1:
+ORA-00950: opci n DROP no v lida 
+
+
+SQL> DROP TABLE DEP;
+
+Tabla borrada.
+
+SQL> select table_name from user_tables;
+
+TABLE_NAME                                                                                                                                                                                              
+------------------------------                                                                                                                                                                          
+DEPART                                                                                                                                                                                                  
+DEPAR                                                                                                                                                                                                   
+DEPARTAMENT                                                                                                                                                                                             
+EMPLE                                                                                                                                                                                                   
+EQUIPOS                                                                                                                                                                                                 
+ESTADIOS                                                                                                                                                                                                
+KK                                                                                                                                                                                                      
+MEDICO                                                                                                                                                                                                  
+PACIENTE                                                                                                                                                                                                
+TRATAR                                                                                                                                                                                                  
+D3                                                                                                                                                                                                      
+M3                                                                                                                                                                                                      
+PR0                                                                                                                                                                                                     
+W0R                                                                                                                                                                                                     
+
+14 filas seleccionadas.
+
+SQL> DROP DEPART;
+DROP DEPART
+     *
+ERROR en l nea 1:
+ORA-00950: opci n DROP no v lida 
+
+
+SQL> DROP TABLE DEPART;
+DROP TABLE DEPART
+           *
+ERROR en l nea 1:
+ORA-02449: claves  nicas/primarias en la tabla referidas por claves ajenas 
+
+
+SQL> DELETE DEPART;
+
+5 filas suprimidas.
+
+SQL> DROP TABLE DEPART;
+DROP TABLE DEPART
+           *
+ERROR en l nea 1:
+ORA-02449: claves  nicas/primarias en la tabla referidas por claves ajenas 
+
+
+SQL> DROP TABLE DEPAR;
+
+Tabla borrada.
+
+SQL> DROP TABLE DEPARTAMENT;
+
+Tabla borrada.
+
+SQL> DROP TABLE DEPART;
+DROP TABLE DEPART
+           *
+ERROR en l nea 1:
+ORA-02449: claves  nicas/primarias en la tabla referidas por claves ajenas 
+
+
+SQL> select table_name from user_tables;
+
+TABLE_NAME                                                                                                                                                                                              
+------------------------------                                                                                                                                                                          
+DEPART                                                                                                                                                                                                  
+EMPLE                                                                                                                                                                                                   
+EQUIPOS                                                                                                                                                                                                 
+ESTADIOS                                                                                                                                                                                                
+KK                                                                                                                                                                                                      
+MEDICO                                                                                                                                                                                                  
+PACIENTE                                                                                                                                                                                                
+TRATAR                                                                                                                                                                                                  
+D3                                                                                                                                                                                                      
+M3                                                                                                                                                                                                      
+PR0                                                                                                                                                                                                     
+W0R                                                                                                                                                                                                     
+
+12 filas seleccionadas.
+
+SQL> DROP TABLE EMPLE;
+
+Tabla borrada.
+
+SQL> DROP TABLE DEPART;
+
+Tabla borrada.
+
+SQL> select table_name from user_tables;
+
+TABLE_NAME                                                                                                                                                                                              
+------------------------------                                                                                                                                                                          
+EQUIPOS                                                                                                                                                                                                 
+ESTADIOS                                                                                                                                                                                                
+KK                                                                                                                                                                                                      
+MEDICO                                                                                                                                                                                                  
+PACIENTE                                                                                                                                                                                                
+TRATAR                                                                                                                                                                                                  
+D3                                                                                                                                                                                                      
+M3                                                                                                                                                                                                      
+PR0                                                                                                                                                                                                     
+W0R                                                                                                                                                                                                     
+
+10 filas seleccionadas.
+
+SQL> rem importa el orden de borrado en las tablas dependiendo del orden del creacion, se borran al reves, desde la ultima creada
+SQL> exit

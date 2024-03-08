@@ -1,0 +1,20 @@
+SQL> rem mi primera tabla
+SQL> create table kk
+  2  (codigo number(3),
+  3  nombre varchar(15),
+  4  localidad varchar(15));
+
+Tabla creada.
+
+SQL> select * from kk;
+
+ninguna fila seleccionada
+
+SQL> desc kk
+ Nombre                                    ¿Nulo?   Tipo
+ ----------------------------------------- -------- ----------------------------
+ CODIGO                                             NUMBER(3)
+ NOMBRE                                             VARCHAR2(15)
+ LOCALIDAD                                          VARCHAR2(15)
+
+SQL> exit

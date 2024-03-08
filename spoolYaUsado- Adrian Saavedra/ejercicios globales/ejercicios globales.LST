@@ -1,0 +1,473 @@
+SQL> connect adrian
+Conectado.
+SQL> desc depart
+ Nombre                                    ¿Nulo?   Tipo
+ ----------------------------------------- -------- ----------------------------
+ DEPT_NO                                   NOT NULL NUMBER(2)
+ DNOMBRE                                            VARCHAR2(14)
+ LOC                                                VARCHAR2(14)
+
+SQL> desc emple
+ Nombre                                    ¿Nulo?   Tipo
+ ----------------------------------------- -------- ----------------------------
+ EMP_NO                                    NOT NULL NUMBER(4)
+ APELLIDO                                           VARCHAR2(10)
+ OFICIO                                             VARCHAR2(10)
+ DIR                                                NUMBER(4)
+ FECHA_ALT                                          DATE
+ SALARIO                                            NUMBER(10)
+ COMISION                                           NUMBER(10)
+ DEPT_NO                                            NUMBER(2)
+
+SQL> desc notas_alumnos
+ Nombre                                    ¿Nulo?   Tipo
+ ----------------------------------------- -------- ----------------------------
+ NOMBRE_ALUMNO                             NOT NULL VARCHAR2(25)
+ NOTA1                                              NUMBER(2)
+ NOTA2                                              NUMBER(2)
+ NOTA3                                              NUMBER(2)
+
+SQL> desc libreria
+ Nombre                                    ¿Nulo?   Tipo
+ ----------------------------------------- -------- ----------------------------
+ TEMA                                      NOT NULL CHAR(15)
+ ESTANTE                                            CHAR(1)
+ EJEMPLARES                                         NUMBER(2)
+
+SQL> desc alumnos
+ Nombre                                    ¿Nulo?   Tipo
+ ----------------------------------------- -------- ----------------------------
+ DNI                                       NOT NULL VARCHAR2(10)
+ APENOM                                             VARCHAR2(30)
+ DIREC                                              VARCHAR2(30)
+ POBLA                                              VARCHAR2(15)
+ TELEF                                              VARCHAR2(10)
+
+SQL> desc asignaturas
+ Nombre                                    ¿Nulo?   Tipo
+ ----------------------------------------- -------- ----------------------------
+ COD                                       NOT NULL NUMBER(2)
+ NOMBRE                                             VARCHAR2(25)
+
+SQL> desc notas
+ Nombre                                    ¿Nulo?   Tipo
+ ----------------------------------------- -------- ----------------------------
+ DNI                                       NOT NULL VARCHAR2(10)
+ COD                                       NOT NULL NUMBER(2)
+ NOTA                                               NUMBER(2)
+
+SQL> REM 1.- Seleccionar los empleados con salario superior a 2000
+SQL> SELECT * FROM EMPLE WHERE SALARIO > 2000
+  2  ;
+
+    EMP_NO APELLIDO   OFICIO            DIR FECHA_AL    SALARIO   COMISION      
+---------- ---------- ---------- ---------- -------- ---------- ----------      
+   DEPT_NO                                                                      
+----------                                                                      
+      7369 SµNCHEZ    EMPLEADO         7902 17/12/80     104000                 
+        20                                                                      
+                                                                                
+      7499 ARROYO     VENDEDOR         7698 20/02/80     208000      39000      
+        30                                                                      
+                                                                                
+      7521 SALA       VENDEDOR         7698 22/02/81     162500      65000      
+        30                                                                      
+                                                                                
+
+    EMP_NO APELLIDO   OFICIO            DIR FECHA_AL    SALARIO   COMISION      
+---------- ---------- ---------- ---------- -------- ---------- ----------      
+   DEPT_NO                                                                      
+----------                                                                      
+      7566 JIMNEZ    DIRECTOR         7839 02/04/81     386750                 
+        20                                                                      
+                                                                                
+      7654 MARTÖN     VENDEDOR         7698 29/09/81     162500     182000      
+        30                                                                      
+                                                                                
+      7698 NEGRO      DIRECTOR         7839 01/05/81     370500                 
+        30                                                                      
+                                                                                
+
+    EMP_NO APELLIDO   OFICIO            DIR FECHA_AL    SALARIO   COMISION      
+---------- ---------- ---------- ---------- -------- ---------- ----------      
+   DEPT_NO                                                                      
+----------                                                                      
+      7782 CEREZO     DIRECTOR         7839 09/06/81     318500                 
+        10                                                                      
+                                                                                
+      7788 GIL        ANALISTA         7566 09/11/81     390000                 
+        20                                                                      
+                                                                                
+      7839 REY        PRESIDENTE            17/11/81      50000                 
+        10                                                                      
+                                                                                
+
+    EMP_NO APELLIDO   OFICIO            DIR FECHA_AL    SALARIO   COMISION      
+---------- ---------- ---------- ---------- -------- ---------- ----------      
+   DEPT_NO                                                                      
+----------                                                                      
+      7844 TOVAR      VENDEDOR         7698 08/09/81     195000          0      
+        30                                                                      
+                                                                                
+      7876 ALONSO     EMPLEADO         7788 23/09/81     143000                 
+        20                                                                      
+                                                                                
+      7900 JIMENO     EMPLEADO         7698 03/12/81     123500                 
+        30                                                                      
+                                                                                
+
+    EMP_NO APELLIDO   OFICIO            DIR FECHA_AL    SALARIO   COMISION      
+---------- ---------- ---------- ---------- -------- ---------- ----------      
+   DEPT_NO                                                                      
+----------                                                                      
+      7902 FERNµNDEZ  ANALISTA         7566 03/12/81     390000                 
+        20                                                                      
+                                                                                
+      7934 MU¥OZ      EMPLEADO         7782 23/01/82     169000                 
+        10                                                                      
+                                                                                
+
+14 filas seleccionadas.
+
+SQL> set linesize 200
+SQL> set pagesize 200
+SQL> REM 2.- Seleccionar los empleados con salario superior a 2000 y con el trabajo de director
+SQL> SELECT * FROM EMPLE WHERE SALARIO > 2000 AND OFICIO = 'DIRECTOR';
+
+    EMP_NO APELLIDO   OFICIO            DIR FECHA_AL    SALARIO   COMISION    DEPT_NO                                                                                                                   
+---------- ---------- ---------- ---------- -------- ---------- ---------- ----------                                                                                                                   
+      7566 JIMNEZ    DIRECTOR         7839 02/04/81     386750                    20                                                                                                                   
+      7698 NEGRO      DIRECTOR         7839 01/05/81     370500                    30                                                                                                                   
+      7782 CEREZO     DIRECTOR         7839 09/06/81     318500                    10                                                                                                                   
+
+SQL> REM 3.- Selecionar el n§ de departamento que tengan distinto nombre
+SQL> SELECT DISTINCT DEPT_NO FROM DEPART
+  2  ;
+
+   DEPT_NO                                                                                                                                                                                              
+----------                                                                                                                                                                                              
+        10                                                                                                                                                                                              
+        20                                                                                                                                                                                              
+        30                                                                                                                                                                                              
+        40                                                                                                                                                                                              
+        50                                                                                                                                                                                              
+
+SQL> REM 4.- Selecionar todos los empleados del departamento n§ 20 y ademas debe de estar ordenado por el apellido y tienen que aparecer en la consulta el n§ del empleado, el apellido, el oficio y el n§ de departamento.
+SQL> SELECT EMP_NO, APELLIDO, OFICIO, DEPT_NO FROM EMPLE WHERE DEPT_NO = 20 ORDER BY APELLIDO
+  2  ;
+
+    EMP_NO APELLIDO   OFICIO        DEPT_NO                                                                                                                                                             
+---------- ---------- ---------- ----------                                                                                                                                                             
+      7876 ALONSO     EMPLEADO           20                                                                                                                                                             
+      7902 FERNµNDEZ  ANALISTA           20                                                                                                                                                             
+      7788 GIL        ANALISTA           20                                                                                                                                                             
+      7566 JIMNEZ    DIRECTOR           20                                                                                                                                                             
+      7369 SµNCHEZ    EMPLEADO           20                                                                                                                                                             
+
+SQL> REM 5.- Empleados cuyo oficio sea analista, ordenado por el numero del empleado.
+SQL> SELECT * FROM EMPLE WHERE OFICIO IN ('ANALISTA') ORDER BY EMP_NO;
+
+    EMP_NO APELLIDO   OFICIO            DIR FECHA_AL    SALARIO   COMISION    DEPT_NO                                                                                                                   
+---------- ---------- ---------- ---------- -------- ---------- ---------- ----------                                                                                                                   
+      7788 GIL        ANALISTA         7566 09/11/81     390000                    20                                                                                                                   
+      7902 FERNµNDEZ  ANALISTA         7566 03/12/81     390000                    20                                                                                                                   
+
+SQL> REM 6.-Seleccionar las filas del departamento 10 cuyo oficio  no sea analista. La consulta debe de estar ordenada descendentemente por el apellido y tambien descendentemente por el n§ empleado.
+SQL> SELECT * FROM EMPLE WHERE DEPT_NO = 10 AND OFICIO NOT IN ('ANALISTA') ORDER BY APELLIDO DESC, EMP_NO DESC;
+
+    EMP_NO APELLIDO   OFICIO            DIR FECHA_AL    SALARIO   COMISION    DEPT_NO                                                                                                                   
+---------- ---------- ---------- ---------- -------- ---------- ---------- ----------                                                                                                                   
+      7839 REY        PRESIDENTE            17/11/81      50000                    10                                                                                                                   
+      7934 MU¥OZ      EMPLEADO         7782 23/01/82     169000                    10                                                                                                                   
+      7782 CEREZO     DIRECTOR         7839 09/06/81     318500                    10                                                                                                                   
+
+SQL> REM 7.-Seleccionar la nota_media de los alumnos de la tabla notas_alumnos.
+SQL> SELECT (NOTA1 + NOTA2 + NOTA3 / 3) AS NOTA_MEDIA FROM NOTAS_ALUMNOS;
+
+NOTA_MEDIA                                                                                                                                                                                              
+----------                                                                                                                                                                                              
+11,6666667                                                                                                                                                                                              
+15,6666667                                                                                                                                                                                              
+13,6666667                                                                                                                                                                                              
+17,6666667                                                                                                                                                                                              
+                                                                                                                                                                                                        
+
+SQL> REM 8.-Seleccionar los alumnos que de la nota1 hayan sacado un 7 y que la media de las 3 notas sea mayor que 6
+SQL> SELECT NOMBRE_ALUMNO FROM NOTAS_ALUMNOS WHERE NOTA1 = 7 AND (NOTA1 + NOTA2 + NOTA3 / 3) > 6;
+
+NOMBRE_ALUMNO                                                                                                                                                                                           
+-------------------------                                                                                                                                                                               
+Benito Mart¡n, Luis                                                                                                                                                                                     
+Casas Mart¡nez, Manuel                                                                                                                                                                                  
+
+SQL> REM 9.-Seleccionar los empelados que sean analistas
+SQL> SELECT * FROM EMPLE WHERE OFICIO IN ('ANALISTA');
+
+    EMP_NO APELLIDO   OFICIO            DIR FECHA_AL    SALARIO   COMISION    DEPT_NO                                                                                                                   
+---------- ---------- ---------- ---------- -------- ---------- ---------- ----------                                                                                                                   
+      7788 GIL        ANALISTA         7566 09/11/81     390000                    20                                                                                                                   
+      7902 FERNµNDEZ  ANALISTA         7566 03/12/81     390000                    20                                                                                                                   
+
+SQL> REM 10.- Seleccionar los empleados cuyo apellido tenga una A en la 2¦ posici¢n.
+SQL> SELECT APELLIDO FROM EMPLE WHERE APELLIDO LIKE '_A%';
+
+APELLIDO                                                                                                                                                                                                
+----------                                                                                                                                                                                              
+SALA                                                                                                                                                                                                    
+MARTÖN                                                                                                                                                                                                  
+
+SQL> REM 11.- Seleccionar el apellido de los empleados cuyo ofifcio sea vendedro,analista o empleado
+SQL> SELECT APELLIDO FROM EMPLE WHERE OFICIO IN ('VENDEDOR','ANALISTA','EMPLEADO');
+
+APELLIDO                                                                                                                                                                                                
+----------                                                                                                                                                                                              
+SµNCHEZ                                                                                                                                                                                                 
+ARROYO                                                                                                                                                                                                  
+SALA                                                                                                                                                                                                    
+MARTÖN                                                                                                                                                                                                  
+GIL                                                                                                                                                                                                     
+TOVAR                                                                                                                                                                                                   
+ALONSO                                                                                                                                                                                                  
+JIMENO                                                                                                                                                                                                  
+FERNµNDEZ                                                                                                                                                                                               
+MU¥OZ                                                                                                                                                                                                   
+
+10 filas seleccionadas.
+
+SQL> REM 12.- Seleccionar el apellido, el salario y el n§ de departamento de los empleados cuyo salario sea mayor o igual a 125000 en los departamentos 10 o 20.
+SQL> SELECT APELLIDO, SALARIO, DEPT_NO FROM EMPLE WHERE SALARIO >=125000 AND DEPT_NO IN (10,20);
+
+APELLIDO      SALARIO    DEPT_NO                                                                                                                                                                        
+---------- ---------- ----------                                                                                                                                                                        
+JIMNEZ        386750         20                                                                                                                                                                        
+CEREZO         318500         10                                                                                                                                                                        
+GIL            390000         20                                                                                                                                                                        
+ALONSO         143000         20                                                                                                                                                                        
+FERNµNDEZ      390000         20                                                                                                                                                                        
+MU¥OZ          169000         10                                                                                                                                                                        
+
+6 filas seleccionadas.
+
+SQL> REM 13.- Seleccionar la lista de empleados indicando para cada uno su apellido, oficio, fecha de alta y el salario con un aumento del 16%.
+SQL> SELECT APELLIDO, OFICIO, DEPT_NO, FECHA_ALT, SALARIO * 0.16 AS SALARIO_AUMENTO FROM EMPLE;
+
+APELLIDO   OFICIO        DEPT_NO FECHA_AL SALARIO_AUMENTO                                                                                                                                               
+---------- ---------- ---------- -------- ---------------                                                                                                                                               
+SµNCHEZ    EMPLEADO           20 17/12/80           16640                                                                                                                                               
+ARROYO     VENDEDOR           30 20/02/80           33280                                                                                                                                               
+SALA       VENDEDOR           30 22/02/81           26000                                                                                                                                               
+JIMNEZ    DIRECTOR           20 02/04/81           61880                                                                                                                                               
+MARTÖN     VENDEDOR           30 29/09/81           26000                                                                                                                                               
+NEGRO      DIRECTOR           30 01/05/81           59280                                                                                                                                               
+CEREZO     DIRECTOR           10 09/06/81           50960                                                                                                                                               
+GIL        ANALISTA           20 09/11/81           62400                                                                                                                                               
+REY        PRESIDENTE         10 17/11/81            8000                                                                                                                                               
+TOVAR      VENDEDOR           30 08/09/81           31200                                                                                                                                               
+ALONSO     EMPLEADO           20 23/09/81           22880                                                                                                                                               
+JIMENO     EMPLEADO           30 03/12/81           19760                                                                                                                                               
+FERNµNDEZ  ANALISTA           20 03/12/81           62400                                                                                                                                               
+MU¥OZ      EMPLEADO           10 23/01/82           27040                                                                                                                                               
+
+14 filas seleccionadas.
+
+SQL> REM 14.- De cada departamento saber el nombre y la localidad.
+SQL> DESC DEPART
+ Nombre                                                                                                            ¿Nulo?   Tipo
+ ----------------------------------------------------------------------------------------------------------------- -------- ----------------------------------------------------------------------------
+ DEPT_NO                                                                                                           NOT NULL NUMBER(2)
+ DNOMBRE                                                                                                                    VARCHAR2(14)
+ LOC                                                                                                                        VARCHAR2(14)
+
+SQL> SELECT DNOMBRE, LOC FROM DEPART;
+
+DNOMBRE        LOC                                                                                                                                                                                      
+-------------- --------------                                                                                                                                                                           
+CONTABILIDAD   SEVILLA                                                                                                                                                                                  
+INVESTIGACIàN  MADRID                                                                                                                                                                                   
+VENTAS         BARCELONA                                                                                                                                                                                
+PRODUCCIàN     BILBAO                                                                                                                                                                                   
+otros                                                                                                                                                                                                   
+
+SQL> REM 15.- seleccionar los departamentos agrupados por el n§ departamento.
+SQL> SELECT DISTINCT DEPT_NO FROM DEPART;
+
+   DEPT_NO                                                                                                                                                                                              
+----------                                                                                                                                                                                              
+        10                                                                                                                                                                                              
+        20                                                                                                                                                                                              
+        30                                                                                                                                                                                              
+        40                                                                                                                                                                                              
+        50                                                                                                                                                                                              
+
+SQL> SELECT DEPT_NO, COUNT(*) as Cantidad_Departamentos
+  2  FROM DEPART
+  3  GROUP BY DEPT_NO;
+
+   DEPT_NO CANTIDAD_DEPARTAMENTOS                                                                                                                                                                       
+---------- ----------------------                                                                                                                                                                       
+        10                      1                                                                                                                                                                       
+        20                      1                                                                                                                                                                       
+        30                      1                                                                                                                                                                       
+        40                      1                                                                                                                                                                       
+        50                      1                                                                                                                                                                       
+
+SQL> REM 16.- seleccionar los empleados ordenados alfabeticamente por el nombre y por el oficio.
+SQL> SELECT * FROM EMPLE ORDER BY NOMBRE, OFICIO;
+SELECT * FROM EMPLE ORDER BY NOMBRE, OFICIO
+                             *
+ERROR en línea 1:
+ORA-00904: "NOMBRE": identificador no válido 
+
+
+SQL> SELECT * FROM EMPLE ORDER BY APELLIDO, OFICIO;
+
+    EMP_NO APELLIDO   OFICIO            DIR FECHA_AL    SALARIO   COMISION    DEPT_NO                                                                                                                   
+---------- ---------- ---------- ---------- -------- ---------- ---------- ----------                                                                                                                   
+      7876 ALONSO     EMPLEADO         7788 23/09/81     143000                    20                                                                                                                   
+      7499 ARROYO     VENDEDOR         7698 20/02/80     208000      39000         30                                                                                                                   
+      7782 CEREZO     DIRECTOR         7839 09/06/81     318500                    10                                                                                                                   
+      7902 FERNµNDEZ  ANALISTA         7566 03/12/81     390000                    20                                                                                                                   
+      7788 GIL        ANALISTA         7566 09/11/81     390000                    20                                                                                                                   
+      7900 JIMENO     EMPLEADO         7698 03/12/81     123500                    30                                                                                                                   
+      7566 JIMNEZ    DIRECTOR         7839 02/04/81     386750                    20                                                                                                                   
+      7654 MARTÖN     VENDEDOR         7698 29/09/81     162500     182000         30                                                                                                                   
+      7934 MU¥OZ      EMPLEADO         7782 23/01/82     169000                    10                                                                                                                   
+      7698 NEGRO      DIRECTOR         7839 01/05/81     370500                    30                                                                                                                   
+      7839 REY        PRESIDENTE            17/11/81      50000                    10                                                                                                                   
+      7521 SALA       VENDEDOR         7698 22/02/81     162500      65000         30                                                                                                                   
+      7369 SµNCHEZ    EMPLEADO         7902 17/12/80     104000                    20                                                                                                                   
+      7844 TOVAR      VENDEDOR         7698 08/09/81     195000          0         30                                                                                                                   
+
+14 filas seleccionadas.
+
+SQL> REM 17.- seleccionar los empleados que no tienen comision.
+SQL> SELECT * FROM EMPLE WHERE COMISION IS NULL OR COMISION = 0;
+
+    EMP_NO APELLIDO   OFICIO            DIR FECHA_AL    SALARIO   COMISION    DEPT_NO                                                                                                                   
+---------- ---------- ---------- ---------- -------- ---------- ---------- ----------                                                                                                                   
+      7369 SµNCHEZ    EMPLEADO         7902 17/12/80     104000                    20                                                                                                                   
+      7566 JIMNEZ    DIRECTOR         7839 02/04/81     386750                    20                                                                                                                   
+      7698 NEGRO      DIRECTOR         7839 01/05/81     370500                    30                                                                                                                   
+      7782 CEREZO     DIRECTOR         7839 09/06/81     318500                    10                                                                                                                   
+      7788 GIL        ANALISTA         7566 09/11/81     390000                    20                                                                                                                   
+      7839 REY        PRESIDENTE            17/11/81      50000                    10                                                                                                                   
+      7844 TOVAR      VENDEDOR         7698 08/09/81     195000          0         30                                                                                                                   
+      7876 ALONSO     EMPLEADO         7788 23/09/81     143000                    20                                                                                                                   
+      7900 JIMENO     EMPLEADO         7698 03/12/81     123500                    30                                                                                                                   
+      7902 FERNµNDEZ  ANALISTA         7566 03/12/81     390000                    20                                                                                                                   
+      7934 MU¥OZ      EMPLEADO         7782 23/01/82     169000                    10                                                                                                                   
+
+11 filas seleccionadas.
+
+SQL> REM 18.- Seleccionar los empleados de apellido mu¤oz.
+SQL> SELECT * FROM EMPLE WHERE APELLIDO IN ('MU¥OZ');
+
+    EMP_NO APELLIDO   OFICIO            DIR FECHA_AL    SALARIO   COMISION    DEPT_NO                                                                                                                   
+---------- ---------- ---------- ---------- -------- ---------- ---------- ----------                                                                                                                   
+      7934 MU¥OZ      EMPLEADO         7782 23/01/82     169000                    10                                                                                                                   
+
+SQL> REM22.- Seleccionar los departamentos cuyo nombre acabe en 'on';
+SQL> SELECT * FROM DEPART WHERE DNOMBRE LIKE '%on';
+
+ninguna fila seleccionada
+
+SQL> SELECT * FROM DEPART,
+  2  ;
+
+*
+ERROR en línea 2:
+ORA-00903: nombre de tabla no válido 
+
+
+SQL> SELECT * FROM DEPART;
+
+   DEPT_NO DNOMBRE        LOC                                                                                                                                                                           
+---------- -------------- --------------                                                                                                                                                                
+        10 CONTABILIDAD   SEVILLA                                                                                                                                                                       
+        20 INVESTIGACIàN  MADRID                                                                                                                                                                        
+        30 VENTAS         BARCELONA                                                                                                                                                                     
+        40 PRODUCCIàN     BILBAO                                                                                                                                                                        
+        50 otros                                                                                                                                                                                        
+
+SQL> SELECT * FROM DEPART WHERE DNOMBRE LIKE '%àN';
+
+   DEPT_NO DNOMBRE        LOC                                                                                                                                                                           
+---------- -------------- --------------                                                                                                                                                                
+        20 INVESTIGACIàN  MADRID                                                                                                                                                                        
+        40 PRODUCCIàN     BILBAO                                                                                                                                                                        
+
+SQL> REM 19.- Seleccionar los empleados cuyo n§ de departamento no sea ni 30, ni 20 ni 40.
+SQL> SELECT * FROM EMPLE WHERE DEPT_NO IN (20,30,40);
+
+    EMP_NO APELLIDO   OFICIO            DIR FECHA_AL    SALARIO   COMISION    DEPT_NO                                                                                                                   
+---------- ---------- ---------- ---------- -------- ---------- ---------- ----------                                                                                                                   
+      7369 SµNCHEZ    EMPLEADO         7902 17/12/80     104000                    20                                                                                                                   
+      7499 ARROYO     VENDEDOR         7698 20/02/80     208000      39000         30                                                                                                                   
+      7521 SALA       VENDEDOR         7698 22/02/81     162500      65000         30                                                                                                                   
+      7566 JIMNEZ    DIRECTOR         7839 02/04/81     386750                    20                                                                                                                   
+      7654 MARTÖN     VENDEDOR         7698 29/09/81     162500     182000         30                                                                                                                   
+      7698 NEGRO      DIRECTOR         7839 01/05/81     370500                    30                                                                                                                   
+      7788 GIL        ANALISTA         7566 09/11/81     390000                    20                                                                                                                   
+      7844 TOVAR      VENDEDOR         7698 08/09/81     195000          0         30                                                                                                                   
+      7876 ALONSO     EMPLEADO         7788 23/09/81     143000                    20                                                                                                                   
+      7900 JIMENO     EMPLEADO         7698 03/12/81     123500                    30                                                                                                                   
+      7902 FERNµNDEZ  ANALISTA         7566 03/12/81     390000                    20                                                                                                                   
+
+11 filas seleccionadas.
+
+SQL> SELECT * FROM EMPLE WHERE DEPT_NO NOT IN (20,30,40);
+
+    EMP_NO APELLIDO   OFICIO            DIR FECHA_AL    SALARIO   COMISION    DEPT_NO                                                                                                                   
+---------- ---------- ---------- ---------- -------- ---------- ---------- ----------                                                                                                                   
+      7782 CEREZO     DIRECTOR         7839 09/06/81     318500                    10                                                                                                                   
+      7839 REY        PRESIDENTE            17/11/81      50000                    10                                                                                                                   
+      7934 MU¥OZ      EMPLEADO         7782 23/01/82     169000                    10                                                                                                                   
+
+SQL> REM 20.- Seleccionar los empleados cuya fecha de alta este entre entre el 8/9/61 y el 27/2/82.
+SQL> SELECT * FROM EMPLE WHERE FECHA_ALT BETWEEN 8/9/61 AND 27/2/82;
+SELECT * FROM EMPLE WHERE FECHA_ALT BETWEEN 8/9/61 AND 27/2/82
+                                    *
+ERROR en línea 1:
+ORA-00932: tipos de dato inconsistentes: se esperaba DATE se ha obtenido NUMBER 
+
+
+SQL> SELECT * FROM EMPLE WHERE FECHA_ALT BETWEEN 8-9-61 AND 27-2-82;
+SELECT * FROM EMPLE WHERE FECHA_ALT BETWEEN 8-9-61 AND 27-2-82
+                                    *
+ERROR en línea 1:
+ORA-00932: tipos de dato inconsistentes: se esperaba DATE se ha obtenido NUMBER 
+
+
+SQL> SELECT * FROM EMPLE WHERE FECHA_ALT BETWEEN '8/9/61' AND '27/2/82';
+
+    EMP_NO APELLIDO   OFICIO            DIR FECHA_AL    SALARIO   COMISION    DEPT_NO                                                                                                                   
+---------- ---------- ---------- ---------- -------- ---------- ---------- ----------                                                                                                                   
+      7369 SµNCHEZ    EMPLEADO         7902 17/12/80     104000                    20                                                                                                                   
+      7499 ARROYO     VENDEDOR         7698 20/02/80     208000      39000         30                                                                                                                   
+      7521 SALA       VENDEDOR         7698 22/02/81     162500      65000         30                                                                                                                   
+      7566 JIMNEZ    DIRECTOR         7839 02/04/81     386750                    20                                                                                                                   
+      7654 MARTÖN     VENDEDOR         7698 29/09/81     162500     182000         30                                                                                                                   
+      7698 NEGRO      DIRECTOR         7839 01/05/81     370500                    30                                                                                                                   
+      7782 CEREZO     DIRECTOR         7839 09/06/81     318500                    10                                                                                                                   
+      7788 GIL        ANALISTA         7566 09/11/81     390000                    20                                                                                                                   
+      7839 REY        PRESIDENTE            17/11/81      50000                    10                                                                                                                   
+      7844 TOVAR      VENDEDOR         7698 08/09/81     195000          0         30                                                                                                                   
+      7876 ALONSO     EMPLEADO         7788 23/09/81     143000                    20                                                                                                                   
+      7900 JIMENO     EMPLEADO         7698 03/12/81     123500                    30                                                                                                                   
+      7902 FERNµNDEZ  ANALISTA         7566 03/12/81     390000                    20                                                                                                                   
+      7934 MU¥OZ      EMPLEADO         7782 23/01/82     169000                    10                                                                                                                   
+
+14 filas seleccionadas.
+
+SQL> REM 21.- seleccionar los empelados cuyo salario sea mayor de 20000 y menor que 50000.
+SQL> SELECT * FROM EMPLE WHERE SALARIO > 20000 AND SALARIO < 50000;
+
+ninguna fila seleccionada
+
+SQL> SELECT * FROM EMPLE WHERE SALARIO > 20000 AND SALARIO <= 50000;
+
+    EMP_NO APELLIDO   OFICIO            DIR FECHA_AL    SALARIO   COMISION    DEPT_NO                                                                                                                   
+---------- ---------- ---------- ---------- -------- ---------- ---------- ----------                                                                                                                   
+      7839 REY        PRESIDENTE            17/11/81      50000                    10                                                                                                                   
+
+SQL> EXIT

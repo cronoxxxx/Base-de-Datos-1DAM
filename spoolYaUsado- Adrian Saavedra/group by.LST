@@ -1,0 +1,382 @@
+SQL> connect adrian
+Conectado.
+SQL> set linesize 200
+SQL> set pagesize 200
+SQL> create table libros(
+  2    titulo varchar2(40),
+  3    autor varchar2(30),
+  4    editorial varchar2(15),
+  5    precio number(5,2),
+  6    cantidad number(3)
+  7   );
+
+Tabla creada.
+
+SQL>  insert into libros
+  2    values('El aleph','Borges','Planeta',35,null);
+
+1 fila creada.
+
+SQL>  insert into libros
+  2    values('Martin Fierro','Jose Hernandez','Emece',22.20,200);
+
+1 fila creada.
+
+SQL>  insert into libros
+  2    values('Martin Fierro','Jose Hernandez','Planeta',40,200);
+
+1 fila creada.
+
+SQL>  insert into libros
+  2    values('Antologia poetica','J.L. Borges','Planeta',null,150);
+
+1 fila creada.
+
+SQL>  insert into libros
+  2    values('Aprenda PHP','Mario Molina','Emece',18,null);
+
+1 fila creada.
+
+SQL>  insert into libros
+  2    values('Manual de PHP', 'J.C. Paez', 'Siglo XXI',56,120);
+
+1 fila creada.
+
+SQL>  insert into libros
+  2    values('Cervantes y el quijote','Bioy Casares- J.L. Borges','Paidos',null,100);
+
+1 fila creada.
+
+SQL>  insert into libros
+  2    values('Harry Potter y la piedra filosofal','J.K. Rowling',default,45.00,90);
+
+1 fila creada.
+
+SQL>  insert into libros
+  2    values('Harry Potter y la camara secreta','J.K. Rowling','Emece',null,100);
+
+1 fila creada.
+
+SQL>  insert into libros
+  2    values('Alicia en el pais de las maravillas','Lewis Carroll','Paidos',42,80);
+
+1 fila creada.
+
+SQL>  insert into libros
+  2    values('PHP de la A a la Z',null,null,110,0);
+
+1 fila creada.
+
+SQL>  insert into libros
+  2    values('Uno','Richard Bach','Planeta',25,null);
+
+1 fila creada.
+
+SQL> REM 1.- Queremos saber la cantidad de libros agrupados por editorial
+SQL> select editorial, count (*) as cantidad_libros from libros group by editorial;
+
+EDITORIAL       CANTIDAD_LIBROS                                                                                                                                                                         
+--------------- ---------------                                                                                                                                                                         
+Paidos                        2                                                                                                                                                                         
+                              2                                                                                                                                                                         
+Planeta                       4                                                                                                                                                                         
+Emece                         3                                                                                                                                                                         
+Siglo XXI                     1                                                                                                                                                                         
+
+SQL> select editorial, count (*) as cantidad_libros from libros;
+select editorial, count (*) as cantidad_libros from libros
+       *
+ERROR en línea 1:
+ORA-00937: la función de grupo no es de grupo único 
+
+
+SQL> select editorial, count (*) as cantidad_libros from libros;
+select editorial, count (*) as cantidad_libros from libros
+       *
+ERROR en línea 1:
+ORA-00937: la función de grupo no es de grupo único 
+
+
+SQL> REM 2.- Queremos saber la cantidad de libros agrupados por editorial pero considerando s¢lo algunos grupos, por ejemplo, los que devuelvan un valor mayor a 2, usamos la siguiente instrucci¢n:
+SQL> select editorial, count (*) from libros group by editorial having editorial > 2;
+select editorial, count (*) from libros group by editorial having editorial > 2
+                                                                  *
+ERROR en línea 1:
+ORA-01722: número no válido 
+
+
+SQL> select editorial, count (*) from libros group by editorial having count (*) > 2;
+
+EDITORIAL         COUNT(*)                                                                                                                                                                              
+--------------- ----------                                                                                                                                                                              
+Planeta                  4                                                                                                                                                                              
+Emece                    3                                                                                                                                                                              
+
+SQL> REM 3.- Queremos el promedio de los precios de los libros agrupados por editorial, pero solamente de aquellos grupos cuyo promedio supere los 25 pesos:
+SQL> select precio, avg(*) from libros group by editorial having avg(*) > 25;
+select precio, avg(*) from libros group by editorial having avg(*) > 25
+                   *
+ERROR en línea 1:
+ORA-00936: falta una expresión 
+
+
+SQL> select editorial, avg(precio) as promedio_precios from libros group by editorial having avg(precio) > 25;
+
+EDITORIAL       PROMEDIO_PRECIOS                                                                                                                                                                        
+--------------- ----------------                                                                                                                                                                        
+Paidos                        42                                                                                                                                                                        
+                            77,5                                                                                                                                                                        
+Planeta               33,3333333                                                                                                                                                                        
+Siglo XXI                     56                                                                                                                                                                        
+
+SQL> REM 4.- Queremos la cantidad de libros, sin considerar los que tienen precio nulo (where), agrupados por editorial (group by), sin considerar la editorial "Planeta" (having):
+SQL> select editorial, count (titulo) from libros group by editorial where precio is null having editorial = 'Planeta';
+select editorial, count (titulo) from libros group by editorial where precio is null having editorial = 'Planeta'
+                                                                *
+ERROR en línea 1:
+ORA-00933: comando SQL no terminado correctamente 
+
+
+SQL> select editorial, count (*) as cantidad_libros from libros group by editorial where precio is not null having editorial !='Planeta';
+select editorial, count (*) as cantidad_libros from libros group by editorial where precio is not null having editorial !='Planeta'
+                                                                              *
+ERROR en línea 1:
+ORA-00933: comando SQL no terminado correctamente 
+
+
+SQL> select editorial, count (*) as cantidad_libros from libros where precio is not null group by editorial having editorial !='Planeta';
+
+EDITORIAL       CANTIDAD_LIBROS                                                                                                                                                                         
+--------------- ---------------                                                                                                                                                                         
+Paidos                        1                                                                                                                                                                         
+Emece                         2                                                                                                                                                                         
+Siglo XXI                     1                                                                                                                                                                         
+
+SQL> REM 5.- Necesitamos el promedio de los precios agrupados por editorial, de aquellas editoriales que tienen m s de 2 libros:
+SQL> select editorial, avg (precio) as promedio_precio group by editorial having editorial > 2;
+select editorial, avg (precio) as promedio_precio group by editorial having editorial > 2
+                                                  *
+ERROR en línea 1:
+ORA-00923: palabra clave FROM no encontrada donde se esperaba 
+
+
+SQL> select editorial, avg (precio) as promedio_precio from libros group by editorial having editorial > 2;
+select editorial, avg (precio) as promedio_precio from libros group by editorial having editorial > 2
+                                                                                        *
+ERROR en línea 1:
+ORA-01722: número no válido 
+
+
+SQL> select editorial, avg (precio) as promedio_precio from libros group by editorial having count(*) > 2;
+
+EDITORIAL       PROMEDIO_PRECIO                                                                                                                                                                         
+--------------- ---------------                                                                                                                                                                         
+Planeta              33,3333333                                                                                                                                                                         
+Emece                      20,1                                                                                                                                                                         
+
+SQL> REM Buscamos el mayor valor de los libros agrupados y ordenados por editorial y seleccionamos las filas que tienen un valor menor a 100 y mayor a 30:
+SQL> select max (precio) as mayor_valor, editorial from libros where precio >30 and precio <100 group by editorial order by editorial;
+
+MAYOR_VALOR EDITORIAL                                                                                                                                                                                   
+----------- ---------------                                                                                                                                                                             
+         42 Paidos                                                                                                                                                                                      
+         40 Planeta                                                                                                                                                                                     
+         56 Siglo XXI                                                                                                                                                                                   
+         45                                                                                                                                                                                             
+
+SQL> create table visitantes(
+  2    nombre varchar2(30),
+  3    edad number(2),
+  4    sexo char(1),
+  5    domicilio varchar2(30),
+  6    ciudad varchar2(20),
+  7    telefono varchar2(11),
+  8    montocompra number(6,2) not null
+  9   );
+
+Tabla creada.
+
+SQL> insert into visitantes
+  2    values ('Susana Molina',28,'f',null,'Cordoba',null,45.50);
+
+1 fila creada.
+
+SQL>  insert into visitantes
+  2    values ('Marcela Mercado',36,'f','Avellaneda 345','Cordoba','4545454',22.40);
+
+1 fila creada.
+
+SQL>  insert into visitantes
+  2    values ('Alberto Garcia',35,'m','Gral. Paz 123','Alta Gracia','03547123456',25);
+
+1 fila creada.
+
+SQL>  insert into visitantes
+  2    values ('Teresa Garcia',33,'f',default,'Alta Gracia','03547123456',120);
+
+1 fila creada.
+
+SQL>  insert into visitantes
+  2    values ('Roberto Perez',45,'m','Urquiza 335','Cordoba','4123456',33.20);
+
+1 fila creada.
+
+SQL>  insert into visitantes
+  2    values ('Marina Torres',22,'f','Colon 222','Villa Dolores','03544112233',95);
+
+1 fila creada.
+
+SQL>  insert into visitantes
+  2    values ('Julieta Gomez',24,'f','San Martin 333','Alta Gracia',null,53.50);
+
+1 fila creada.
+
+SQL>  insert into visitantes
+  2    values ('Roxana Lopez',20,'f','null','Alta Gracia',null,240);
+
+1 fila creada.
+
+SQL>  insert into visitantes
+  2    values ('Liliana Garcia',50,'f','Paso 999','Cordoba','4588778',48);
+
+1 fila creada.
+
+SQL>  insert into visitantes
+  2    values ('Juan Torres',43,'m','Sarmiento 876','Cordoba',null,15.30);
+
+1 fila creada.
+
+SQL> REM 4- Obtenga el total de las compras agrupados por ciudad y sexo de aquellas filas que devuelvan un valor superior a 50 (3 filas)
+SQL> select nombre, count (*) from visitantes where montocompra > 50 group by ciudad, sexo
+  2  ;
+select nombre, count (*) from visitantes where montocompra > 50 group by ciudad, sexo
+       *
+ERROR en línea 1:
+ORA-00979: no es una expresión GROUP BY 
+
+
+SQL> select nombre, count (*) from visitantes where montocompra > 50 group by ciudad, sexo;
+select nombre, count (*) from visitantes where montocompra > 50 group by ciudad, sexo
+       *
+ERROR en línea 1:
+ORA-00979: no es una expresión GROUP BY 
+
+
+SQL> select nombre, sum (montocompra) as total_compras from visitantes where montocompra > 50 group by ciudad, sexo;
+select nombre, sum (montocompra) as total_compras from visitantes where montocompra > 50 group by ciudad, sexo
+       *
+ERROR en línea 1:
+ORA-00979: no es una expresión GROUP BY 
+
+
+SQL> select nombre, sum (montocompra) as total_compras from visitantes where montocompra > 50 group by ciudad, sexo;
+select nombre, sum (montocompra) as total_compras from visitantes where montocompra > 50 group by ciudad, sexo
+       *
+ERROR en línea 1:
+ORA-00979: no es una expresión GROUP BY 
+
+
+SQL> select ciudad, sexo, sum (montocompra) as total_compras from visitantes where montocompra > 50 group by ciudad, sexo;
+
+CIUDAD               S TOTAL_COMPRAS                                                                                                                                                                    
+-------------------- - -------------                                                                                                                                                                    
+Villa Dolores        f            95                                                                                                                                                                    
+Alta Gracia          f         413,5                                                                                                                                                                    
+
+SQL> REM 5- Obtenga el total de las compras agrupados por ciudad y sexo (group by), considerando s¢lo los montos de compra superiores a 50 (where), los visitantes con tel‚fono (where), sin considerar la ciudad de "Cordoba" (having), ordenados por ciudad (order by) (2 filas)
+SQL> select ciudad, sexo from visitantes where montocompra > 50 and telefono is not null having ciudad != 'Cordoba' group by ciudad, sexo order by ciudad;
+
+CIUDAD               S                                                                                                                                                                                  
+-------------------- -                                                                                                                                                                                  
+Alta Gracia          f                                                                                                                                                                                  
+Villa Dolores        f                                                                                                                                                                                  
+
+SQL> select * from visitantes
+  2  ;
+
+NOMBRE                               EDAD S DOMICILIO                      CIUDAD               TELEFONO    MONTOCOMPRA                                                                                 
+------------------------------ ---------- - ------------------------------ -------------------- ----------- -----------                                                                                 
+Susana Molina                          28 f                                Cordoba                                 45,5                                                                                 
+Marcela Mercado                        36 f Avellaneda 345                 Cordoba              4545454            22,4                                                                                 
+Alberto Garcia                         35 m Gral. Paz 123                  Alta Gracia          03547123456          25                                                                                 
+Teresa Garcia                          33 f                                Alta Gracia          03547123456         120                                                                                 
+Roberto Perez                          45 m Urquiza 335                    Cordoba              4123456            33,2                                                                                 
+Marina Torres                          22 f Colon 222                      Villa Dolores        03544112233          95                                                                                 
+Julieta Gomez                          24 f San Martin 333                 Alta Gracia                             53,5                                                                                 
+Roxana Lopez                           20 f null                           Alta Gracia                              240                                                                                 
+Liliana Garcia                         50 f Paso 999                       Cordoba              4588778              48                                                                                 
+Juan Torres                            43 m Sarmiento 876                  Cordoba                                 15,3                                                                                 
+
+10 filas seleccionadas.
+
+SQL> select ciudad, sexo, sum (montocompra) as total_compras from visitantes where montocompra > 50 and telefono is not null having ciudad != 'Cordoba' group by ciudad, sexo order by ciudad;
+
+CIUDAD               S TOTAL_COMPRAS                                                                                                                                                                    
+-------------------- - -------------                                                                                                                                                                    
+Alta Gracia          f           120                                                                                                                                                                    
+Villa Dolores        f            95                                                                                                                                                                    
+
+SQL> REM 6- Muestre el monto mayor de compra agrupado por ciudad, siempre que dicho valor supere los 50 pesos (having), considerando s¢lo los visitantes de sexo femenino y domicilio conocido (where) (2 filas)
+SQL> select ciudad, max (montocompra) from visitantes where sexo = 'f' and domicilio is not null having montocompra > 50;
+select ciudad, max (montocompra) from visitantes where sexo = 'f' and domicilio is not null having montocompra > 50
+                                                                                                   *
+ERROR en línea 1:
+ORA-00979: no es una expresión GROUP BY 
+
+
+SQL> select ciudad, max (montocompra) from visitantes where sexo = 'f' and domicilio is not null group by ciudad having montocompra > 50;
+select ciudad, max (montocompra) from visitantes where sexo = 'f' and domicilio is not null group by ciudad having montocompra > 50
+                                                                                                                   *
+ERROR en línea 1:
+ORA-00979: no es una expresión GROUP BY 
+
+
+SQL> select ciudad, max (montocompra) from visitantes where sexo = 'f' and domicilio is not null group by ciudad having max(montocomprqa) > 50;
+select ciudad, max (montocompra) from visitantes where sexo = 'f' and domicilio is not null group by ciudad having max(montocomprqa) > 50
+                                                                                                                       *
+ERROR en línea 1:
+ORA-00904: "MONTOCOMPRQA": identificador no válido 
+
+
+SQL> select ciudad, max (montocompra) from visitantes where sexo = 'f' and domicilio is not null group by ciudad having max(montocompra) > 50;
+
+CIUDAD               MAX(MONTOCOMPRA)                                                                                                                                                                   
+-------------------- ----------------                                                                                                                                                                   
+Villa Dolores                      95                                                                                                                                                                   
+Alta Gracia                       240                                                                                                                                                                   
+
+SQL> select ciudad, max (montocompra) from visitantes where sexo = 'f' and domicilio is not null and max(montocomprqa) > 50 group by ciudad;
+select ciudad, max (montocompra) from visitantes where sexo = 'f' and domicilio is not null and max(montocomprqa) > 50 group by ciudad
+                                                                                                *
+ERROR en línea 1:
+ORA-00934: función de grupo no permitida aquí 
+
+
+SQL> select ciudad, max (montocompra) from visitantes where sexo = 'f' and domicilio is not null and max(montocompra) > 50 group by ciudad;
+select ciudad, max (montocompra) from visitantes where sexo = 'f' and domicilio is not null and max(montocompra) > 50 group by ciudad
+                                                                                                *
+ERROR en línea 1:
+ORA-00934: función de grupo no permitida aquí 
+
+
+SQL> REM 7- Agrupe por ciudad y sexo, muestre para cada grupo el total de visitantes, la suma de sus compras y el promedio de compras, ordenado por la suma total y considerando las filas con promedio superior a 30 (3 filas)
+SQL> select ciudad, sexo, count (*) as total_visitantes, sum (montocompra) as total_compras, avg (montocompra) as promedio_compras
+  2  from visitantes
+  3  group by ciudad, sexo
+  4  havingt avg (montocompra) > 30
+  5  ;
+havingt avg (montocompra) > 30
+*
+ERROR en línea 4:
+ORA-00933: comando SQL no terminado correctamente 
+
+
+SQL> SELECT ciudad, sexo, COUNT(*) as total_visitantes, SUM(montocompra) as total_compras, AVG(montocompra) as promedio_compras FROM visitantes GROUP BY ciudad, sexo HAVING AVG(montocompra) > 30 ORDER BY total_compras DESC;
+
+CIUDAD               S TOTAL_VISITANTES TOTAL_COMPRAS PROMEDIO_COMPRAS                                                                                                                                  
+-------------------- - ---------------- ------------- ----------------                                                                                                                                  
+Alta Gracia          f                3         413,5       137,833333                                                                                                                                  
+Cordoba              f                3         115,9       38,6333333                                                                                                                                  
+Villa Dolores        f                1            95               95                                                                                                                                  
+
+SQL> exit

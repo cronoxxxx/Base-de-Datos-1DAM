@@ -1,0 +1,631 @@
+SQL> set linesize 200
+SQL> set pagesize 200
+SQL> connect adrian
+Conectado.
+SQL> select * from articulos;
+
+    CODIGO NOMBRE               DESCRIPCION                        PRECIO                                                                                                                               
+---------- -------------------- ------------------------------ ----------                                                                                                                               
+         1 impresora            Epson Stylus C45                     1000                                                                                                                               
+         2 impresora            Epson Stylus C85                     1000                                                                                                                               
+         3 impresora            Samsung 14                           1000                                                                                                                               
+         4 teclado              ingles Biswal                        1000                                                                                                                               
+         5 teclado              espa¤ol Biswal                       1000                                                                                                                               
+         6 mouse                Genius                               1000                                                                                                                               
+         7 mouse                teclado blanco                       1000                                                                                                                               
+         8 impresora            Dell                                 1000                                                                                                                               
+
+8 filas seleccionadas.
+
+SQL> delete from articulos;
+
+8 filas suprimidas.
+
+SQL> select * from articulos;
+
+ninguna fila seleccionada
+
+SQL> rollback;
+
+Rollback terminado.
+
+SQL> select * from articulos;
+
+    CODIGO NOMBRE               DESCRIPCION                        PRECIO                                                                                                                               
+---------- -------------------- ------------------------------ ----------                                                                                                                               
+         1 impresora            Epson Stylus C45                     1000                                                                                                                               
+         2 impresora            Epson Stylus C85                     1000                                                                                                                               
+         3 impresora            Samsung 14                           1000                                                                                                                               
+         4 teclado              ingles Biswal                        1000                                                                                                                               
+         5 teclado              espa¤ol Biswal                       1000                                                                                                                               
+         6 mouse                Genius                               1000                                                                                                                               
+         7 mouse                teclado blanco                       1000                                                                                                                               
+         8 impresora            Dell                                 1000                                                                                                                               
+
+8 filas seleccionadas.
+
+SQL> select nombre, count (*)
+  2  from articulos
+  3  group by nombre;
+
+NOMBRE                 COUNT(*)                                                                                                                                                                         
+-------------------- ----------                                                                                                                                                                         
+teclado                       2                                                                                                                                                                         
+impresora                     4                                                                                                                                                                         
+mouse                         2                                                                                                                                                                         
+
+SQL> truncate table articulos;
+
+Tabla truncada.
+
+SQL> select * from articulos;
+
+ninguna fila seleccionada
+
+SQL> rollback;
+
+Rollback terminado.
+
+SQL> select * from articulos;
+
+ninguna fila seleccionada
+
+SQL> drop table libros;
+
+Tabla borrada.
+
+SQL> create table libros (
+  2  titulo varchar2(40) not null,
+  3  autor varchar2(30) default 'Desconocido',
+  4  editorial varchar2(40) not null,
+  5  precio number(5,2),
+  6  cantidad number(3) default 0
+  7  );
+
+Tabla creada.
+
+SQL> desc libros
+ Nombre                                                                                                            ¿Nulo?   Tipo
+ ----------------------------------------------------------------------------------------------------------------- -------- ----------------------------------------------------------------------------
+ TITULO                                                                                                            NOT NULL VARCHAR2(40)
+ AUTOR                                                                                                                      VARCHAR2(30)
+ EDITORIAL                                                                                                         NOT NULL VARCHAR2(40)
+ PRECIO                                                                                                                     NUMBER(5,2)
+ CANTIDAD                                                                                                                   NUMBER(3)
+
+SQL> insert into libros values(
+  2  'El quijote', 'Miguel de cervantes', 'La casa del libro', 766.00,10);
+
+1 fila creada.
+
+SQL> select * from libros,
+  2  ;
+
+*
+ERROR en línea 2:
+ORA-00903: nombre de tabla no válido 
+
+
+SQL> select * from libros;
+
+TITULO                                   AUTOR                          EDITORIAL                                    PRECIO   CANTIDAD                                                                  
+---------------------------------------- ------------------------------ ---------------------------------------- ---------- ----------                                                                  
+El quijote                               Miguel de cervantes            La casa del libro                               766         10                                                                  
+
+SQL> insert into libros values('Guerra y Paz',default,'Mensajero ruso',500.00,5);
+
+1 fila creada.
+
+SQL> select * from libros;
+
+TITULO                                   AUTOR                          EDITORIAL                                    PRECIO   CANTIDAD                                                                  
+---------------------------------------- ------------------------------ ---------------------------------------- ---------- ----------                                                                  
+El quijote                               Miguel de cervantes            La casa del libro                               766         10                                                                  
+Guerra y Paz                             Desconocido                    Mensajero ruso                                  500          5                                                                  
+
+SQL> insert into libros values('Cien a¤os de soledad',default,'Mensajero ruso',500.00,default);
+
+1 fila creada.
+
+SQL> select * from libros;
+
+TITULO                                   AUTOR                          EDITORIAL                                    PRECIO   CANTIDAD                                                                  
+---------------------------------------- ------------------------------ ---------------------------------------- ---------- ----------                                                                  
+El quijote                               Miguel de cervantes            La casa del libro                               766         10                                                                  
+Guerra y Paz                             Desconocido                    Mensajero ruso                                  500          5                                                                  
+Cien a¤os de soledad                     Desconocido                    Mensajero ruso                                  500          0                                                                  
+
+SQL> select titulo, precio, cantidad from libros;
+
+TITULO                                       PRECIO   CANTIDAD                                                                                                                                          
+---------------------------------------- ---------- ----------                                                                                                                                          
+El quijote                                      766         10                                                                                                                                          
+Guerra y Paz                                    500          5                                                                                                                                          
+Cien a¤os de soledad                            500          0                                                                                                                                          
+
+SQL> select titulo, precio, cantidad, precio*cantidad as totales from libros;
+
+TITULO                                       PRECIO   CANTIDAD    TOTALES                                                                                                                               
+---------------------------------------- ---------- ---------- ----------                                                                                                                               
+El quijote                                      766         10       7660                                                                                                                               
+Guerra y Paz                                    500          5       2500                                                                                                                               
+Cien a¤os de soledad                            500          0          0                                                                                                                               
+
+SQL> select titulo, precio, cantidad, precio-(precio*0.1) as descontado from libros;
+
+TITULO                                       PRECIO   CANTIDAD DESCONTADO                                                                                                                               
+---------------------------------------- ---------- ---------- ----------                                                                                                                               
+El quijote                                      766         10      689,4                                                                                                                               
+Guerra y Paz                                    500          5        450                                                                                                                               
+Cien a¤os de soledad                            500          0        450                                                                                                                               
+
+SQL> update libros set precio=precio-(precio*0.1);
+
+3 filas actualizadas.
+
+SQL> select * from libros;
+
+TITULO                                   AUTOR                          EDITORIAL                                    PRECIO   CANTIDAD                                                                  
+---------------------------------------- ------------------------------ ---------------------------------------- ---------- ----------                                                                  
+El quijote                               Miguel de cervantes            La casa del libro                             689,4         10                                                                  
+Guerra y Paz                             Desconocido                    Mensajero ruso                                  450          5                                                                  
+Cien a¤os de soledad                     Desconocido                    Mensajero ruso                                  450          0                                                                  
+
+SQL> select || 'La obra '|| titulo || 'es de ' || autor;
+select || 'La obra '|| titulo || 'es de ' || autor
+       *
+ERROR en línea 1:
+ORA-00936: falta una expresión 
+
+
+SQL> select || 'La obra '|| titulo || 'es de ' || autor from libros;
+select || 'La obra '|| titulo || 'es de ' || autor from libros
+       *
+ERROR en línea 1:
+ORA-00936: falta una expresión 
+
+
+SQL> select 'La obra '|| titulo || 'es de ' || autor from libros;
+
+'LAOBRA'||TITULO||'ESDE'||AUTOR                                                                                                                                                                         
+------------------------------------------------------------------------------------                                                                                                                    
+La obra El quijotees de Miguel de cervantes                                                                                                                                                             
+La obra Guerra y Pazes de Desconocido                                                                                                                                                                   
+La obra Cien a¤os de soledades de Desconocido                                                                                                                                                           
+
+SQL> select 'La obra '|| titulo || ' es de ' || autor from libros;
+
+'LAOBRA'||TITULO||'ESDE'||AUTOR                                                                                                                                                                         
+-------------------------------------------------------------------------------------                                                                                                                   
+La obra El quijote es de Miguel de cervantes                                                                                                                                                            
+La obra Guerra y Paz es de Desconocido                                                                                                                                                                  
+La obra Cien a¤os de soledad es de Desconocido                                                                                                                                                          
+
+SQL> select titulo, autor from libros;
+
+TITULO                                   AUTOR                                                                                                                                                          
+---------------------------------------- ------------------------------                                                                                                                                 
+El quijote                               Miguel de cervantes                                                                                                                                            
+Guerra y Paz                             Desconocido                                                                                                                                                    
+Cien a¤os de soledad                     Desconocido                                                                                                                                                    
+
+SQL> select 'La obra '|| titulo || ' es de ' || autor || ' y su precio es $' || precio from libros;
+
+'LAOBRA'||TITULO||'ESDE'||AUTOR||'YSUPRECIOES$'||PRECIO                                                                                                                                                 
+----------------------------------------------------------------------------------------------------------------------------------------------                                                          
+La obra El quijote es de Miguel de cervantes y su precio es $689,4                                                                                                                                      
+La obra Guerra y Paz es de Desconocido y su precio es $450                                                                                                                                              
+La obra Cien a¤os de soledad es de Desconocido y su precio es $450                                                                                                                                      
+
+SQL> desc articulos
+ Nombre                                                                                                            ¿Nulo?   Tipo
+ ----------------------------------------------------------------------------------------------------------------- -------- ----------------------------------------------------------------------------
+ CODIGO                                                                                                                     NUMBER(5)
+ NOMBRE                                                                                                                     VARCHAR2(20)
+ DESCRIPCION                                                                                                                VARCHAR2(30)
+ PRECIO                                                                                                                     NUMBER(7,2)
+
+SQL> select * from articulos;
+
+ninguna fila seleccionada
+
+SQL> select * from libros;
+
+TITULO                                   AUTOR                          EDITORIAL                                    PRECIO   CANTIDAD                                                                  
+---------------------------------------- ------------------------------ ---------------------------------------- ---------- ----------                                                                  
+El quijote                               Miguel de cervantes            La casa del libro                             689,4         10                                                                  
+Guerra y Paz                             Desconocido                    Mensajero ruso                                  450          5                                                                  
+Cien a¤os de soledad                     Desconocido                    Mensajero ruso                                  450          0                                                                  
+
+SQL> select nombre, autor, precio, precio + (precio*.20) as recargo from libros;
+select nombre, autor, precio, precio + (precio*.20) as recargo from libros
+       *
+ERROR en línea 1:
+ORA-00904: "NOMBRE": identificador no válido 
+
+
+SQL> select titulo, autor, precio, precio + (precio*.20) as recargo from libros;
+
+TITULO                                   AUTOR                              PRECIO    RECARGO                                                                                                           
+---------------------------------------- ------------------------------ ---------- ----------                                                                                                           
+El quijote                               Miguel de cervantes                 689,4     827,28                                                                                                           
+Guerra y Paz                             Desconocido                           450        540                                                                                                           
+Cien a¤os de soledad                     Desconocido                           450        540                                                                                                           
+
+SQL> select titulo, autor, precio, precio + (precio*0.2) as recargo from libros;
+
+TITULO                                   AUTOR                              PRECIO    RECARGO                                                                                                           
+---------------------------------------- ------------------------------ ---------- ----------                                                                                                           
+El quijote                               Miguel de cervantes                 689,4     827,28                                                                                                           
+Guerra y Paz                             Desconocido                           450        540                                                                                                           
+Cien a¤os de soledad                     Desconocido                           450        540                                                                                                           
+
+SQL> select titulo, autor, precio, precio + (precio*0.2) as recargo from libros where nombre = 'impresora';
+select titulo, autor, precio, precio + (precio*0.2) as recargo from libros where nombre = 'impresora'
+                                                                                 *
+ERROR en línea 1:
+ORA-00904: "NOMBRE": identificador no válido 
+
+
+SQL> select titulo, autor, precio, precio + (precio*0.2) as recargo from libros where autor = 'desconocido';
+
+ninguna fila seleccionada
+
+SQL> select titulo, autor, precio, precio + (precio*0.2) as recargo from libros where autor = 'Desconocido';
+
+TITULO                                   AUTOR                              PRECIO    RECARGO                                                                                                           
+---------------------------------------- ------------------------------ ---------- ----------                                                                                                           
+Guerra y Paz                             Desconocido                           450        540                                                                                                           
+Cien a¤os de soledad                     Desconocido                           450        540                                                                                                           
+
+SQL> REM FUNCIONES STRING
+SQL> select chr (65) from dual;
+
+C                                                                                                                                                                                                       
+-                                                                                                                                                                                                       
+A                                                                                                                                                                                                       
+
+SQL> select chr (65+1) from dual;
+
+C                                                                                                                                                                                                       
+-                                                                                                                                                                                                       
+B                                                                                                                                                                                                       
+
+SQL> select chr (100) from dual;
+
+C                                                                                                                                                                                                       
+-                                                                                                                                                                                                       
+d                                                                                                                                                                                                       
+
+SQL> select ascii ('d') from dual;
+
+ASCII('D')                                                                                                                                                                                              
+----------                                                                                                                                                                                              
+       100                                                                                                                                                                                              
+
+SQL> select concat ('buenas','tardes') from dual;
+
+CONCAT('BUEN                                                                                                                                                                                            
+------------                                                                                                                                                                                            
+buenastardes                                                                                                                                                                                            
+
+SQL> select ('Hola mundo') from dual;
+
+('HOLAMUND                                                                                                                                                                                              
+----------                                                                                                                                                                                              
+Hola mundo                                                                                                                                                                                              
+
+SQL> select initcap ('hola mundo') from dual;
+
+INITCAP('H                                                                                                                                                                                              
+----------                                                                                                                                                                                              
+Hola Mundo                                                                                                                                                                                              
+
+SQL> select lower ('HOLA MUNDO') from dual;
+
+LOWER('HOL                                                                                                                                                                                              
+----------                                                                                                                                                                                              
+hola mundo                                                                                                                                                                                              
+
+SQL> select upper ('hola mundo') from dual;
+
+UPPER('HOL                                                                                                                                                                                              
+----------                                                                                                                                                                                              
+HOLA MUNDO                                                                                                                                                                                              
+
+SQL> select lpad ('oracle',11,'abc') from dual;
+
+LPAD('ORACL                                                                                                                                                                                             
+-----------                                                                                                                                                                                             
+abcaboracle                                                                                                                                                                                             
+
+SQL> select lpad ('oracle',8,'abc') from dual;
+
+LPAD('OR                                                                                                                                                                                                
+--------                                                                                                                                                                                                
+aboracle                                                                                                                                                                                                
+
+SQL> select rpad ('oracle',9'abc') from dual;
+select rpad ('oracle',9'abc') from dual
+                       *
+ERROR en línea 1:
+ORA-00907: falta el paréntesis derecho 
+
+
+SQL> select rpad ('oracle',9,'abc') from dual;
+
+RPAD('ORA                                                                                                                                                                                               
+---------                                                                                                                                                                                               
+oracleabc                                                                                                                                                                                               
+
+SQL> select ltrim ('  xd') from dual;
+
+LT                                                                                                                                                                                                      
+--                                                                                                                                                                                                      
+xd                                                                                                                                                                                                      
+
+SQL> select ltrim ('  xd    ') from dual;
+
+LTRIM(                                                                                                                                                                                                  
+------                                                                                                                                                                                                  
+xd                                                                                                                                                                                                      
+
+SQL> select ltrim ('s  xd    s') from dual;
+
+LTRIM('SXD                                                                                                                                                                                              
+----------                                                                                                                                                                                              
+s  xd    s                                                                                                                                                                                              
+
+SQL> select ltrim ('adelante', 'ade') from dual;
+
+LTRIM                                                                                                                                                                                                   
+-----                                                                                                                                                                                                   
+lante                                                                                                                                                                                                   
+
+SQL> select rtrim ('adelante', 'lante') from dual;
+
+RT                                                                                                                                                                                                      
+--                                                                                                                                                                                                      
+ad                                                                                                                                                                                                      
+
+SQL> select rtrim ('adelante', 'elante') from dual;
+
+RT                                                                                                                                                                                                      
+--                                                                                                                                                                                                      
+ad                                                                                                                                                                                                      
+
+SQL> select rtrim ('adelante', 'lante') from dual;
+
+RT                                                                                                                                                                                                      
+--                                                                                                                                                                                                      
+ad                                                                                                                                                                                                      
+
+SQL> select rtrim ('adelante', 'ante') from dual;
+
+RTRI                                                                                                                                                                                                    
+----                                                                                                                                                                                                    
+adel                                                                                                                                                                                                    
+
+SQL> select replace('www.oracle.com','w','p') from dual;
+
+REPLACE('WWW.O                                                                                                                                                                                          
+--------------                                                                                                                                                                                          
+ppp.oracle.com                                                                                                                                                                                          
+
+SQL> select substr ('www.oracle.com',1,10) from dual;
+
+SUBSTR('WW                                                                                                                                                                                              
+----------                                                                                                                                                                                              
+www.oracle                                                                                                                                                                                              
+
+SQL> select substr ('www.oracle.com',1,2) from dual;
+
+SU                                                                                                                                                                                                      
+--                                                                                                                                                                                                      
+ww                                                                                                                                                                                                      
+
+SQL> select substr ('www.oracle.com',-3) from dual;
+
+SUB                                                                                                                                                                                                     
+---                                                                                                                                                                                                     
+com                                                                                                                                                                                                     
+
+SQL> select length ('Hola mundo') from dual;
+
+LENGTH('HOLAMUNDO')                                                                                                                                                                                     
+-------------------                                                                                                                                                                                     
+                 10                                                                                                                                                                                     
+
+SQL> select length ('Hola mundo') as penne from dual;
+
+     PENNE                                                                                                                                                                                              
+----------                                                                                                                                                                                              
+        10                                                                                                                                                                                              
+
+SQL> select instr('hola mundo','mundo') from dual;
+
+INSTR('HOLAMUNDO','MUNDO')                                                                                                                                                                              
+--------------------------                                                                                                                                                                              
+                         6                                                                                                                                                                              
+
+SQL> select translate ('Hola mundo','aoe','xyz') from dual
+  2  ;
+
+TRANSLATE(                                                                                                                                                                                              
+----------                                                                                                                                                                                              
+Hylx mundy                                                                                                                                                                                              
+
+SQL> REN FUNCIONES MATEMATICAS
+SP2-0734: inicio "REN FUNCIO..." de comando desconocido - resto de la línea ignorado.
+SQL> REM FUNCIONES MATEMATICAS
+SQL> select abs (-50) from dual;
+
+  ABS(-50)                                                                                                                                                                                              
+----------                                                                                                                                                                                              
+        50                                                                                                                                                                                              
+
+SQL> select abs (-100-50) from dual;
+
+ABS(-100-50)                                                                                                                                                                                            
+------------                                                                                                                                                                                            
+         150                                                                                                                                                                                            
+
+SQL> select ceil (15.5) from dual;
+
+CEIL(15.5)                                                                                                                                                                                              
+----------                                                                                                                                                                                              
+        16                                                                                                                                                                                              
+
+SQL> select ceil (15.2) from dual;
+
+CEIL(15.2)                                                                                                                                                                                              
+----------                                                                                                                                                                                              
+        16                                                                                                                                                                                              
+
+SQL> select floor (15.2) from floor;
+select floor (15.2) from floor
+                         *
+ERROR en línea 1:
+ORA-00942: la tabla o vista no existe 
+
+
+SQL> select floor (15.2) from dual;
+
+FLOOR(15.2)                                                                                                                                                                                             
+-----------                                                                                                                                                                                             
+         15                                                                                                                                                                                             
+
+SQL> select floor (15.7) from dual;
+
+FLOOR(15.7)                                                                                                                                                                                             
+-----------                                                                                                                                                                                             
+         15                                                                                                                                                                                             
+
+SQL> select round (15.7) from dual;
+
+ROUND(15.7)                                                                                                                                                                                             
+-----------                                                                                                                                                                                             
+         16                                                                                                                                                                                             
+
+SQL> select round (15.2) from dual;
+
+ROUND(15.2)                                                                                                                                                                                             
+-----------                                                                                                                                                                                             
+         15                                                                                                                                                                                             
+
+SQL> select mod(10,3) from dual;
+
+ MOD(10,3)                                                                                                                                                                                              
+----------                                                                                                                                                                                              
+         1                                                                                                                                                                                              
+
+SQL> select mod(10,2) from dual;
+
+ MOD(10,2)                                                                                                                                                                                              
+----------                                                                                                                                                                                              
+         0                                                                                                                                                                                              
+
+SQL> select pow (2,3) from dual;
+select pow (2,3) from dual
+       *
+ERROR en línea 1:
+ORA-00904: "POW": identificador no válido 
+
+
+SQL> select power (2,3) from dual;
+
+POWER(2,3)                                                                                                                                                                                              
+----------                                                                                                                                                                                              
+         8                                                                                                                                                                                              
+
+SQL> select round (123.510,3) from dual;
+
+ROUND(123.510,3)                                                                                                                                                                                        
+----------------                                                                                                                                                                                        
+          123,51                                                                                                                                                                                        
+
+SQL> select round (123.710,3) from dual;
+
+ROUND(123.710,3)                                                                                                                                                                                        
+----------------                                                                                                                                                                                        
+          123,71                                                                                                                                                                                        
+
+SQL> select round (123.710) from dual;
+
+ROUND(123.710)                                                                                                                                                                                          
+--------------                                                                                                                                                                                          
+           124                                                                                                                                                                                          
+
+SQL> select sign (-100) from dual;
+
+SIGN(-100)                                                                                                                                                                                              
+----------                                                                                                                                                                                              
+        -1                                                                                                                                                                                              
+
+SQL> select sign (100) from dual;
+
+ SIGN(100)                                                                                                                                                                                              
+----------                                                                                                                                                                                              
+         1                                                                                                                                                                                              
+
+SQL> select sign (200) from dual;
+
+ SIGN(200)                                                                                                                                                                                              
+----------                                                                                                                                                                                              
+         1                                                                                                                                                                                              
+
+SQL> select sign (0) from dual;
+
+   SIGN(0)                                                                                                                                                                                              
+----------                                                                                                                                                                                              
+         0                                                                                                                                                                                              
+
+SQL> select trunc (1234.1234, 3) from dual;
+
+TRUNC(1234.1234,3)                                                                                                                                                                                      
+------------------                                                                                                                                                                                      
+          1234,123                                                                                                                                                                                      
+
+SQL> select trunc (1234.5555, 3) from dual;
+
+TRUNC(1234.5555,3)                                                                                                                                                                                      
+------------------                                                                                                                                                                                      
+          1234,555                                                                                                                                                                                      
+
+SQL> select sqrt (9) from dual;
+
+   SQRT(9)                                                                                                                                                                                              
+----------                                                                                                                                                                                              
+         3                                                                                                                                                                                              
+
+SQL> select round (123.710,2) from dual;
+
+ROUND(123.710,2)                                                                                                                                                                                        
+----------------                                                                                                                                                                                        
+          123,71                                                                                                                                                                                        
+
+SQL> select round (123.710,1) from dual;
+
+ROUND(123.710,1)                                                                                                                                                                                        
+----------------                                                                                                                                                                                        
+           123,7                                                                                                                                                                                        
+
+SQL> select round (123.710) from dual;
+
+ROUND(123.710)                                                                                                                                                                                          
+--------------                                                                                                                                                                                          
+           124                                                                                                                                                                                          
+
+SQL> select sqrt (round (123.710,3)) from dual;
+
+SQRT(ROUND(123.710,3))                                                                                                                                                                                  
+----------------------                                                                                                                                                                                  
+            11,1224997                                                                                                                                                                                  
+
+SQL> select round (123.710,4) from dual;
+
+ROUND(123.710,4)                                                                                                                                                                                        
+----------------                                                                                                                                                                                        
+          123,71                                                                                                                                                                                        
+
+SQL> exit

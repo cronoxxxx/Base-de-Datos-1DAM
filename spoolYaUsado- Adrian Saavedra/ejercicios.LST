@@ -1,0 +1,567 @@
+SQL> connect adrian
+Conectado.
+SQL> set linesize 200
+SQL> set pagesize 200
+SQL> select * from emple;
+
+    EMP_NO APELLIDO   OFICIO            DIR FECHA_AL    SALARIO   COMISION    DEPT_NO                                                                                                                   
+---------- ---------- ---------- ---------- -------- ---------- ---------- ----------                                                                                                                   
+      7369 SµNCHEZ    EMPLEADO         7902 17/12/80     104000                    20                                                                                                                   
+      7499 ARROYO     VENDEDOR         7698 20/02/80     208000      39000         30                                                                                                                   
+      7521 SALA       VENDEDOR         7698 22/02/81     162500      65000         30                                                                                                                   
+      7566 JIMNEZ    DIRECTOR         7839 02/04/81     386750                    20                                                                                                                   
+      7654 MARTÖN     VENDEDOR         7698 29/09/81     162500     182000         30                                                                                                                   
+      7698 NEGRO      DIRECTOR         7839 01/05/81     370500                    30                                                                                                                   
+      7782 CEREZO     DIRECTOR         7839 09/06/81     318500                    10                                                                                                                   
+      7788 GIL        ANALISTA         7566 09/11/81     390000                    20                                                                                                                   
+      7839 REY        PRESIDENTE            17/11/81      50000                    10                                                                                                                   
+      7844 TOVAR      VENDEDOR         7698 08/09/81     195000          0         30                                                                                                                   
+      7876 ALONSO     EMPLEADO         7788 23/09/81     143000                    20                                                                                                                   
+      7900 JIMENO     EMPLEADO         7698 03/12/81     123500                    30                                                                                                                   
+      7902 FERNµNDEZ  ANALISTA         7566 03/12/81     390000                    20                                                                                                                   
+      7934 MU¥OZ      EMPLEADO         7782 23/01/82     169000                    10                                                                                                                   
+
+14 filas seleccionadas.
+
+SQL> select apellido, oficio where apellido like (%Z);
+select apellido, oficio where apellido like (%Z)
+                        *
+ERROR en línea 1:
+ORA-00923: palabra clave FROM no encontrada donde se esperaba 
+
+
+SQL> select apellido, oficio where apellido like '%Z';
+select apellido, oficio where apellido like '%Z'
+                        *
+ERROR en línea 1:
+ORA-00923: palabra clave FROM no encontrada donde se esperaba 
+
+
+SQL> select apellido, oficio from emple where apellido like '%Z';
+
+APELLIDO   OFICIO                                                                                                                                                                                       
+---------- ----------                                                                                                                                                                                   
+SµNCHEZ    EMPLEADO                                                                                                                                                                                     
+JIMNEZ    DIRECTOR                                                                                                                                                                                     
+FERNµNDEZ  ANALISTA                                                                                                                                                                                     
+MU¥OZ      EMPLEADO                                                                                                                                                                                     
+
+SQL> REM SEGUNDO EJERCICIO DE CONSULTAS
+SQL> rem Seleccionar el apellido de los empleados que trabajen en Madrid o Barcelona.
+SQL> select * from depart;
+
+   DEPT_NO DNOMBRE        LOC                                                                                                                                                                           
+---------- -------------- --------------                                                                                                                                                                
+        10 CONTABILIDAD   SEVILLA                                                                                                                                                                       
+        20 INVESTIGACIàN  MADRID                                                                                                                                                                        
+        30 VENTAS         BARCELONA                                                                                                                                                                     
+        40 PRODUCCIàN     BILBAO                                                                                                                                                                        
+        50 otros                                                                                                                                                                                        
+
+SQL> select * from emple;
+
+    EMP_NO APELLIDO   OFICIO            DIR FECHA_AL    SALARIO   COMISION    DEPT_NO                                                                                                                   
+---------- ---------- ---------- ---------- -------- ---------- ---------- ----------                                                                                                                   
+      7369 SµNCHEZ    EMPLEADO         7902 17/12/80     104000                    20                                                                                                                   
+      7499 ARROYO     VENDEDOR         7698 20/02/80     208000      39000         30                                                                                                                   
+      7521 SALA       VENDEDOR         7698 22/02/81     162500      65000         30                                                                                                                   
+      7566 JIMNEZ    DIRECTOR         7839 02/04/81     386750                    20                                                                                                                   
+      7654 MARTÖN     VENDEDOR         7698 29/09/81     162500     182000         30                                                                                                                   
+      7698 NEGRO      DIRECTOR         7839 01/05/81     370500                    30                                                                                                                   
+      7782 CEREZO     DIRECTOR         7839 09/06/81     318500                    10                                                                                                                   
+      7788 GIL        ANALISTA         7566 09/11/81     390000                    20                                                                                                                   
+      7839 REY        PRESIDENTE            17/11/81      50000                    10                                                                                                                   
+      7844 TOVAR      VENDEDOR         7698 08/09/81     195000          0         30                                                                                                                   
+      7876 ALONSO     EMPLEADO         7788 23/09/81     143000                    20                                                                                                                   
+      7900 JIMENO     EMPLEADO         7698 03/12/81     123500                    30                                                                                                                   
+      7902 FERNµNDEZ  ANALISTA         7566 03/12/81     390000                    20                                                                                                                   
+      7934 MU¥OZ      EMPLEADO         7782 23/01/82     169000                    10                                                                                                                   
+
+14 filas seleccionadas.
+
+SQL> select * from emple where dept_no in (select dept_no from depart loc in ('Madrid','Barcelona');
+select * from emple where dept_no in (select dept_no from depart loc in ('Madrid','Barcelona')
+                                                                     *
+ERROR en línea 1:
+ORA-00907: falta el paréntesis derecho 
+
+
+SQL> select * from emple where dept_no in (select dept_no from depart loc in ('Madrid','Barcelona'));
+select * from emple where dept_no in (select dept_no from depart loc in ('Madrid','Barcelona'))
+                                                                     *
+ERROR en línea 1:
+ORA-00907: falta el paréntesis derecho 
+
+
+SQL> select * from emple where dept_no in (select dept_no from depart loc in ('MADRID','BARCELONA'));
+select * from emple where dept_no in (select dept_no from depart loc in ('MADRID','BARCELONA'))
+                                                                     *
+ERROR en línea 1:
+ORA-00907: falta el paréntesis derecho 
+
+
+SQL> select * from emple where dept_no in (select dept_no from depart where loc in ('MADRID','BARCELONA'));
+
+    EMP_NO APELLIDO   OFICIO            DIR FECHA_AL    SALARIO   COMISION    DEPT_NO                                                                                                                   
+---------- ---------- ---------- ---------- -------- ---------- ---------- ----------                                                                                                                   
+      7369 SµNCHEZ    EMPLEADO         7902 17/12/80     104000                    20                                                                                                                   
+      7499 ARROYO     VENDEDOR         7698 20/02/80     208000      39000         30                                                                                                                   
+      7521 SALA       VENDEDOR         7698 22/02/81     162500      65000         30                                                                                                                   
+      7566 JIMNEZ    DIRECTOR         7839 02/04/81     386750                    20                                                                                                                   
+      7654 MARTÖN     VENDEDOR         7698 29/09/81     162500     182000         30                                                                                                                   
+      7698 NEGRO      DIRECTOR         7839 01/05/81     370500                    30                                                                                                                   
+      7788 GIL        ANALISTA         7566 09/11/81     390000                    20                                                                                                                   
+      7844 TOVAR      VENDEDOR         7698 08/09/81     195000          0         30                                                                                                                   
+      7876 ALONSO     EMPLEADO         7788 23/09/81     143000                    20                                                                                                                   
+      7900 JIMENO     EMPLEADO         7698 03/12/81     123500                    30                                                                                                                   
+      7902 FERNµNDEZ  ANALISTA         7566 03/12/81     390000                    20                                                                                                                   
+
+11 filas seleccionadas.
+
+SQL> rem Seleccionar el apellido y el oficio de todos los empleados del departamento 20 cuyo trabajo sea id‚ntico al de los empleados del departamento ventas.
+SQL> select apellido, oficio from emple where dept_no = 20 and oficio in (select oficio from emple where dept_no = 30);
+
+APELLIDO   OFICIO                                                                                                                                                                                       
+---------- ----------                                                                                                                                                                                   
+JIMNEZ    DIRECTOR                                                                                                                                                                                     
+ALONSO     EMPLEADO                                                                                                                                                                                     
+SµNCHEZ    EMPLEADO                                                                                                                                                                                     
+
+SQL> rem Obtener el departamento de los empleados con el mismo oficio y el salario de GIL.
+SQL> select dept_no from emple where oficio in (select oficio from emple where apellido = 'GIL' and ROWNUM = 1) and salario in (select salario from emple where apellido = 'GIL' and ROWNUM = 1);
+
+   DEPT_NO                                                                                                                                                                                              
+----------                                                                                                                                                                                              
+        20                                                                                                                                                                                              
+        20                                                                                                                                                                                              
+
+SQL> rem Obtener el nombre de alumno, su asignatura y su nota.
+SQL> select table_name from user_tables;
+
+TABLE_NAME                                                                                                                                                                                              
+------------------------------                                                                                                                                                                          
+EQUIPOS                                                                                                                                                                                                 
+ESTADIOS                                                                                                                                                                                                
+KK                                                                                                                                                                                                      
+TRATAR                                                                                                                                                                                                  
+MEDICO                                                                                                                                                                                                  
+PACIENTE                                                                                                                                                                                                
+D3                                                                                                                                                                                                      
+M3                                                                                                                                                                                                      
+PR0                                                                                                                                                                                                     
+W0R                                                                                                                                                                                                     
+PERSONAS                                                                                                                                                                                                
+ALUMNOS2                                                                                                                                                                                                
+DEPART                                                                                                                                                                                                  
+EMPLE                                                                                                                                                                                                   
+NOTAS_ALUMNOS                                                                                                                                                                                           
+LIBRERIA                                                                                                                                                                                                
+ALUMNOS                                                                                                                                                                                                 
+ASIGNATURAS                                                                                                                                                                                             
+NOTAS                                                                                                                                                                                                   
+
+19 filas seleccionadas.
+
+SQL> select * from alumnos;
+
+DNI        APENOM                         DIREC                          POBLA           TELEF                                                                                                          
+---------- ------------------------------ ------------------------------ --------------- ----------                                                                                                     
+12344345   Alcalde Garc¡a, Elena          C/Las Matas, 24                Madrid          917766545                                                                                                      
+4448242    Cerrato Vela, Luis             C/Mina 28 - 3A                 Madrid          916566545                                                                                                      
+56882942   D¡az Fern ndez, Mar¡a          C/Luis Vives 25                M¢stoles        915577545                                                                                                      
+
+SQL> select * from notas_alumnos;
+
+NOMBRE_ALUMNO                  NOTA1      NOTA2      NOTA3                                                                                                                                              
+------------------------- ---------- ---------- ----------                                                                                                                                              
+Alcalde Garc¡a, M. Luisa           5          5          5                                                                                                                                              
+Benito Mart¡n, Luis                7          6          8                                                                                                                                              
+Casas Mart¡nez, Manuel             7          5          5                                                                                                                                              
+Corregidor S nchez, Ana            6          9          8                                                                                                                                              
+D¡az S nchez, Mar¡a                                      7                                                                                                                                              
+
+SQL> select * from asignaturas;
+
+       COD NOMBRE                                                                                                                                                                                       
+---------- -------------------------                                                                                                                                                                    
+         1 Prog. Leng. Estr.                                                                                                                                                                            
+         2 Sist. Inform ticos                                                                                                                                                                           
+         3 An lisis                                                                                                                                                                                     
+         4 FOL                                                                                                                                                                                          
+         5 RET                                                                                                                                                                                          
+         6 Entornos Gr ficos                                                                                                                                                                            
+         7 Aplic. Entornos 4¦Gen                                                                                                                                                                        
+
+7 filas seleccionadas.
+
+SQL> SELECT
+  2    a.APENOM AS NOMBRE_ALUMNO,
+  3    n.NOMBRE AS ASIGNATURA,
+  4    n.NOTA1,
+  5    n.NOTA2,
+  6    n.NOTA3
+  7  FROM
+  8    notas_alumnos n
+  9  JOIN
+ 10    asignaturas a ON n.NOMBRE_ALUMNO = a.APENOM;
+  asignaturas a ON n.NOMBRE_ALUMNO = a.APENOM
+                                     *
+ERROR en línea 10:
+ORA-00904: "A"."APENOM": identificador no válido 
+
+
+SQL> select a.apenom as nombre_alumno, n.nombre as asignatura, n.nota1, n.nota2, n.nota3 from notas_alumnos n join asignaturas a on n.nombre_alumno = a.apenom;
+select a.apenom as nombre_alumno, n.nombre as asignatura, n.nota1, n.nota2, n.nota3 from notas_alumnos n join asignaturas a on n.nombre_alumno = a.apenom
+                                                                                                                                                 *
+ERROR en línea 1:
+ORA-00904: "A"."APENOM": identificador no válido 
+
+
+SQL> SELECT a.APENOM AS NOMBRE_ALUMNO, n.NOMBRE AS ASIGNATURA, n.NOTA1, n.NOTA2, n.NOTA3
+  2  FROM notas_alumnos n
+  3  JOIN asignaturas a ON n.NOMBRE_ALUMNO = a.APENOM;
+JOIN asignaturas a ON n.NOMBRE_ALUMNO = a.APENOM
+                                        *
+ERROR en línea 3:
+ORA-00904: "A"."APENOM": identificador no válido 
+
+
+SQL> select * from alumno;
+select * from alumno
+              *
+ERROR en línea 1:
+ORA-00942: la tabla o vista no existe 
+
+
+SQL> select * from alumnos;
+
+DNI        APENOM                         DIREC                          POBLA           TELEF                                                                                                          
+---------- ------------------------------ ------------------------------ --------------- ----------                                                                                                     
+12344345   Alcalde Garc¡a, Elena          C/Las Matas, 24                Madrid          917766545                                                                                                      
+4448242    Cerrato Vela, Luis             C/Mina 28 - 3A                 Madrid          916566545                                                                                                      
+56882942   D¡az Fern ndez, Mar¡a          C/Luis Vives 25                M¢stoles        915577545                                                                                                      
+
+SQL> SELECT
+  2    a.DNI,
+  3    a.APENOM AS NOMBRE_ALUMNO,
+  4    a.DIREC,
+  5    a.POBLA,
+  6    a.TELEF,
+  7    n.NOMBRE AS ASIGNATURA,
+  8    n.NOTA1,
+  9    n.NOTA2,
+ 10    n.NOTA3
+ 11  FROM
+ 12    alumnos a
+ 13  JOIN
+ 14    notas_alumnos n ON a.DNI = n.DNI;
+  notas_alumnos n ON a.DNI = n.DNI
+                             *
+ERROR en línea 14:
+ORA-00904: "N"."DNI": identificador no válido 
+
+
+SQL> SELECT
+  2    a.DNI,
+  3    a.APENOM AS NOMBRE_ALUMNO,
+  4    a.DIREC,
+  5    a.POBLA,
+  6    a.TELEF,
+  7    n.NOMBRE AS ASIGNATURA,
+  8    n.NOTA1,
+  9    n.NOTA2,
+ 10    n.NOTA3
+ 11  FROM
+ 12    alumnos a
+ 13  JOIN
+ 14    notas_alumnos n ON a.DNI = n.DNI;
+  notas_alumnos n ON a.DNI = n.DNI
+                             *
+ERROR en línea 14:
+ORA-00904: "N"."DNI": identificador no válido 
+
+
+SQL> desc notas_alumnos;
+ Nombre                                                                                                            ¿Nulo?   Tipo
+ ----------------------------------------------------------------------------------------------------------------- -------- ----------------------------------------------------------------------------
+ NOMBRE_ALUMNO                                                                                                     NOT NULL VARCHAR2(25)
+ NOTA1                                                                                                                      NUMBER(2)
+ NOTA2                                                                                                                      NUMBER(2)
+ NOTA3                                                                                                                      NUMBER(2)
+
+SQL> desc alumnos;
+ Nombre                                                                                                            ¿Nulo?   Tipo
+ ----------------------------------------------------------------------------------------------------------------- -------- ----------------------------------------------------------------------------
+ DNI                                                                                                               NOT NULL VARCHAR2(10)
+ APENOM                                                                                                                     VARCHAR2(30)
+ DIREC                                                                                                                      VARCHAR2(30)
+ POBLA                                                                                                                      VARCHAR2(15)
+ TELEF                                                                                                                      VARCHAR2(10)
+
+SQL> desc asignaturas;
+ Nombre                                                                                                            ¿Nulo?   Tipo
+ ----------------------------------------------------------------------------------------------------------------- -------- ----------------------------------------------------------------------------
+ COD                                                                                                               NOT NULL NUMBER(2)
+ NOMBRE                                                                                                                     VARCHAR2(25)
+
+SQL> select * from notas_alumnos;
+
+NOMBRE_ALUMNO                  NOTA1      NOTA2      NOTA3                                                                                                                                              
+------------------------- ---------- ---------- ----------                                                                                                                                              
+Alcalde Garc¡a, M. Luisa           5          5          5                                                                                                                                              
+Benito Mart¡n, Luis                7          6          8                                                                                                                                              
+Casas Mart¡nez, Manuel             7          5          5                                                                                                                                              
+Corregidor S nchez, Ana            6          9          8                                                                                                                                              
+D¡az S nchez, Mar¡a                                      7                                                                                                                                              
+
+SQL> select * from alumnos;
+
+DNI        APENOM                         DIREC                          POBLA           TELEF                                                                                                          
+---------- ------------------------------ ------------------------------ --------------- ----------                                                                                                     
+12344345   Alcalde Garc¡a, Elena          C/Las Matas, 24                Madrid          917766545                                                                                                      
+4448242    Cerrato Vela, Luis             C/Mina 28 - 3A                 Madrid          916566545                                                                                                      
+56882942   D¡az Fern ndez, Mar¡a          C/Luis Vives 25                M¢stoles        915577545                                                                                                      
+
+SQL> select * from asignaturas:
+  2  s;
+SP2-0552: Variable ligada "S" no declarada.
+SQL> select * from asignaturas;
+
+       COD NOMBRE                                                                                                                                                                                       
+---------- -------------------------                                                                                                                                                                    
+         1 Prog. Leng. Estr.                                                                                                                                                                            
+         2 Sist. Inform ticos                                                                                                                                                                           
+         3 An lisis                                                                                                                                                                                     
+         4 FOL                                                                                                                                                                                          
+         5 RET                                                                                                                                                                                          
+         6 Entornos Gr ficos                                                                                                                                                                            
+         7 Aplic. Entornos 4¦Gen                                                                                                                                                                        
+
+7 filas seleccionadas.
+
+SQL> SELECT
+  2    a.DNI,
+  3    a.APENOM AS NOMBRE_ALUMNO,
+  4    a.DIREC,
+  5    a.POBLA,
+  6    a.TELEF,
+  7    n.NOMBRE AS ASIGNATURA,
+  8    n.NOTA1,
+  9    n.NOTA2,
+ 10    n.NOTA3
+ 11  FROM
+ 12    alumnos a
+ 13  JOIN
+ 14    notas_alumnos n ON a.APENOM = n.NOMBRE_ALUMNO;
+  n.NOMBRE AS ASIGNATURA,
+  *
+ERROR en línea 7:
+ORA-00904: "N"."NOMBRE": identificador no válido 
+
+
+SQL> select a.dni, a.apenom as nombre_alumno, a.direc, a.pobla, a.telef, n.nombre_alumno as asignatura, n.nota1, n.nota2, n.nota3 from alumnos a join notas_alumnos n on a.apenom = n.nombre_alumno;
+
+ninguna fila seleccionada
+
+SQL> rem Obtener el nombre de alumno, su asignatura y su nota.
+SQL> select a.apenom as nombre_alumno, n.nombre, m.nota1, m.nota2. m.nota3 from alumnos a join notas_alumnos n on a.apenom = n.nombre_alumno and asignaturas m on a.apenom = m.nota1, a.apenom = m.nota2, a.apenom = m.nota3;
+select a.apenom as nombre_alumno, n.nombre, m.nota1, m.nota2. m.nota3 from alumnos a join notas_alumnos n on a.apenom = n.nombre_alumno and asignaturas m on a.apenom = m.nota1, a.apenom = m.nota2, a.apenom = m.nota3
+                                                                                                                                                        *
+ERROR en línea 1:
+ORA-00920: operador relacional no válido 
+
+
+SQL> SELECT
+  2    a.apenom AS nombre_alumno,
+  3    n.nombre AS asignatura,
+  4    m.nota1,
+  5    m.nota2,
+  6    m.nota3
+  7  FROM
+  8    alumnos a
+  9  JOIN
+ 10    notas_alumnos n ON a.apenom = n.nombre_alumno
+ 11  JOIN
+ 12    asignaturas m ON a.apenom = m.nota1 AND a.apenom = m.nota2 AND a.apenom = m.nota3;
+  asignaturas m ON a.apenom = m.nota1 AND a.apenom = m.nota2 AND a.apenom = m.nota3
+                                                                            *
+ERROR en línea 12:
+ORA-00904: "M"."NOTA3": identificador no válido 
+
+
+SQL> select a.apenom as nombre_alumno, n.nombre as asignatura, m.nota1, m.nota2, m.nota3 from alumnos a join notas_alumnos n on a.apenom = n.nombre_alumno join asignaturas m on a.apenom = m.nota1 and a.apenom = m.nota2 and a.apenom = m.nota3;
+select a.apenom as nombre_alumno, n.nombre as asignatura, m.nota1, m.nota2, m.nota3 from alumnos a join notas_alumnos n on a.apenom = n.nombre_alumno join asignaturas m on a.apenom = m.nota1 and a.apenom = m.nota2 and a.apenom = m.nota3
+                                                                                                                                                                                                                                     *
+ERROR en línea 1:
+ORA-00904: "M"."NOTA3": identificador no válido 
+
+
+SQL> select * from notas_alumnos;
+
+NOMBRE_ALUMNO                  NOTA1      NOTA2      NOTA3                                                                                                                                              
+------------------------- ---------- ---------- ----------                                                                                                                                              
+Alcalde Garc¡a, M. Luisa           5          5          5                                                                                                                                              
+Benito Mart¡n, Luis                7          6          8                                                                                                                                              
+Casas Mart¡nez, Manuel             7          5          5                                                                                                                                              
+Corregidor S nchez, Ana            6          9          8                                                                                                                                              
+D¡az S nchez, Mar¡a                                      7                                                                                                                                              
+
+SQL> select * from asignaturas;
+
+       COD NOMBRE                                                                                                                                                                                       
+---------- -------------------------                                                                                                                                                                    
+         1 Prog. Leng. Estr.                                                                                                                                                                            
+         2 Sist. Inform ticos                                                                                                                                                                           
+         3 An lisis                                                                                                                                                                                     
+         4 FOL                                                                                                                                                                                          
+         5 RET                                                                                                                                                                                          
+         6 Entornos Gr ficos                                                                                                                                                                            
+         7 Aplic. Entornos 4¦Gen                                                                                                                                                                        
+
+7 filas seleccionadas.
+
+SQL> select * from alumnos;
+
+DNI        APENOM                         DIREC                          POBLA           TELEF                                                                                                          
+---------- ------------------------------ ------------------------------ --------------- ----------                                                                                                     
+12344345   Alcalde Garc¡a, Elena          C/Las Matas, 24                Madrid          917766545                                                                                                      
+4448242    Cerrato Vela, Luis             C/Mina 28 - 3A                 Madrid          916566545                                                                                                      
+56882942   D¡az Fern ndez, Mar¡a          C/Luis Vives 25                M¢stoles        915577545                                                                                                      
+
+SQL> select a.apenom as nombre_alumno, n.nombre as asignatura, m.nota1, m.nota2, m.nota3 from alumnos a join asignaturas n on a.apenom = n.nombre join notas_alumnos m on a.apenom = m.nota1 and a.apenom = m.nota2 and a.apenom = m.nota3;
+
+ninguna fila seleccionada
+
+SQL> SELECT
+  2    a.apenom AS nombre_alumno,
+  3    n.nombre AS asignatura,
+  4    m.nota1,
+  5    m.nota2,
+  6    m.nota3
+  7  FROM
+  8    alumnos a
+  9  JOIN
+ 10    asignaturas n ON a.apenom = n.nombre
+ 11  JOIN
+ 12    notas_alumnos m ON a.apenom = m.nombre_alumno;
+
+ninguna fila seleccionada
+
+SQL> SELECT
+  2    a.apenom AS nombre_alumno,
+  3    n.nombre AS asignatura,
+  4    m.nota1,
+  5    m.nota2,
+  6    m.nota3
+  7  FROM
+  8    alumnos a
+  9  JOIN
+ 10    asignaturas n ON UPPER(a.apenom) = UPPER(n.nombre)
+ 11  JOIN
+ 12    notas_alumnos m ON UPPER(a.apenom) = UPPER(m.nombre_alumno);
+
+ninguna fila seleccionada
+
+SQL> SELECT
+  2    a.apenom AS nombre_alumno,
+  3    n.nombre AS asignatura,
+  4    m.nota1,
+  5    m.nota2,
+  6    m.nota3
+  7  FROM
+  8    alumnos a
+  9  JOIN
+ 10    asignaturas n ON UPPER(a.apenom) = UPPER(n.nombre)
+ 11  JOIN
+ 12    notas_alumnos m ON UPPER(a.apenom) = UPPER(m.nombre_alumno);
+
+ninguna fila seleccionada
+
+SQL> SELECT a.apenom AS "Nombre del alumno", s.nombre AS "Asignatura", na.nota
+  2  FROM alumnos a
+  3  JOIN notas_alumnos_asignaturas na ON a.dni = na.dni
+  4  JOIN asignaturas s ON na.cod = s.cod;
+JOIN notas_alumnos_asignaturas na ON a.dni = na.dni
+     *
+ERROR en línea 3:
+ORA-00942: la tabla o vista no existe 
+
+
+SQL> desc notas_alumnos
+ Nombre                                                                                                            ¿Nulo?   Tipo
+ ----------------------------------------------------------------------------------------------------------------- -------- ----------------------------------------------------------------------------
+ NOMBRE_ALUMNO                                                                                                     NOT NULL VARCHAR2(25)
+ NOTA1                                                                                                                      NUMBER(2)
+ NOTA2                                                                                                                      NUMBER(2)
+ NOTA3                                                                                                                      NUMBER(2)
+
+SQL> desc alumnos
+ Nombre                                                                                                            ¿Nulo?   Tipo
+ ----------------------------------------------------------------------------------------------------------------- -------- ----------------------------------------------------------------------------
+ DNI                                                                                                               NOT NULL VARCHAR2(10)
+ APENOM                                                                                                                     VARCHAR2(30)
+ DIREC                                                                                                                      VARCHAR2(30)
+ POBLA                                                                                                                      VARCHAR2(15)
+ TELEF                                                                                                                      VARCHAR2(10)
+
+SQL> desc asignaturas
+ Nombre                                                                                                            ¿Nulo?   Tipo
+ ----------------------------------------------------------------------------------------------------------------- -------- ----------------------------------------------------------------------------
+ COD                                                                                                               NOT NULL NUMBER(2)
+ NOMBRE                                                                                                                     VARCHAR2(25)
+
+SQL> rem Obtener el nombre de alumno, su asignatura y su nota.
+SQL> SELECT
+  2    a.apenom AS nombre_alumno,
+  3    n.nombre AS asignatura,
+  4    m.nota1,
+  5    m.nota2,
+  6    m.nota3
+  7  FROM
+  8    alumnos a
+  9  JOIN
+ 10    asignaturas n ON a.apenom = n.nombre
+ 11  JOIN
+ 12    notas_alumnos m ON a.apenom = m.nombre_alumno;
+
+ninguna fila seleccionada
+
+SQL> rem Nombre de los alumnos matriculados en FOL.
+SQL> select a.apenom as nombre_alumno, n.nombre as asignatura from alumnos a join asignaturas n on a.apenom = n.nombre where n.nombre = 'FOL';
+
+ninguna fila seleccionada
+
+SQL> select * from asignaturas;
+
+       COD NOMBRE                                                                                                                                                                                       
+---------- -------------------------                                                                                                                                                                    
+         1 Prog. Leng. Estr.                                                                                                                                                                            
+         2 Sist. Inform ticos                                                                                                                                                                           
+         3 An lisis                                                                                                                                                                                     
+         4 FOL                                                                                                                                                                                          
+         5 RET                                                                                                                                                                                          
+         6 Entornos Gr ficos                                                                                                                                                                            
+         7 Aplic. Entornos 4¦Gen                                                                                                                                                                        
+
+7 filas seleccionadas.
+
+SQL> select * from alumnos
+  2  ;
+
+DNI        APENOM                         DIREC                          POBLA           TELEF                                                                                                          
+---------- ------------------------------ ------------------------------ --------------- ----------                                                                                                     
+12344345   Alcalde Garc¡a, Elena          C/Las Matas, 24                Madrid          917766545                                                                                                      
+4448242    Cerrato Vela, Luis             C/Mina 28 - 3A                 Madrid          916566545                                                                                                      
+56882942   D¡az Fern ndez, Mar¡a          C/Luis Vives 25                M¢stoles        915577545                                                                                                      
+
+SQL> select * from notas_alumnos;
+
+NOMBRE_ALUMNO                  NOTA1      NOTA2      NOTA3                                                                                                                                              
+------------------------- ---------- ---------- ----------                                                                                                                                              
+Alcalde Garc¡a, M. Luisa           5          5          5                                                                                                                                              
+Benito Mart¡n, Luis                7          6          8                                                                                                                                              
+Casas Mart¡nez, Manuel             7          5          5                                                                                                                                              
+Corregidor S nchez, Ana            6          9          8                                                                                                                                              
+D¡az S nchez, Mar¡a                                      7                                                                                                                                              
+
+SQL> exit

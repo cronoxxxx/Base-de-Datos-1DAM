@@ -1,0 +1,125 @@
+SQL> connect adrian
+Conectado.
+SQL> rem seleccionar el numero de departamento, el minimo, el maximo, la media de los salarios de cada departamento asi como los empleados de cada uno
+SQL> desc depart
+ Nombre                                    ¿Nulo?   Tipo
+ ----------------------------------------- -------- ----------------------------
+ DEPT_NO                                   NOT NULL NUMBER(2)
+ DNOMBRE                                            VARCHAR2(14)
+ LOC                                                VARCHAR2(14)
+
+SQL> desc emple
+ Nombre                                    ¿Nulo?   Tipo
+ ----------------------------------------- -------- ----------------------------
+ EMP_NO                                    NOT NULL NUMBER(4)
+ APELLIDO                                           VARCHAR2(10)
+ OFICIO                                             VARCHAR2(10)
+ DIR                                                NUMBER(4)
+ FECHA_ALT                                          DATE
+ SALARIO                                            NUMBER(10)
+ COMISION                                           NUMBER(10)
+ DEPT_NO                                            NUMBER(2)
+
+SQL> select distinct DEPT_NO;
+select distinct DEPT_NO
+                      *
+ERROR en línea 1:
+ORA-00923: palabra clave FROM no encontrada donde se esperaba 
+
+
+SQL> select distinct DEPT_NO from depart;
+
+   DEPT_NO                                                                      
+----------                                                                      
+        10                                                                      
+        20                                                                      
+        30                                                                      
+        40                                                                      
+        50                                                                      
+
+SQL> select apellido, dept_no, max (salario), min (salario), avg (salario) from depart, emple group by dept_no, dnombre;
+select apellido, dept_no, max (salario), min (salario), avg (salario) from depart, emple group by dept_no, dnombre
+                                                                                                  *
+ERROR en línea 1:
+ORA-00918: columna definida de forma ambigua 
+
+
+SQL> select apellido, dept_no, max (salario), min (salario), avg (salario) from emple group by dept_no, dnombre;
+select apellido, dept_no, max (salario), min (salario), avg (salario) from emple group by dept_no, dnombre
+                                                                                                   *
+ERROR en línea 1:
+ORA-00904: "DNOMBRE": identificador no válido 
+
+
+SQL> select apellido, count  (dept_no), max (salario), min (salario), avg (salario) from emple group by dept_no;
+select apellido, count  (dept_no), max (salario), min (salario), avg (salario) from emple group by dept_no
+       *
+ERROR en línea 1:
+ORA-00979: no es una expresión GROUP BY 
+
+
+SQL> select apellido, count (dept_no), max (salario), min (salario), avg (salario) from emple, depart group by dept_no, dnombre;
+select apellido, count (dept_no), max (salario), min (salario), avg (salario) from emple, depart group by dept_no, dnombre
+                                                                                                          *
+ERROR en línea 1:
+ORA-00918: columna definida de forma ambigua 
+
+
+SQL> select apellido, count (dept_no), max (salario), min (salario), avg (salario) from emple, depart where emple.dept_no=depart.dept_no group by dept_no, dnombre;
+select apellido, count (dept_no), max (salario), min (salario), avg (salario) from emple, depart where emple.dept_no=depart.dept_no group by dept_no, dnombre
+                                                                                                                                             *
+ERROR en línea 1:
+ORA-00918: columna definida de forma ambigua 
+
+
+SQL> SELECT
+  2    e.apellido,
+  3    COUNT(e.dept_no) AS numero_departamentos,
+  4    MAX(e.salario) AS salario_maximo,
+  5    MIN(e.salario) AS salario_minimo,
+  6    AVG(e.salario) AS salario_promedio
+  7  FROM
+  8    emple e, depart d
+  9  WHERE
+ 10    e.dept_no = d.dept_no
+ 11  GROUP BY
+ 12    e.apellido, e.dept_no, d.dnombre;
+
+APELLIDO   NUMERO_DEPARTAMENTOS SALARIO_MAXIMO SALARIO_MINIMO SALARIO_PROMEDIO  
+---------- -------------------- -------------- -------------- ----------------  
+SµNCHEZ                       1         104000         104000           104000  
+REY                           1          50000          50000            50000  
+FERNµNDEZ                     1         390000         390000           390000  
+ARROYO                        1         208000         208000           208000  
+SALA                          1         162500         162500           162500  
+NEGRO                         1         370500         370500           370500  
+CEREZO                        1         318500         318500           318500  
+TOVAR                         1         195000         195000           195000  
+MARTÖN                        1         162500         162500           162500  
+GIL                           1         390000         390000           390000  
+ALONSO                        1         143000         143000           143000  
+
+APELLIDO   NUMERO_DEPARTAMENTOS SALARIO_MAXIMO SALARIO_MINIMO SALARIO_PROMEDIO  
+---------- -------------------- -------------- -------------- ----------------  
+MU¥OZ                         1         169000         169000           169000  
+JIMNEZ                       1         386750         386750           386750  
+JIMENO                        1         123500         123500           123500  
+
+14 filas seleccionadas.
+
+SQL> select apellido, count (dept_no) as numero_departamentos, max (salario) as salario_maximo, min (salario) as salario_minimo, avg (salario) as salario_promedio from emple, depart where emple.dept_no = depart.dept_no group by apellido, dept_no, nombre;
+select apellido, count (dept_no) as numero_departamentos, max (salario) as salario_maximo, min (salario) as salario_minimo, avg (salario) as salario_promedio from emple, depart where emple.dept_no = depart.dept_no group by apellido, dept_no, nombre
+                                                                                                                                                                                                                                                  *
+ERROR en línea 1:
+ORA-00904: "NOMBRE": identificador no válido 
+
+
+SQL> SELECT DEPT_NO, MIN (SALARIO), MAX (SALARIO), AVG (SALARIO) AS MEDIA, COUNT (*) AS TOTALEMPLE FROM EMPLE GROUP BY DEPT_NO;
+
+   DEPT_NO MIN(SALARIO) MAX(SALARIO)      MEDIA TOTALEMPLE                      
+---------- ------------ ------------ ---------- ----------                      
+        30       123500       370500 203666,667          6                      
+        20       104000       390000     282750          5                      
+        10        50000       318500 179166,667          3                      
+
+SQL> EXIT

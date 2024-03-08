@@ -1,0 +1,115 @@
+SQL> connect adrian
+Conectado.
+SQL> select user from dual;
+
+USER                                                                            
+------------------------------                                                  
+ADRIAN                                                                          
+
+SQL> create table mi_primera_tabla (
+  2  id_user int,
+  3  nombre char(10),
+  4  fecha_nacimiento date,
+  5  telefono char(15),
+  6  salario number(6,2)
+  7  );
+
+Tabla creada.
+
+SQL> select * from mi_primera_tabla;
+
+ninguna fila seleccionada
+
+SQL> desc mi_primera_tabla
+ Nombre                                    ¿Nulo?   Tipo
+ ----------------------------------------- -------- ----------------------------
+ ID_USER                                            NUMBER(38)
+ NOMBRE                                             CHAR(10)
+ FECHA_NACIMIENTO                                   DATE
+ TELEFONO                                           CHAR(15)
+ SALARIO                                            NUMBER(6,2)
+
+SQL> select table_name from user_tables;
+
+TABLE_NAME                                                                      
+------------------------------                                                  
+EQUIPOS                                                                         
+ESTADIOS                                                                        
+KK                                                                              
+TRATAR                                                                          
+MEDICO                                                                          
+PACIENTE                                                                        
+D3                                                                              
+M3                                                                              
+PR0                                                                             
+W0R                                                                             
+MI_PRIMERA_TABLA                                                                
+
+TABLE_NAME                                                                      
+------------------------------                                                  
+VISITANTES                                                                      
+LIBROS                                                                          
+PERSONAS                                                                        
+ALUMNOS2                                                                        
+DEPART                                                                          
+EMPLE                                                                           
+NOTAS_ALUMNOS                                                                   
+LIBRERIA                                                                        
+ALUMNOS                                                                         
+ASIGNATURAS                                                                     
+NOTAS                                                                           
+
+22 filas seleccionadas.
+
+SQL> create table ejemploEmpleados (
+  2  id_empleado int not null,
+  3  nombre varchar2(20),
+  4  direccion varchar2(50),
+  5  id_documento varchar2(10),
+  6  sueldo number(6,2),
+  7  fecha_nacimiento date
+  8  );
+
+Tabla creada.
+
+SQL> insert into empleado values (003, 'Adrian', 'Avenida Calabria 12', '122345',4000.00,'10/03/1998'),
+  2  ;
+insert into empleado values (003, 'Adrian', 'Avenida Calabria 12', '122345',4000.00,'10/03/1998'),
+                                                                                                 *
+ERROR en línea 1:
+ORA-00933: comando SQL no terminado correctamente 
+
+
+SQL> insert into empleado values (003, 'Adrian', 'Avenida Calabria 12', '122345',4000.00,'10/03/1998');
+insert into empleado values (003, 'Adrian', 'Avenida Calabria 12', '122345',4000.00,'10/03/1998')
+            *
+ERROR en línea 1:
+ORA-00942: la tabla o vista no existe 
+
+
+SQL> insert into ejemploEmpleados values (003, 'Adrian', 'Avenida Calabria 12', '122345',4000.00,'10/03/1998');
+
+1 fila creada.
+
+SQL> select * from ejemploEmpleados;
+
+ID_EMPLEADO NOMBRE                                                              
+----------- --------------------                                                
+DIRECCION                                          ID_DOCUMEN     SUELDO        
+-------------------------------------------------- ---------- ----------        
+FECHA_NA                                                                        
+--------                                                                        
+          3 Adrian                                                              
+Avenida Calabria 12                                122345           4000        
+10/03/98                                                                        
+                                                                                
+
+SQL> set linesize 200
+SQL> set pagesize 200
+SQL> select * from ejemploEmpleados;
+
+ID_EMPLEADO NOMBRE               DIRECCION                                          ID_DOCUMEN     SUELDO FECHA_NA                                                                                      
+----------- -------------------- -------------------------------------------------- ---------- ---------- --------                                                                                      
+          3 Adrian               Avenida Calabria 12                                122345           4000 10/03/98                                                                                      
+
+SQL> exit

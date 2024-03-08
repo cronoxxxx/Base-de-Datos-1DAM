@@ -1,0 +1,259 @@
+SQL> connect adrian
+Conectado.
+SQL> set linesize 200
+SQL> set pagesize 200
+SQL> REM 1.- Seleccionar el apellido de los empleados que trabajen en madrid o barcelona.
+SQL> DESC EMPLE
+ Nombre                                                                                                            ¿Nulo?   Tipo
+ ----------------------------------------------------------------------------------------------------------------- -------- ----------------------------------------------------------------------------
+ EMP_NO                                                                                                            NOT NULL NUMBER(4)
+ APELLIDO                                                                                                                   VARCHAR2(10)
+ OFICIO                                                                                                                     VARCHAR2(10)
+ DIR                                                                                                                        NUMBER(4)
+ FECHA_ALT                                                                                                                  DATE
+ SALARIO                                                                                                                    NUMBER(10)
+ COMISION                                                                                                                   NUMBER(10)
+ DEPT_NO                                                                                                                    NUMBER(2)
+
+SQL> DESC DEPART
+ Nombre                                                                                                            ¿Nulo?   Tipo
+ ----------------------------------------------------------------------------------------------------------------- -------- ----------------------------------------------------------------------------
+ DEPT_NO                                                                                                           NOT NULL NUMBER(2)
+ DNOMBRE                                                                                                                    VARCHAR2(14)
+ LOC                                                                                                                        VARCHAR2(14)
+
+SQL> SELECT APELLIDO FROM EMPLE WHERE DEPT_NO IN (SELECT DEPT_NO FROM DEPART WHERE DLOCALIDAD IN ('MADRID','BARCELONA');
+SELECT APELLIDO FROM EMPLE WHERE DEPT_NO IN (SELECT DEPT_NO FROM DEPART WHERE DLOCALIDAD IN ('MADRID','BARCELONA')
+                                                                                                                 *
+ERROR en línea 1:
+ORA-00907: falta el paréntesis derecho 
+
+
+SQL> SELECT APELLIDO FROM EMPLE WHERE DEPT_NO IN (SELECT DEPT_NO FROM DEPART WHERE LOC IN ('MADRID','BARCELONA');
+SELECT APELLIDO FROM EMPLE WHERE DEPT_NO IN (SELECT DEPT_NO FROM DEPART WHERE LOC IN ('MADRID','BARCELONA')
+                                                                                                          *
+ERROR en línea 1:
+ORA-00907: falta el paréntesis derecho 
+
+
+SQL> SELECT APELLIDO FROM EMPLE WHERE DEPT_NO IN (SELECT DEPT_NO FROM DEPART WHERE LOC IN ('MADRID','BARCELONA'));
+
+APELLIDO                                                                                                                                                                                                
+----------                                                                                                                                                                                              
+SµNCHEZ                                                                                                                                                                                                 
+ARROYO                                                                                                                                                                                                  
+SALA                                                                                                                                                                                                    
+JIMNEZ                                                                                                                                                                                                 
+MARTÖN                                                                                                                                                                                                  
+NEGRO                                                                                                                                                                                                   
+GIL                                                                                                                                                                                                     
+TOVAR                                                                                                                                                                                                   
+ALONSO                                                                                                                                                                                                  
+JIMENO                                                                                                                                                                                                  
+FERNµNDEZ                                                                                                                                                                                               
+
+11 filas seleccionadas.
+
+SQL> REM 2.- Seleccionar el apellido y el oficio de todos los empleados del departamento 20 cuyo trabajo sea id‚ntico al de los empleados del departamento ventas.
+SQL> SELECT DISTICT DEPT_NO FROM DEPART;
+SELECT DISTICT DEPT_NO FROM DEPART
+       *
+ERROR en línea 1:
+ORA-00904: "DISTICT": identificador no válido 
+
+
+SQL> SELECT DISTINCT DEPT_NO FROM DEPART;
+
+   DEPT_NO                                                                                                                                                                                              
+----------                                                                                                                                                                                              
+        10                                                                                                                                                                                              
+        20                                                                                                                                                                                              
+        30                                                                                                                                                                                              
+        40                                                                                                                                                                                              
+        50                                                                                                                                                                                              
+
+SQL> SELECT DISTINCT DNOMBRE FROM DEPART;
+
+DNOMBRE                                                                                                                                                                                                 
+--------------                                                                                                                                                                                          
+otros                                                                                                                                                                                                   
+VENTAS                                                                                                                                                                                                  
+CONTABILIDAD                                                                                                                                                                                            
+PRODUCCIàN                                                                                                                                                                                              
+INVESTIGACIàN                                                                                                                                                                                           
+
+SQL> SELECT DEPT_NO, OFICIO FROM EMPLE WHERE DEPT_NO IN (SELECT DEPT_NO FROM DEPARTWHERE DEPT_NO = 20);
+SELECT DEPT_NO, OFICIO FROM EMPLE WHERE DEPT_NO IN (SELECT DEPT_NO FROM DEPARTWHERE DEPT_NO = 20)
+                                                                                            *
+ERROR en línea 1:
+ORA-00907: falta el paréntesis derecho 
+
+
+SQL> SELECT DEPT_NO, OFICIO FROM EMPLE WHERE DEPT_NO IN (SELECT DEPT_NO FROM DEPARTWHERE DEPT_NO = 20));
+SELECT DEPT_NO, OFICIO FROM EMPLE WHERE DEPT_NO IN (SELECT DEPT_NO FROM DEPARTWHERE DEPT_NO = 20))
+                                                                                            *
+ERROR en línea 1:
+ORA-00907: falta el paréntesis derecho 
+
+
+SQL> SELECT DEPT_NO, OFICIO FROM EMPLE WHERE DEPT_NO IN (SELECT DEPT_NO FROM DEPART WHERE DEPT_NO = 20);
+
+   DEPT_NO OFICIO                                                                                                                                                                                       
+---------- ----------                                                                                                                                                                                   
+        20 EMPLEADO                                                                                                                                                                                     
+        20 DIRECTOR                                                                                                                                                                                     
+        20 ANALISTA                                                                                                                                                                                     
+        20 EMPLEADO                                                                                                                                                                                     
+        20 ANALISTA                                                                                                                                                                                     
+
+SQL> SELECT DEPT_NO, OFICIO FROM EMPLE WHERE DEPT_NO = 20 AND OFICIO IN (SELECT OFICIO FROM EMPLE WHERE DEPT_NO = 30);
+
+   DEPT_NO OFICIO                                                                                                                                                                                       
+---------- ----------                                                                                                                                                                                   
+        20 DIRECTOR                                                                                                                                                                                     
+        20 EMPLEADO                                                                                                                                                                                     
+        20 EMPLEADO                                                                                                                                                                                     
+
+SQL> SELECT DEPT_NO, OFICIO FROM EMPLE WHERE DEPT_NO = 20 AND OFICIO IN (SELECT OFICIO FROM EMPLE WHERE DNOMBRE = 'VENTAS');
+SELECT DEPT_NO, OFICIO FROM EMPLE WHERE DEPT_NO = 20 AND OFICIO IN (SELECT OFICIO FROM EMPLE WHERE DNOMBRE = 'VENTAS')
+                                                                                                   *
+ERROR en línea 1:
+ORA-00904: "DNOMBRE": identificador no válido 
+
+
+SQL> SELECT DEPT_NO, OFICIO FROM EMPLE WHERE DEPT_NO = 20 AND OFICIO IN (SELECT OFICIO FROM EMPLE WHERE DEPT_NO = 30);
+
+   DEPT_NO OFICIO                                                                                                                                                                                       
+---------- ----------                                                                                                                                                                                   
+        20 DIRECTOR                                                                                                                                                                                     
+        20 EMPLEADO                                                                                                                                                                                     
+        20 EMPLEADO                                                                                                                                                                                     
+
+SQL> SELECT * FROM DEPART;
+
+   DEPT_NO DNOMBRE        LOC                                                                                                                                                                           
+---------- -------------- --------------                                                                                                                                                                
+        10 CONTABILIDAD   SEVILLA                                                                                                                                                                       
+        20 INVESTIGACIàN  MADRID                                                                                                                                                                        
+        30 VENTAS         BARCELONA                                                                                                                                                                     
+        40 PRODUCCIàN     BILBAO                                                                                                                                                                        
+        50 otros                                                                                                                                                                                        
+
+SQL> SELECT * FROM EMPLE;
+
+    EMP_NO APELLIDO   OFICIO            DIR FECHA_AL    SALARIO   COMISION    DEPT_NO                                                                                                                   
+---------- ---------- ---------- ---------- -------- ---------- ---------- ----------                                                                                                                   
+      7369 SµNCHEZ    EMPLEADO         7902 17/12/80     104000                    20                                                                                                                   
+      7499 ARROYO     VENDEDOR         7698 20/02/80     208000      39000         30                                                                                                                   
+      7521 SALA       VENDEDOR         7698 22/02/81     162500      65000         30                                                                                                                   
+      7566 JIMNEZ    DIRECTOR         7839 02/04/81     386750                    20                                                                                                                   
+      7654 MARTÖN     VENDEDOR         7698 29/09/81     162500     182000         30                                                                                                                   
+      7698 NEGRO      DIRECTOR         7839 01/05/81     370500                    30                                                                                                                   
+      7782 CEREZO     DIRECTOR         7839 09/06/81     318500                    10                                                                                                                   
+      7788 GIL        ANALISTA         7566 09/11/81     390000                    20                                                                                                                   
+      7839 REY        PRESIDENTE            17/11/81      50000                    10                                                                                                                   
+      7844 TOVAR      VENDEDOR         7698 08/09/81     195000          0         30                                                                                                                   
+      7876 ALONSO     EMPLEADO         7788 23/09/81     143000                    20                                                                                                                   
+      7900 JIMENO     EMPLEADO         7698 03/12/81     123500                    30                                                                                                                   
+      7902 FERNµNDEZ  ANALISTA         7566 03/12/81     390000                    20                                                                                                                   
+      7934 MU¥OZ      EMPLEADO         7782 23/01/82     169000                    10                                                                                                                   
+
+14 filas seleccionadas.
+
+SQL> SELECT * FROM DEPART;
+
+   DEPT_NO DNOMBRE        LOC                                                                                                                                                                           
+---------- -------------- --------------                                                                                                                                                                
+        10 CONTABILIDAD   SEVILLA                                                                                                                                                                       
+        20 INVESTIGACIàN  MADRID                                                                                                                                                                        
+        30 VENTAS         BARCELONA                                                                                                                                                                     
+        40 PRODUCCIàN     BILBAO                                                                                                                                                                        
+        50 otros                                                                                                                                                                                        
+
+SQL> SELECT DEPT_NO, OFICIO FROM EMPLE WHERE DEPT_NO = 20 AND OFICIO IN (SELECT OFICIO FROM EMPLE WHERE DEPT_NO = 30);
+
+   DEPT_NO OFICIO                                                                                                                                                                                       
+---------- ----------                                                                                                                                                                                   
+        20 DIRECTOR                                                                                                                                                                                     
+        20 EMPLEADO                                                                                                                                                                                     
+        20 EMPLEADO                                                                                                                                                                                     
+
+SQL> REM 3.- Obtener el departamento de los empleados con el mismo oficio y el salario de GIL.
+SQL> SELECT DEPT_NO FROM EMPLE WHERE OFICIO IN (SELECT OFICIO FROM EMPLE WHERE APELLIDO = 'GIL) AND SALARIO IN (SELECT SALARIO FROM EMPLE WHERE APELLIDO = 'GIL');
+ERROR:
+ORA-01756: la cadena entrecomillada no está terminada correctamente 
+
+
+SQL> SELECT DEPT_NO FROM EMPLE WHERE OFICIO IN (SELECT OFICIO FROM EMPLE WHERE APELLIDO = 'GIL') AND SALARIO IN (SELECT SALARIO FROM EMPLE WHERE APELLIDO = 'GIL');
+
+   DEPT_NO                                                                                                                                                                                              
+----------                                                                                                                                                                                              
+        20                                                                                                                                                                                              
+        20                                                                                                                                                                                              
+
+SQL> REM 4.- Obtener el nombre de alumno, su asignatura y su nota.
+SQL> DESC NOTAS
+ Nombre                                                                                                            ¿Nulo?   Tipo
+ ----------------------------------------------------------------------------------------------------------------- -------- ----------------------------------------------------------------------------
+ DNI                                                                                                               NOT NULL VARCHAR2(10)
+ COD                                                                                                               NOT NULL NUMBER(2)
+ NOTA                                                                                                                       NUMBER(2)
+
+SQL> SELECT DEPT_NO, OFICIO FROM EMPLE WHERE DEPT_NO = 20 AND OFICIO IN (SELECT OFICIO FROM EMPLE WHERE DEPT_NO IN (SELECT DEPT_NO FROM DEPART WHERE DNOMBRE = 'VENTAS'));
+
+   DEPT_NO OFICIO                                                                                                                                                                                       
+---------- ----------                                                                                                                                                                                   
+        20 DIRECTOR                                                                                                                                                                                     
+        20 EMPLEADO                                                                                                                                                                                     
+        20 EMPLEADO                                                                                                                                                                                     
+
+SQL> REM 4.- Obtener el nombre de alumno, su asignatura y su nota.
+SQL> DESC ALUMNOS
+ Nombre                                                                                                            ¿Nulo?   Tipo
+ ----------------------------------------------------------------------------------------------------------------- -------- ----------------------------------------------------------------------------
+ DNI                                                                                                               NOT NULL VARCHAR2(10)
+ APENOM                                                                                                                     VARCHAR2(30)
+ DIREC                                                                                                                      VARCHAR2(30)
+ POBLA                                                                                                                      VARCHAR2(15)
+ TELEF                                                                                                                      VARCHAR2(10)
+
+SQL> DESC NOTAS_ALUMNOS
+ Nombre                                                                                                            ¿Nulo?   Tipo
+ ----------------------------------------------------------------------------------------------------------------- -------- ----------------------------------------------------------------------------
+ NOMBRE_ALUMNO                                                                                                     NOT NULL VARCHAR2(25)
+ NOTA1                                                                                                                      NUMBER(2)
+ NOTA2                                                                                                                      NUMBER(2)
+ NOTA3                                                                                                                      NUMBER(2)
+
+SQL> DESC NOTAS;
+ Nombre                                                                                                            ¿Nulo?   Tipo
+ ----------------------------------------------------------------------------------------------------------------- -------- ----------------------------------------------------------------------------
+ DNI                                                                                                               NOT NULL VARCHAR2(10)
+ COD                                                                                                               NOT NULL NUMBER(2)
+ NOTA                                                                                                                       NUMBER(2)
+
+SQL> DESC ASIGNATURAS
+ Nombre                                                                                                            ¿Nulo?   Tipo
+ ----------------------------------------------------------------------------------------------------------------- -------- ----------------------------------------------------------------------------
+ COD                                                                                                               NOT NULL NUMBER(2)
+ NOMBRE                                                                                                                     VARCHAR2(25)
+
+SQL> SELECT ALUMNOS.APENOM, ASIGNATURAS.NOMBRE, NOTAS.NOTA FROM ALUMNOS, NOTAS, ASIGNATURAS WHERE ALUMNOS.DNI = NOTAS.DNI AND NOTAS.COD = ASIGNATURAS.COD;
+
+APENOM                         NOMBRE                          NOTA                                                                                                                                     
+------------------------------ ------------------------- ----------                                                                                                                                     
+Alcalde Garc¡a, Elena          Prog. Leng. Estr.                  6                                                                                                                                     
+Alcalde Garc¡a, Elena          Sist. Inform ticos                 5                                                                                                                                     
+Alcalde Garc¡a, Elena          An lisis                           6                                                                                                                                     
+D¡az Fern ndez, Mar¡a          FOL                                8                                                                                                                                     
+Cerrato Vela, Luis             FOL                                6                                                                                                                                     
+D¡az Fern ndez, Mar¡a          RET                                7                                                                                                                                     
+Cerrato Vela, Luis             RET                                8                                                                                                                                     
+D¡az Fern ndez, Mar¡a          Entornos Gr ficos                  8                                                                                                                                     
+Cerrato Vela, Luis             Entornos Gr ficos                  4                                                                                                                                     
+D¡az Fern ndez, Mar¡a          Aplic. Entornos 4¦Gen              9                                                                                                                                     
+Cerrato Vela, Luis             Aplic. Entornos 4¦Gen              5                                                                                                                                     
+
+11 filas seleccionadas.
+
+SQL> exit

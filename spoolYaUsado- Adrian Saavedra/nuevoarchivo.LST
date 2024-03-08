@@ -1,0 +1,102 @@
+SQL> rem nuevoarchivo
+SQL> create table equipos (
+  2  cod_equipo number(2),
+  3  nom_equipo varchar2(50),
+  4  localidad varchar2(50));
+
+Tabla creada.
+
+SQL> set pagesize 200
+SQL> set linesize 200
+SQL> select * from equipos
+  2  ;
+
+ninguna fila seleccionada
+
+SQL> select * from equipos;
+
+ninguna fila seleccionada
+
+SQL> desc equipos
+ Nombre                                                                                                            ¿Nulo?   Tipo
+ ----------------------------------------------------------------------------------------------------------------- -------- ----------------------------------------------------------------------------
+ COD_EQUIPO                                                                                                                 NUMBER(2)
+ NOM_EQUIPO                                                                                                                 VARCHAR2(50)
+ LOCALIDAD                                                                                                                  VARCHAR2(50)
+
+SQL> create table estadios (
+  2  cod_estadio number(2),
+  3  nom_estadio varchar2(50),
+  4  localidad varchar2(50));
+
+Tabla creada.
+
+SQL> INSERT INTO EQUIPOS VALUES (1,'REAL MADRID','MADRID');
+
+1 fila creada.
+
+SQL> INSERT INTO EQUIPOS VALUES (2,'BARCELONA','CATALUNYA');
+
+1 fila creada.
+
+SQL> INSERT INTO EQUIPOS VALUES (3,'ATLETICO DE MADRID','MADRID');
+
+1 fila creada.
+
+SQL> INSERT INTO ESTADIOS VALUES (1,'SANTIAGO BERNABEU','MADRID');
+
+1 fila creada.
+
+SQL> INSERT INTO ESTADIOS VALUES (2,'CAMP NOU','CATALUNYA');
+
+1 fila creada.
+
+SQL> INSERT INTO ESTADIOS VALUES (3,'WANDA METROPOLITANO','MADRID');
+
+1 fila creada.
+
+SQL> desc equipos
+ Nombre                                                                                                            ¿Nulo?   Tipo
+ ----------------------------------------------------------------------------------------------------------------- -------- ----------------------------------------------------------------------------
+ COD_EQUIPO                                                                                                                 NUMBER(2)
+ NOM_EQUIPO                                                                                                                 VARCHAR2(50)
+ LOCALIDAD                                                                                                                  VARCHAR2(50)
+
+SQL> select * from equipos;
+
+COD_EQUIPO NOM_EQUIPO                                         LOCALIDAD                                                                                                                                 
+---------- -------------------------------------------------- --------------------------------------------------                                                                                        
+         1 REAL MADRID                                        MADRID                                                                                                                                    
+         2 BARCELONA                                          CATALUNYA                                                                                                                                 
+         3 ATLETICO DE MADRID                                 MADRID                                                                                                                                    
+
+SQL> select * from estadios;
+
+COD_ESTADIO NOM_ESTADIO                                        LOCALIDAD                                                                                                                                
+----------- -------------------------------------------------- --------------------------------------------------                                                                                       
+          1 SANTIAGO BERNABEU                                  MADRID                                                                                                                                   
+          2 CAMP NOU                                           CATALUNYA                                                                                                                                
+          3 WANDA METROPOLITANO                                MADRID                                                                                                                                   
+
+SQL> select NOM_EQUIPO from EQUIPOS where LOCALIDAD='MADRID';
+
+NOM_EQUIPO                                                                                                                                                                                              
+--------------------------------------------------                                                                                                                                                      
+REAL MADRID                                                                                                                                                                                             
+ATLETICO DE MADRID                                                                                                                                                                                      
+
+SQL> drop table department;
+drop table department
+           *
+ERROR en línea 1:
+ORA-00942: la tabla o vista no existe 
+
+
+SQL> drop table depart;
+drop table depart
+           *
+ERROR en línea 1:
+ORA-02449: claves únicas/primarias en la tabla referidas por claves ajenas 
+
+
+SQL> exit

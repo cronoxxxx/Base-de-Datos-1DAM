@@ -1,0 +1,1092 @@
+SQL> connect adrian
+Conectado.
+SQL> set linesize 200
+SQL> set pagesize 200
+SQL> select * from all_tables:
+  2  ;
+select * from all_tables:
+                        *
+ERROR en línea 1:
+ORA-00933: comando SQL no terminado correctamente 
+
+
+SQL> select * from all_tables;
+
+OWNER                          TABLE_NAME                     TABLESPACE_NAME                CLUSTER_NAME                   IOT_NAME                       STATUS     PCT_FREE   PCT_USED  INI_TRANS    
+------------------------------ ------------------------------ ------------------------------ ------------------------------ ------------------------------ -------- ---------- ---------- ----------    
+ MAX_TRANS INITIAL_EXTENT NEXT_EXTENT MIN_EXTENTS MAX_EXTENTS PCT_INCREASE  FREELISTS FREELIST_GROUPS LOG B   NUM_ROWS     BLOCKS EMPTY_BLOCKS  AVG_SPACE  CHAIN_CNT AVG_ROW_LEN                        
+---------- -------------- ----------- ----------- ----------- ------------ ---------- --------------- --- - ---------- ---------- ------------ ---------- ---------- -----------                        
+AVG_SPACE_FREELIST_BLOCKS NUM_FREELIST_BLOCKS DEGREE                                   INSTANCES                                CACHE                TABLE_LO SAMPLE_SIZE LAST_ANA PAR IOT_TYPE     T S 
+------------------------- ------------------- ---------------------------------------- ---------------------------------------- -------------------- -------- ----------- -------- --- ------------ - - 
+NES BUFFER_ ROW_MOVE GLO USE DURATION        SKIP_COR MON CLUSTER_OWNER                  DEPENDEN COMPRESS DRO                                                                                          
+--- ------- -------- --- --- --------------- -------- --- ------------------------------ -------- -------- ---                                                                                          
+SYS                            DUAL                           SYSTEM                                                                                       VALID            10         40          1    
+       255          16384                       1  2147483645                       1               1 YES N          1          1            0          0          0           2                        
+                        0                   0          1                                        1                                   N                ENABLED            1 07/02/06 NO               N N 
+NO  DEFAULT DISABLED YES NO                  DISABLED YES                                DISABLED DISABLED NO                                                                                           
+                                                                                                                                                                                                        
+SYS                            SYSTEM_PRIVILEGE_MAP           SYSTEM                                                                                       VALID            10         40          1    
+       255          65536                       1  2147483645                       1               1 YES N        166          1            0          0          0          25                        
+                        0                   0          1                                        1                                   N                ENABLED          166 07/02/06 NO               N N 
+NO  DEFAULT DISABLED YES NO                  DISABLED YES                                DISABLED DISABLED NO                                                                                           
+                                                                                                                                                                                                        
+SYS                            TABLE_PRIVILEGE_MAP            SYSTEM                                                                                       VALID            10         40          1    
+       255          65536                       1  2147483645                       1               1 YES N         24          1            0          0          0          10                        
+                        0                   0          1                                        1                                   N                ENABLED           24 07/02/06 NO               N N 
+NO  DEFAULT DISABLED YES NO                  DISABLED YES                                DISABLED DISABLED NO                                                                                           
+                                                                                                                                                                                                        
+SYS                            STMT_AUDIT_OPTION_MAP          SYSTEM                                                                                       VALID            10         40          1    
+       255          65536                       1  2147483645                       1               1 YES N        205          1            0          0          0          22                        
+                        0                   0          1                                        1                                   N                ENABLED          205 07/02/06 NO               N N 
+NO  DEFAULT DISABLED YES NO                  DISABLED YES                                DISABLED DISABLED NO                                                                                           
+                                                                                                                                                                                                        
+SYS                            AUDIT_ACTIONS                  SYSTEM                                                                                       VALID            10         40          1    
+       255          65536                       1  2147483645                       1               1 YES N        160          1            0          0          0          18                        
+                        0                   0          1                                        1                                   N                ENABLED          160 07/02/06 NO               N N 
+NO  DEFAULT DISABLED YES NO                  DISABLED YES                                DISABLED DISABLED NO                                                                                           
+                                                                                                                                                                                                        
+SYS                            PSTUBTBL                                                                                                                    VALID            10         40          1    
+       255                                                                          1               1 NO  N                                                                                             
+                                                       1                                        1                                   N                ENABLED                       NO               Y N 
+NO  DEFAULT DISABLED NO  NO  SYS$SESSION     DISABLED NO                                 DISABLED DISABLED NO                                                                                           
+                                                                                                                                                                                                        
+SYS                            WRI$_ADV_ASA_RECO_DATA                                                                                                      VALID            10         40          1    
+       255                                                                          1               1 NO  N                                                                                             
+                                                       1                                        1                                   N                ENABLED                       NO               Y N 
+NO  DEFAULT DISABLED NO  NO  SYS$SESSION     DISABLED NO                                 DISABLED DISABLED NO                                                                                           
+                                                                                                                                                                                                        
+SYS                            ODCI_SECOBJ$                                                                                                                VALID            10         40          1    
+       255                                                                          1               1 NO  N                                                                                             
+                                                       1                                        1                                   N                ENABLED                       NO               Y N 
+NO  DEFAULT DISABLED NO  NO  SYS$SESSION     DISABLED NO                                 DISABLED DISABLED NO                                                                                           
+                                                                                                                                                                                                        
+SYS                            ODCI_WARNINGS$                                                                                                              VALID            10         40          1    
+       255                                                                          1               1 NO  N                                                                                             
+                                                       1                                        1                                   N                ENABLED                       NO               Y N 
+NO  DEFAULT DISABLED NO  NO  SYS$SESSION     DISABLED NO                                 DISABLED DISABLED NO                                                                                           
+                                                                                                                                                                                                        
+SYSTEM                         DEF$_TEMP$LOB                  SYSTEM                                                                                       VALID            10         40          1    
+       255          65536                       1  2147483645                       1               1 NO  N          0          0            0          0          0           0                        
+                        0                   0          1                                        1                                   N                ENABLED            0 07/02/06 NO               N N 
+NO  DEFAULT DISABLED YES NO                  DISABLED YES                                DISABLED DISABLED NO                                                                                           
+                                                                                                                                                                                                        
+SYSTEM                         OL$                                                                                                                         VALID            10         40          1    
+       255                                                                          1               1 NO  N                                                                                             
+                                                       1                                        1                                   N                ENABLED                       NO               Y N 
+NO  DEFAULT DISABLED NO  NO  SYS$SESSION     DISABLED NO                                 DISABLED DISABLED NO                                                                                           
+                                                                                                                                                                                                        
+SYSTEM                         OL$HINTS                                                                                                                    VALID            10         40          1    
+       255                                                                          1               1 NO  N                                                                                             
+                                                       1                                        1                                   N                ENABLED                       NO               Y N 
+NO  DEFAULT DISABLED NO  NO  SYS$SESSION     DISABLED NO                                 DISABLED DISABLED NO                                                                                           
+                                                                                                                                                                                                        
+SYSTEM                         OL$NODES                                                                                                                    VALID            10         40          1    
+       255                                                                          1               1 NO  N                                                                                             
+                                                       1                                        1                                   N                ENABLED                       NO               Y N 
+NO  DEFAULT DISABLED NO  NO  SYS$SESSION     DISABLED NO                                 DISABLED DISABLED NO                                                                                           
+                                                                                                                                                                                                        
+SYS                            KU$NOEXP_TAB                                                                                                                VALID            10         40          1    
+       255                                                                          1               1 NO  N                                                                                             
+                                                       1                                        1                                   N                ENABLED                       NO               Y N 
+NO  DEFAULT DISABLED NO  NO  SYS$SESSION     DISABLED NO                                 DISABLED DISABLED NO                                                                                           
+                                                                                                                                                                                                        
+SYS                            IMPDP_STATS                                                                                                                 VALID            10         40          1    
+       255                                                                          1               1 NO  N                                                                                             
+                                                       1                                        1                                   N                ENABLED                       NO               Y N 
+NO  DEFAULT DISABLED NO  NO  SYS$SESSION     DISABLED NO                                 DISABLED DISABLED NO                                                                                           
+                                                                                                                                                                                                        
+SYS                            PLAN_TABLE$                                                                                                                 VALID            10         40          1    
+       255                                                                          1               1 NO  N                                                                                             
+                                                       1                                        1                                   N                ENABLED                       NO               Y N 
+NO  DEFAULT DISABLED NO  NO  SYS$SESSION     DISABLED NO                                 DISABLED DISABLED NO                                                                                           
+                                                                                                                                                                                                        
+ADRIAN                         EQUIPOS                        USERS                                                                                        VALID            10                     1    
+       255          65536                       1  2147483645                                         YES N          3          5            0          0          0          24                        
+                        0                   0          1                                        1                                   N                ENABLED            3 21/12/23 NO               N N 
+NO  DEFAULT DISABLED YES NO                  DISABLED YES                                DISABLED DISABLED NO                                                                                           
+                                                                                                                                                                                                        
+ADRIAN                         ESTADIOS                       USERS                                                                                        VALID            10                     1    
+       255          65536                       1  2147483645                                         YES N          3          5            0          0          0          26                        
+                        0                   0          1                                        1                                   N                ENABLED            3 21/12/23 NO               N N 
+NO  DEFAULT DISABLED YES NO                  DISABLED YES                                DISABLED DISABLED NO                                                                                           
+                                                                                                                                                                                                        
+SYSTEM                         HELP                           SYSTEM                                                                                       VALID             0         40          1    
+       255          49152                       1  2147483645                       1               1 YES N        980          7            0          0          0          41                        
+                        0                   0          1                                        1                                   N                ENABLED          980 07/02/06 NO               N N 
+NO  DEFAULT DISABLED YES NO                  DISABLED YES                                DISABLED DISABLED NO                                                                                           
+                                                                                                                                                                                                        
+CTXSYS                         DR$OBJECT_ATTRIBUTE            SYSAUX                                                                                       VALID            10                     1    
+       255          24576                       1  2147483645                                         YES N        186          5            0          0          0          72                        
+                        0                   0          1                                        1                                   N                ENABLED          186 07/02/06 NO               N N 
+NO  DEFAULT DISABLED YES NO                  DISABLED YES                                DISABLED DISABLED NO                                                                                           
+                                                                                                                                                                                                        
+CTXSYS                         DR$POLICY_TAB                  SYSAUX                                                                                       VALID            10                     1    
+       255          65536                       1  2147483645                                         YES N          0          0            0          0          0           0                        
+                        0                   0          1                                        1                                   N                ENABLED            0 07/02/06 NO               N N 
+NO  DEFAULT DISABLED YES NO                  DISABLED YES                                DISABLED DISABLED NO                                                                                           
+                                                                                                                                                                                                        
+CTXSYS                         DR$NUMBER_SEQUENCE             SYSAUX                                                                                       VALID            10                     1    
+       255          65536                       1  2147483645                                         YES N        256          5            0          0          0           3                        
+                        0                   0          1                                        1                                   N                ENABLED          256 07/02/06 NO               N N 
+NO  DEFAULT DISABLED YES NO                  DISABLED YES                                DISABLED DISABLED NO                                                                                           
+                                                                                                                                                                                                        
+MDSYS                          SDO_TXN_IDX_INSERTS                                                                                                         VALID            10         40          1    
+       255                                                                          1               1 NO  N                                                                                             
+                                                       1                                        1                                   N                ENABLED                       NO               Y N 
+NO  DEFAULT DISABLED NO  NO  SYS$TRANSACTION DISABLED NO                                 DISABLED DISABLED NO                                                                                           
+                                                                                                                                                                                                        
+MDSYS                          SDO_TXN_IDX_DELETES                                                                                                         VALID            10         40          1    
+       255                                                                          1               1 NO  N                                                                                             
+                                                       1                                        1                                   N                ENABLED                       NO               Y N 
+NO  DEFAULT DISABLED NO  NO  SYS$TRANSACTION DISABLED NO                                 DISABLED DISABLED NO                                                                                           
+                                                                                                                                                                                                        
+MDSYS                          SDO_TXN_IDX_EXP_UPD_RGN                                                                                                     VALID            10         40          1    
+       255                                                                          1               1 NO  N                                                                                             
+                                                       1                                        1                                   N                ENABLED                       NO               Y N 
+NO  DEFAULT DISABLED NO  NO  SYS$TRANSACTION DISABLED NO                                 DISABLED DISABLED NO                                                                                           
+                                                                                                                                                                                                        
+MDSYS                          SDO_TOPO_TRANSACT_DATA                                                                                                      VALID            10         40          1    
+       255                                                                          1               1 NO  N                                                                                             
+                                                       1                                        1                                   N                ENABLED                       NO               Y N 
+NO  DEFAULT DISABLED NO  NO  SYS$TRANSACTION DISABLED NO                                 DISABLED DISABLED NO                                                                                           
+                                                                                                                                                                                                        
+MDSYS                          SDO_TOPO_RELATION_DATA                                                                                                      VALID            10         40          1    
+       255                                                                          1               1 NO  N                                                                                             
+                                                       1                                        1                                   N                ENABLED                       NO               Y N 
+NO  DEFAULT DISABLED NO  NO  SYS$TRANSACTION DISABLED NO                                 DISABLED DISABLED NO                                                                                           
+                                                                                                                                                                                                        
+MDSYS                          SDO_TOPO_DATA$                                                                                                              VALID            10         40          1    
+       255                                                                          1               1 NO  N                                                                                             
+                                                       1                                        1                                   N                ENABLED                       NO               Y N 
+NO  DEFAULT DISABLED NO  NO  SYS$TRANSACTION DISABLED NO                                 DISABLED DISABLED NO                                                                                           
+                                                                                                                                                                                                        
+MDSYS                          OGIS_SPATIAL_REFERENCE_SYSTEMS SYSTEM                                                                                       VALID            10         40          1    
+       255          65536                       1  2147483645                       1               1 YES N          0          0            0          0          0           0                        
+                        0                   0          1                                        1                                   N                ENABLED            0 15/12/23 NO               N N 
+NO  DEFAULT DISABLED YES NO                  DISABLED YES                                DISABLED DISABLED NO                                                                                           
+                                                                                                                                                                                                        
+MDSYS                          OGIS_GEOMETRY_COLUMNS          SYSTEM                                                                                       VALID            10         40          1    
+       255          65536                       1  2147483645                       1               1 YES N          0          0            0          0          0           0                        
+                        0                   0          1                                        1                                   N                ENABLED            0 15/12/23 NO               N N 
+NO  DEFAULT DISABLED YES NO                  DISABLED YES                                DISABLED DISABLED NO                                                                                           
+                                                                                                                                                                                                        
+MDSYS                          SDO_UNITS_OF_MEASURE           SYSTEM                                                                                       VALID            10         40          1    
+       255          65536                       1  2147483645                       1               1 YES N        128          2            0          0          0          80                        
+                        0                   0          1                                        1                                   N                ENABLED          128 15/12/23 NO               N N 
+NO  DEFAULT DISABLED YES NO                  DISABLED YES                                DISABLED DISABLED NO                                                                                           
+                                                                                                                                                                                                        
+MDSYS                          SDO_PRIME_MERIDIANS            SYSTEM                                                                                       VALID            10         40          1    
+       255          65536                       1  2147483645                       1               1 YES N         16          1            0          0          0          52                        
+                        0                   0          1                                        1                                   N                ENABLED           16 15/12/23 NO               N N 
+NO  DEFAULT DISABLED YES NO                  DISABLED YES                                DISABLED DISABLED NO                                                                                           
+                                                                                                                                                                                                        
+MDSYS                          SDO_ELLIPSOIDS                 SYSTEM                                                                                       VALID            10         40          1    
+       255          65536                       1  2147483645                       1               1 YES N         94          1            0          0          0          76                        
+                        0                   0          1                                        1                                   N                ENABLED           94 15/12/23 NO               N N 
+NO  DEFAULT DISABLED YES NO                  DISABLED YES                                DISABLED DISABLED NO                                                                                           
+                                                                                                                                                                                                        
+MDSYS                          SDO_DATUMS                     SYSTEM                                                                                       VALID            10         40          1    
+       255          65536                       1  2147483645                       1               1 YES N        530          7            0          0          0          93                        
+                        0                   0          1                                        1                                   N                ENABLED          530 15/12/23 NO               N N 
+NO  DEFAULT DISABLED YES NO                  DISABLED YES                                DISABLED DISABLED NO                                                                                           
+                                                                                                                                                                                                        
+MDSYS                          SDO_COORD_SYS                  SYSTEM                                                                                       VALID            10         40          1    
+       255          65536                       1  2147483645                       1               1 YES N         65          2            0          0          0         125                        
+                        0                   0          1                                        1                                   N                ENABLED           65 15/12/23 NO               N N 
+NO  DEFAULT DISABLED YES NO                  DISABLED YES                                DISABLED DISABLED NO                                                                                           
+                                                                                                                                                                                                        
+MDSYS                          SDO_COORD_AXIS_NAMES           SYSTEM                                                                                       VALID            10         40          1    
+       255          65536                       1  2147483645                       1               1 YES N         28          1            0          0          0          18                        
+                        0                   0          1                                        1                                   N                ENABLED           28 15/12/23 NO               N N 
+NO  DEFAULT DISABLED YES NO                  DISABLED YES                                DISABLED DISABLED NO                                                                                           
+                                                                                                                                                                                                        
+MDSYS                          SDO_COORD_AXES                 SYSTEM                                                                                       VALID            10         40          1    
+       255          65536                       1  2147483645                       1               1 YES N        139          1            0          0          0          25                        
+                        0                   0          1                                        1                                   N                ENABLED          139 15/12/23 NO               N N 
+NO  DEFAULT DISABLED YES NO                  DISABLED YES                                DISABLED DISABLED NO                                                                                           
+                                                                                                                                                                                                        
+MDSYS                          SDO_COORD_REF_SYS              SYSTEM                                                                                       VALID            10         40          1    
+       255          65536                       1  2147483645                       1               1 YES N       4384        137            0          0          0         203                        
+                        0                   0          1                                        1                                   N                ENABLED         4384 15/12/23 NO               N N 
+NO  DEFAULT DISABLED YES NO                  DISABLED YES                                DISABLED DISABLED NO                                                                                           
+                                                                                                                                                                                                        
+MDSYS                          SDO_COORD_OP_METHODS           SYSTEM                                                                                       VALID            10         40          1    
+
+OWNER                          TABLE_NAME                     TABLESPACE_NAME                CLUSTER_NAME                   IOT_NAME                       STATUS     PCT_FREE   PCT_USED  INI_TRANS    
+------------------------------ ------------------------------ ------------------------------ ------------------------------ ------------------------------ -------- ---------- ---------- ----------    
+ MAX_TRANS INITIAL_EXTENT NEXT_EXTENT MIN_EXTENTS MAX_EXTENTS PCT_INCREASE  FREELISTS FREELIST_GROUPS LOG B   NUM_ROWS     BLOCKS EMPTY_BLOCKS  AVG_SPACE  CHAIN_CNT AVG_ROW_LEN                        
+---------- -------------- ----------- ----------- ----------- ------------ ---------- --------------- --- - ---------- ---------- ------------ ---------- ---------- -----------                        
+AVG_SPACE_FREELIST_BLOCKS NUM_FREELIST_BLOCKS DEGREE                                   INSTANCES                                CACHE                TABLE_LO SAMPLE_SIZE LAST_ANA PAR IOT_TYPE     T S 
+------------------------- ------------------- ---------------------------------------- ---------------------------------------- -------------------- -------- ----------- -------- --- ------------ - - 
+NES BUFFER_ ROW_MOVE GLO USE DURATION        SKIP_COR MON CLUSTER_OWNER                  DEPENDEN COMPRESS DRO                                                                                          
+--- ------- -------- --- --- --------------- -------- --- ------------------------------ -------- -------- ---                                                                                          
+       255          65536                       1  2147483645                       1               1 YES N         82          1            0          0          0          81                        
+                        0                   0          1                                        1                                   N                ENABLED           82 15/12/23 NO               N N 
+NO  DEFAULT DISABLED YES NO                  DISABLED YES                                DISABLED DISABLED NO                                                                                           
+                                                                                                                                                                                                        
+MDSYS                          SDO_COORD_OPS                  SYSTEM                                                                                       VALID            10         40          1    
+       255          65536                       1  2147483645                       1               1 YES N       2244         44            0          0          0         136                        
+                        0                   0          1                                        1                                   N                ENABLED         2244 15/12/23 NO               N N 
+NO  DEFAULT DISABLED YES NO                  DISABLED YES                                DISABLED DISABLED NO                                                                                           
+                                                                                                                                                                                                        
+MDSYS                          SDO_PREFERRED_OPS_SYSTEM       SYSTEM                                                                                       VALID            10         40          1    
+       255          65536                       1  2147483645                       1               1 YES N          0          0            0          0          0           0                        
+                        0                   0          1                                        1                                   N                ENABLED            0 15/12/23 NO               N N 
+NO  DEFAULT DISABLED YES NO                  DISABLED YES                                DISABLED DISABLED NO                                                                                           
+                                                                                                                                                                                                        
+MDSYS                          SDO_PREFERRED_OPS_USER         SYSTEM                                                                                       VALID            10         40          1    
+       255          65536                       1  2147483645                       1               1 YES N          0          0            0          0          0           0                        
+                        0                   0          1                                        1                                   N                ENABLED            0 15/12/23 NO               N N 
+NO  DEFAULT DISABLED YES NO                  DISABLED YES                                DISABLED DISABLED NO                                                                                           
+                                                                                                                                                                                                        
+MDSYS                          SDO_COORD_OP_PATHS             SYSTEM                                                                                       VALID            10         40          1    
+       255          65536                       1  2147483645                       1               1 YES N        365          2            0          0          0          18                        
+                        0                   0          1                                        1                                   N                ENABLED          365 15/12/23 NO               N N 
+NO  DEFAULT DISABLED YES NO                  DISABLED YES                                DISABLED DISABLED NO                                                                                           
+                                                                                                                                                                                                        
+MDSYS                          SDO_COORD_OP_PARAMS            SYSTEM                                                                                       VALID            10         40          1    
+       255          65536                       1  2147483645                       1               1 YES N        153          2            0          0          0          53                        
+                        0                   0          1                                        1                                   N                ENABLED          153 15/12/23 NO               N N 
+NO  DEFAULT DISABLED YES NO                  DISABLED YES                                DISABLED DISABLED NO                                                                                           
+                                                                                                                                                                                                        
+MDSYS                          SDO_COORD_OP_PARAM_USE         SYSTEM                                                                                       VALID            10         40          1    
+       255          65536                       1  2147483645                       1               1 YES N        680          2            0          0          0          15                        
+                        0                   0          1                                        1                                   N                ENABLED          680 15/12/23 NO               N N 
+NO  DEFAULT DISABLED YES NO                  DISABLED YES                                DISABLED DISABLED NO                                                                                           
+                                                                                                                                                                                                        
+MDSYS                          SDO_COORD_OP_PARAM_VALS        SYSTEM                                                                                       VALID            10         40          1    
+       255          65536                       1  2147483645                       1               1 YES N       9529         39            0          0          0          21                        
+                        0                   0          1                                        1                                   N                ENABLED         9529 15/12/23 NO               N N 
+NO  DEFAULT DISABLED YES NO                  DISABLED YES                                DISABLED DISABLED NO                                                                                           
+                                                                                                                                                                                                        
+MDSYS                          SDO_CS_SRS                     SYSTEM                                                                                       VALID            10         40          1    
+       255          65536                       1  2147483645                       1               1 YES N       4384        325            0          0          0         508                        
+                        0                   0          1                                        1                                   N                ENABLED         4384 15/12/23 NO               N N 
+NO  DEFAULT DISABLED YES NO                  DISABLED YES                                DISABLED DISABLED NO                                                                                           
+                                                                                                                                                                                                        
+MDSYS                          SDO_PROJECTIONS_OLD_SNAPSHOT   SYSTEM                                                                                       VALID            10         40          1    
+       255          65536                       1  2147483645                       1               1 YES N         42          1            0          0          0          19                        
+                        0                   0          1                                        1                                   N                ENABLED           42 15/12/23 NO               N N 
+NO  DEFAULT DISABLED YES NO                  DISABLED YES                                DISABLED DISABLED NO                                                                                           
+                                                                                                                                                                                                        
+MDSYS                          SDO_ELLIPSOIDS_OLD_SNAPSHOT    SYSTEM                                                                                       VALID            10         40          1    
+       255          65536                       1  2147483645                       1               1 YES N         47          1            0          0          0          27                        
+                        0                   0          1                                        1                                   N                ENABLED           47 15/12/23 NO               N N 
+NO  DEFAULT DISABLED YES NO                  DISABLED YES                                DISABLED DISABLED NO                                                                                           
+                                                                                                                                                                                                        
+MDSYS                          SDO_DATUMS_OLD_SNAPSHOT        SYSTEM                                                                                       VALID            10         40          1    
+       255          65536                       1  2147483645                       1               1 YES N        118          1            0          0          0          35                        
+                        0                   0          1                                        1                                   N                ENABLED          118 15/12/23 NO               N N 
+NO  DEFAULT DISABLED YES NO                  DISABLED YES                                DISABLED DISABLED NO                                                                                           
+                                                                                                                                                                                                        
+FLOWS_020100                   WWV_FLOW_FIELD_TEMPLATES       SYSAUX                                                                                       VALID            10                     1    
+       255          65536                       1  2147483645                                         YES N        220         13            0          0          0         236                        
+                        0                   0          1                                        1                                   N                ENABLED          220 15/12/23 NO               N N 
+NO  DEFAULT DISABLED YES NO                  DISABLED YES                                DISABLED DISABLED NO                                                                                           
+                                                                                                                                                                                                        
+FLOWS_020100                   WWV_FLOW_LOV_TEMP                                                                                                           VALID            10         40          1    
+       255                                                                          1               1 NO  N                                                                                             
+                                                       1                                        1                                   N                ENABLED                       NO               Y N 
+NO  DEFAULT DISABLED NO  NO  SYS$TRANSACTION DISABLED NO                                 DISABLED DISABLED NO                                                                                           
+                                                                                                                                                                                                        
+FLOWS_020100                   WWV_FLOW_LISTS_OF_VALUES$      SYSAUX                                                                                       VALID            10                     1    
+       255          65536                       1  2147483645                                         YES N       6700        244            0          0          0         219                        
+                        0                   0          1                                        1                                   N                ENABLED         6700 15/12/23 NO               N N 
+NO  DEFAULT DISABLED YES NO                  DISABLED YES                                DISABLED DISABLED NO                                                                                           
+                                                                                                                                                                                                        
+FLOWS_020100                   WWV_FLOW_LIST_OF_VALUES_DATA   SYSAUX                                                                                       VALID            10                     1    
+       255          65536                       1  2147483645                                         YES N      26320        432            0          0          0         108                        
+                        0                   0          1                                        1                                   N                ENABLED        26320 15/12/23 NO               N N 
+NO  DEFAULT DISABLED YES NO                  DISABLED YES                                DISABLED DISABLED NO                                                                                           
+                                                                                                                                                                                                        
+FLOWS_020100                   WWV_FLOW_PATCHES               SYSAUX                                                                                       VALID            10                     1    
+       255          65536                       1  2147483645                                         YES N        130          5            0          0          0          72                        
+                        0                   0          1                                        1                                   N                ENABLED          130 15/12/23 NO               N N 
+NO  DEFAULT DISABLED YES NO                  DISABLED YES                                DISABLED DISABLED NO                                                                                           
+                                                                                                                                                                                                        
+FLOWS_020100                   WWV_FLOW_DUAL100               SYSAUX                                                                                       VALID            10                     1    
+       255          65536                       1  2147483645                                         YES N        100          5            0          0          0           3                        
+                        0                   0          1                                        1                                   N                ENABLED          100 15/12/23 NO               N N 
+NO  DEFAULT DISABLED YES NO                  DISABLED YES                                DISABLED DISABLED NO                                                                                           
+                                                                                                                                                                                                        
+FLOWS_020100                   WWV_FLOW_TEMP_TABLE                                                                                                         VALID            10         40          1    
+       255                                                                          1               1 NO  N                                                                                             
+                                                       1                                        1                                   N                ENABLED                       NO               Y N 
+NO  DEFAULT DISABLED NO  NO  SYS$TRANSACTION DISABLED NO                                 DISABLED DISABLED NO                                                                                           
+                                                                                                                                                                                                        
+ADRIAN                         KK                             USERS                                                                                        VALID            10                     1    
+       255          65536                       1  2147483645                                         YES N          0          0            0          0          0           0                        
+                        0                   0          1                                        1                                   N                ENABLED            0 15/12/23 NO               N N 
+NO  DEFAULT DISABLED YES NO                  DISABLED YES                                DISABLED DISABLED NO                                                                                           
+                                                                                                                                                                                                        
+ADRIAN                         TRATAR                         USERS                                                                                        VALID            10                     1    
+       255          65536                       1  2147483645                                         YES N          3          5            0          0          0          34                        
+                        0                   0          1                                        1                                   N                ENABLED            3 16/01/24 NO               N N 
+NO  DEFAULT DISABLED YES NO                  DISABLED YES                                DISABLED DISABLED NO                                                                                           
+                                                                                                                                                                                                        
+ADRIAN                         MEDICO                         USERS                                                                                        VALID            10                     1    
+       255          65536                       1  2147483645                                         YES N          4          5            0          0          0          28                        
+                        0                   0          1                                        1                                   N                ENABLED            4 16/01/24 NO               N N 
+NO  DEFAULT DISABLED YES NO                  DISABLED YES                                DISABLED DISABLED NO                                                                                           
+                                                                                                                                                                                                        
+ADRIAN                         PACIENTE                       USERS                                                                                        VALID            10                     1    
+       255          65536                       1  2147483645                                         YES N          4          5            0          0          0          39                        
+                        0                   0          1                                        1                                   N                ENABLED            4 16/01/24 NO               N N 
+NO  DEFAULT DISABLED YES NO                  DISABLED YES                                DISABLED DISABLED NO                                                                                           
+                                                                                                                                                                                                        
+ADRIAN                         D3                             USERS                                                                                        VALID            10                     1    
+       255          65536                       1  2147483645                                         YES N          6          5            0          0          0          20                        
+                        0                   0          1                                        1                                   N                ENABLED            6 13/01/24 NO               N N 
+NO  DEFAULT DISABLED YES NO                  DISABLED YES                                DISABLED DISABLED NO                                                                                           
+                                                                                                                                                                                                        
+ADRIAN                         M3                             USERS                                                                                        VALID            10                     1    
+       255          65536                       1  2147483645                                         YES N          3          5            0          0          0          41                        
+                        0                   0          1                                        1                                   N                ENABLED            3 13/01/24 NO               N N 
+NO  DEFAULT DISABLED YES NO                  DISABLED YES                                DISABLED DISABLED NO                                                                                           
+                                                                                                                                                                                                        
+ADRIAN                         PR0                            USERS                                                                                        VALID            10                     1    
+       255          65536                       1  2147483645                                         YES N          0          0            0          0          0           0                        
+                        0                   0          1                                        1                                   N                ENABLED            0 13/01/24 NO               N N 
+NO  DEFAULT DISABLED YES NO                  DISABLED YES                                DISABLED DISABLED NO                                                                                           
+                                                                                                                                                                                                        
+ADRIAN                         W0R                            USERS                                                                                        VALID            10                     1    
+       255          65536                       1  2147483645                                         YES N          0          0            0          0          0           0                        
+                        0                   0          1                                        1                                   N                ENABLED            0 13/01/24 NO               N N 
+NO  DEFAULT DISABLED YES NO                  DISABLED YES                                DISABLED DISABLED NO                                                                                           
+                                                                                                                                                                                                        
+ADRIAN                         MI_PRIMERA_TABLA               USERS                                                                                        VALID            10                     1    
+       255          65536                       1  2147483645                                         YES N                                                                                             
+                                                       1                                        1                                   N                ENABLED                       NO               N N 
+NO  DEFAULT DISABLED NO  NO                  DISABLED YES                                DISABLED DISABLED NO                                                                                           
+                                                                                                                                                                                                        
+ADRIAN                         EJEMPLOEMPLEADOS               USERS                                                                                        VALID            10                     1    
+       255          65536                       1  2147483645                                         YES N                                                                                             
+                                                       1                                        1                                   N                ENABLED                       NO               N N 
+NO  DEFAULT DISABLED NO  NO                  DISABLED YES                                DISABLED DISABLED NO                                                                                           
+                                                                                                                                                                                                        
+ADRIAN                         VISITANTES                     USERS                                                                                        VALID            10                     1    
+       255          65536                       1  2147483645                                         YES N         10          5            0          0          0          49                        
+                        0                   0          1                                        1                                   N                ENABLED           10 14/02/24 NO               N N 
+NO  DEFAULT DISABLED YES NO                  DISABLED YES                                DISABLED DISABLED NO                                                                                           
+                                                                                                                                                                                                        
+ADRIAN                         LIBROS                         USERS                                                                                        VALID            10                     1    
+       255          65536                       1  2147483645                                         YES N         12          5            0          0          0          43                        
+                        0                   0          1                                        1                                   N                ENABLED           12 14/02/24 NO               N N 
+NO  DEFAULT DISABLED YES NO                  DISABLED YES                                DISABLED DISABLED NO                                                                                           
+                                                                                                                                                                                                        
+ADRIAN                         PERSONAS                       USERS                                                                                        VALID            10                     1    
+       255          65536                       1  2147483645                                         YES N         11          5            0          0          0          52                        
+                        0                   0          1                                        1                                   N                ENABLED           11 25/01/24 NO               N N 
+NO  DEFAULT DISABLED YES NO                  DISABLED YES                                DISABLED DISABLED NO                                                                                           
+                                                                                                                                                                                                        
+ADRIAN                         ALUMNOS2                       USERS                                                                                        VALID            10                     1    
+       255          65536                       1  2147483645                                         YES N         11          5            0          0          0          77                        
+                        0                   0          1                                        1                                   N                ENABLED           11 25/01/24 NO               N N 
+NO  DEFAULT DISABLED YES NO                  DISABLED YES                                DISABLED DISABLED NO                                                                                           
+                                                                                                                                                                                                        
+ADRIAN                         DEPART                         USERS                                                                                        VALID            10                     1    
+       255          65536                       1  2147483645                                         YES N          5          5            0          0          0          20                        
+                        0                   0          1                                        1                                   N                ENABLED            5 26/01/24 NO               N N 
+NO  DEFAULT DISABLED YES NO                  DISABLED YES                                DISABLED DISABLED NO                                                                                           
+                                                                                                                                                                                                        
+ADRIAN                         EMPLE                          USERS                                                                                        VALID            10                     1    
+       255          65536                       1  2147483645                                         YES N         14          5            0          0          0          40                        
+                        0                   0          1                                        1                                   N                ENABLED           14 26/01/24 NO               N N 
+NO  DEFAULT DISABLED YES NO                  DISABLED YES                                DISABLED DISABLED NO                                                                                           
+                                                                                                                                                                                                        
+ADRIAN                         NOTAS_ALUMNOS                  USERS                                                                                        VALID            10                     1    
+       255          65536                       1  2147483645                                         YES N          5          5            0          0          0          32                        
+                        0                   0          1                                        1                                   N                ENABLED            5 26/01/24 NO               N N 
+NO  DEFAULT DISABLED YES NO                  DISABLED YES                                DISABLED DISABLED NO                                                                                           
+                                                                                                                                                                                                        
+ADRIAN                         LIBRERIA                       USERS                                                                                        VALID            10                     1    
+       255          65536                       1  2147483645                                         YES N         11          5            0          0          0          21                        
+                        0                   0          1                                        1                                   N                ENABLED           11 26/01/24 NO               N N 
+NO  DEFAULT DISABLED YES NO                  DISABLED YES                                DISABLED DISABLED NO                                                                                           
+                                                                                                                                                                                                        
+ADRIAN                         ALUMNOS                        USERS                                                                                        VALID            10                     1    
+       255          65536                       1  2147483645                                         YES N          3          5            0          0          0          64                        
+                        0                   0          1                                        1                                   N                ENABLED            3 26/01/24 NO               N N 
+NO  DEFAULT DISABLED YES NO                  DISABLED YES                                DISABLED DISABLED NO                                                                                           
+                                                                                                                                                                                                        
+ADRIAN                         ASIGNATURAS                    USERS                                                                                        VALID            10                     1    
+       255          65536                       1  2147483645                                         YES N          7          5            0          0          0          17                        
+
+OWNER                          TABLE_NAME                     TABLESPACE_NAME                CLUSTER_NAME                   IOT_NAME                       STATUS     PCT_FREE   PCT_USED  INI_TRANS    
+------------------------------ ------------------------------ ------------------------------ ------------------------------ ------------------------------ -------- ---------- ---------- ----------    
+ MAX_TRANS INITIAL_EXTENT NEXT_EXTENT MIN_EXTENTS MAX_EXTENTS PCT_INCREASE  FREELISTS FREELIST_GROUPS LOG B   NUM_ROWS     BLOCKS EMPTY_BLOCKS  AVG_SPACE  CHAIN_CNT AVG_ROW_LEN                        
+---------- -------------- ----------- ----------- ----------- ------------ ---------- --------------- --- - ---------- ---------- ------------ ---------- ---------- -----------                        
+AVG_SPACE_FREELIST_BLOCKS NUM_FREELIST_BLOCKS DEGREE                                   INSTANCES                                CACHE                TABLE_LO SAMPLE_SIZE LAST_ANA PAR IOT_TYPE     T S 
+------------------------- ------------------- ---------------------------------------- ---------------------------------------- -------------------- -------- ----------- -------- --- ------------ - - 
+NES BUFFER_ ROW_MOVE GLO USE DURATION        SKIP_COR MON CLUSTER_OWNER                  DEPENDEN COMPRESS DRO                                                                                          
+--- ------- -------- --- --- --------------- -------- --- ------------------------------ -------- -------- ---                                                                                          
+                        0                   0          1                                        1                                   N                ENABLED            7 26/01/24 NO               N N 
+NO  DEFAULT DISABLED YES NO                  DISABLED YES                                DISABLED DISABLED NO                                                                                           
+                                                                                                                                                                                                        
+ADRIAN                         NOTAS                          USERS                                                                                        VALID            10                     1    
+       255          65536                       1  2147483645                                         YES N         11          5            0          0          0          14                        
+                        0                   0          1                                        1                                   N                ENABLED           11 26/01/24 NO               N N 
+NO  DEFAULT DISABLED YES NO                  DISABLED YES                                DISABLED DISABLED NO                                                                                           
+                                                                                                                                                                                                        
+
+78 filas seleccionadas.
+
+SQL> select table_name from user_tables;
+
+TABLE_NAME                                                                                                                                                                                              
+------------------------------                                                                                                                                                                          
+EQUIPOS                                                                                                                                                                                                 
+ESTADIOS                                                                                                                                                                                                
+KK                                                                                                                                                                                                      
+TRATAR                                                                                                                                                                                                  
+MEDICO                                                                                                                                                                                                  
+PACIENTE                                                                                                                                                                                                
+D3                                                                                                                                                                                                      
+M3                                                                                                                                                                                                      
+PR0                                                                                                                                                                                                     
+W0R                                                                                                                                                                                                     
+MI_PRIMERA_TABLA                                                                                                                                                                                        
+EJEMPLOEMPLEADOS                                                                                                                                                                                        
+VISITANTES                                                                                                                                                                                              
+LIBROS                                                                                                                                                                                                  
+PERSONAS                                                                                                                                                                                                
+ALUMNOS2                                                                                                                                                                                                
+DEPART                                                                                                                                                                                                  
+EMPLE                                                                                                                                                                                                   
+NOTAS_ALUMNOS                                                                                                                                                                                           
+LIBRERIA                                                                                                                                                                                                
+ALUMNOS                                                                                                                                                                                                 
+ASIGNATURAS                                                                                                                                                                                             
+NOTAS                                                                                                                                                                                                   
+
+23 filas seleccionadas.
+
+SQL> create table ejemploUsuario (
+  2  id_usuario int,
+  3  ;
+
+*
+ERROR en línea 3:
+ORA-00904: : identificador no válido 
+
+
+SQL> create table articulos(
+  2    codigo number(5),
+  3    nombre varchar2(20),
+  4    descripcion varchar2(30),
+  5    precio number(7,2)
+  6   );
+
+Tabla creada.
+
+SQL> 
+SQL>  insert into articulos values (1,'impresora','Epson Stylus C45',400.80);
+
+1 fila creada.
+
+SQL>  insert into articulos values (2,'impresora','Epson Stylus C85',500);
+
+1 fila creada.
+
+SQL>  insert into articulos values (3,'monitor','Samsung 14',800);
+
+1 fila creada.
+
+SQL>  insert into articulos values (4,'teclado','ingles Biswal',100);
+
+1 fila creada.
+
+SQL>  insert into articulos values (5,'teclado','espa¤ol Biswal',90);
+
+1 fila creada.
+
+SQL>  insert into articulos values (6, 'mouse', 'Genius',20);
+
+1 fila creada.
+
+SQL>  insert into articulos values (7, 'mouse','teclado blanco', 30);
+
+1 fila creada.
+
+SQL>  insert into articulos values (8, 'Computadora','Dell', 2000);
+
+1 fila creada.
+
+SQL> select * from articulos;
+
+    CODIGO NOMBRE               DESCRIPCION                        PRECIO                                                                                                                               
+---------- -------------------- ------------------------------ ----------                                                                                                                               
+         1 impresora            Epson Stylus C45                    400,8                                                                                                                               
+         2 impresora            Epson Stylus C85                      500                                                                                                                               
+         3 monitor              Samsung 14                            800                                                                                                                               
+         4 teclado              ingles Biswal                         100                                                                                                                               
+         5 teclado              espa¤ol Biswal                         90                                                                                                                               
+         6 mouse                Genius                                 20                                                                                                                               
+         7 mouse                teclado blanco                         30                                                                                                                               
+         8 Computadora          Dell                                 2000                                                                                                                               
+
+8 filas seleccionadas.
+
+SQL> select * from articulos where nombre = 'impresora';
+
+    CODIGO NOMBRE               DESCRIPCION                        PRECIO                                                                                                                               
+---------- -------------------- ------------------------------ ----------                                                                                                                               
+         1 impresora            Epson Stylus C45                    400,8                                                                                                                               
+         2 impresora            Epson Stylus C85                      500                                                                                                                               
+
+SQL> select nombre,descripcion from articulos;
+
+NOMBRE               DESCRIPCION                                                                                                                                                                        
+-------------------- ------------------------------                                                                                                                                                     
+impresora            Epson Stylus C45                                                                                                                                                                   
+impresora            Epson Stylus C85                                                                                                                                                                   
+monitor              Samsung 14                                                                                                                                                                         
+teclado              ingles Biswal                                                                                                                                                                      
+teclado              espa¤ol Biswal                                                                                                                                                                     
+mouse                Genius                                                                                                                                                                             
+mouse                teclado blanco                                                                                                                                                                     
+Computadora          Dell                                                                                                                                                                               
+
+8 filas seleccionadas.
+
+SQL> select nombre,descripcion from articulos where nombre = 'mouse';
+
+NOMBRE               DESCRIPCION                                                                                                                                                                        
+-------------------- ------------------------------                                                                                                                                                     
+mouse                Genius                                                                                                                                                                             
+mouse                teclado blanco                                                                                                                                                                     
+
+SQL> select * from articulos where nombre = 'mouse';
+
+    CODIGO NOMBRE               DESCRIPCION                        PRECIO                                                                                                                               
+---------- -------------------- ------------------------------ ----------                                                                                                                               
+         6 mouse                Genius                                 20                                                                                                                               
+         7 mouse                teclado blanco                         30                                                                                                                               
+
+SQL> select * from articulos where nombre != 'mouse';
+
+    CODIGO NOMBRE               DESCRIPCION                        PRECIO                                                                                                                               
+---------- -------------------- ------------------------------ ----------                                                                                                                               
+         1 impresora            Epson Stylus C45                    400,8                                                                                                                               
+         2 impresora            Epson Stylus C85                      500                                                                                                                               
+         3 monitor              Samsung 14                            800                                                                                                                               
+         4 teclado              ingles Biswal                         100                                                                                                                               
+         5 teclado              espa¤ol Biswal                         90                                                                                                                               
+         8 Computadora          Dell                                 2000                                                                                                                               
+
+6 filas seleccionadas.
+
+SQL> select * from articulos where precio > 100;
+
+    CODIGO NOMBRE               DESCRIPCION                        PRECIO                                                                                                                               
+---------- -------------------- ------------------------------ ----------                                                                                                                               
+         1 impresora            Epson Stylus C45                    400,8                                                                                                                               
+         2 impresora            Epson Stylus C85                      500                                                                                                                               
+         3 monitor              Samsung 14                            800                                                                                                                               
+         8 Computadora          Dell                                 2000                                                                                                                               
+
+SQL> select * from articulos where precio < 100;
+
+    CODIGO NOMBRE               DESCRIPCION                        PRECIO                                                                                                                               
+---------- -------------------- ------------------------------ ----------                                                                                                                               
+         5 teclado              espa¤ol Biswal                         90                                                                                                                               
+         6 mouse                Genius                                 20                                                                                                                               
+         7 mouse                teclado blanco                         30                                                                                                                               
+
+SQL> select * from articulos where precio >= 100;
+
+    CODIGO NOMBRE               DESCRIPCION                        PRECIO                                                                                                                               
+---------- -------------------- ------------------------------ ----------                                                                                                                               
+         1 impresora            Epson Stylus C45                    400,8                                                                                                                               
+         2 impresora            Epson Stylus C85                      500                                                                                                                               
+         3 monitor              Samsung 14                            800                                                                                                                               
+         4 teclado              ingles Biswal                         100                                                                                                                               
+         8 Computadora          Dell                                 2000                                                                                                                               
+
+SQL> select * from articulos where precio <= 100;
+
+    CODIGO NOMBRE               DESCRIPCION                        PRECIO                                                                                                                               
+---------- -------------------- ------------------------------ ----------                                                                                                                               
+         4 teclado              ingles Biswal                         100                                                                                                                               
+         5 teclado              espa¤ol Biswal                         90                                                                                                                               
+         6 mouse                Genius                                 20                                                                                                                               
+         7 mouse                teclado blanco                         30                                                                                                                               
+
+SQL>  create table agenda(
+  2    apellido varchar2(30),
+  3    nombre varchar2(20),
+  4    domicilio varchar2(30),
+  5    telefono varchar2(11)
+  6   );
+
+Tabla creada.
+
+SQL> 
+SQL>  insert into agenda(apellido,nombre,domicilio,telefono) values
+  2     ('Alvarez','Alberto','Colon 123','4234567');
+
+1 fila creada.
+
+SQL>  insert into agenda(apellido,nombre,domicilio,telefono) values
+  2     ('Juarez','Juan','Avellaneda 135','4458787');
+
+1 fila creada.
+
+SQL>  insert into agenda(apellido,nombre,domicilio,telefono) values
+  2     ('Lopez','Maria','Urquiza 333','4545454');
+
+1 fila creada.
+
+SQL>  insert into agenda(apellido,nombre,domicilio,telefono) values
+  2     ('Lopez','Jose','Urquiza 333','4545454');
+
+1 fila creada.
+
+SQL>  insert into agenda(apellido,nombre,domicilio,telefono) values
+  2     ('Salas','Susana','Gral. Paz 1234','4123456');
+
+1 fila creada.
+
+SQL> del from agenda where nombre = 'Juan';
+SP2-0224: número de línea inicial no válido
+SQL> delete from agenda where nombre = 'Juan';
+
+1 fila suprimida.
+
+SQL> select * from agenda;
+
+APELLIDO                       NOMBRE               DOMICILIO                      TELEFONO                                                                                                             
+------------------------------ -------------------- ------------------------------ -----------                                                                                                          
+Alvarez                        Alberto              Colon 123                      4234567                                                                                                              
+Lopez                          Maria                Urquiza 333                    4545454                                                                                                              
+Lopez                          Jose                 Urquiza 333                    4545454                                                                                                              
+Salas                          Susana               Gral. Paz 1234                 4123456                                                                                                              
+
+SQL> delete from agenda;
+
+4 filas suprimidas.
+
+SQL> select table_name from user_tables;
+
+TABLE_NAME                                                                                                                                                                                              
+------------------------------                                                                                                                                                                          
+EQUIPOS                                                                                                                                                                                                 
+ESTADIOS                                                                                                                                                                                                
+KK                                                                                                                                                                                                      
+TRATAR                                                                                                                                                                                                  
+MEDICO                                                                                                                                                                                                  
+PACIENTE                                                                                                                                                                                                
+D3                                                                                                                                                                                                      
+M3                                                                                                                                                                                                      
+PR0                                                                                                                                                                                                     
+W0R                                                                                                                                                                                                     
+MI_PRIMERA_TABLA                                                                                                                                                                                        
+EJEMPLOEMPLEADOS                                                                                                                                                                                        
+ARTICULOS                                                                                                                                                                                               
+AGENDA                                                                                                                                                                                                  
+VISITANTES                                                                                                                                                                                              
+LIBROS                                                                                                                                                                                                  
+PERSONAS                                                                                                                                                                                                
+ALUMNOS2                                                                                                                                                                                                
+DEPART                                                                                                                                                                                                  
+EMPLE                                                                                                                                                                                                   
+NOTAS_ALUMNOS                                                                                                                                                                                           
+LIBRERIA                                                                                                                                                                                                
+ALUMNOS                                                                                                                                                                                                 
+ASIGNATURAS                                                                                                                                                                                             
+NOTAS                                                                                                                                                                                                   
+
+25 filas seleccionadas.
+
+SQL> drop table agenda;
+
+Tabla borrada.
+
+SQL> select table_name from user_tables;
+
+TABLE_NAME                                                                                                                                                                                              
+------------------------------                                                                                                                                                                          
+EQUIPOS                                                                                                                                                                                                 
+ESTADIOS                                                                                                                                                                                                
+KK                                                                                                                                                                                                      
+TRATAR                                                                                                                                                                                                  
+MEDICO                                                                                                                                                                                                  
+PACIENTE                                                                                                                                                                                                
+D3                                                                                                                                                                                                      
+M3                                                                                                                                                                                                      
+PR0                                                                                                                                                                                                     
+W0R                                                                                                                                                                                                     
+MI_PRIMERA_TABLA                                                                                                                                                                                        
+EJEMPLOEMPLEADOS                                                                                                                                                                                        
+ARTICULOS                                                                                                                                                                                               
+VISITANTES                                                                                                                                                                                              
+LIBROS                                                                                                                                                                                                  
+PERSONAS                                                                                                                                                                                                
+ALUMNOS2                                                                                                                                                                                                
+DEPART                                                                                                                                                                                                  
+EMPLE                                                                                                                                                                                                   
+NOTAS_ALUMNOS                                                                                                                                                                                           
+LIBRERIA                                                                                                                                                                                                
+ALUMNOS                                                                                                                                                                                                 
+ASIGNATURAS                                                                                                                                                                                             
+NOTAS                                                                                                                                                                                                   
+
+24 filas seleccionadas.
+
+SQL> update articulos set nombre = 'impresora' where codigo = 8;
+
+1 fila actualizada.
+
+SQL> select * from articulos;
+
+    CODIGO NOMBRE               DESCRIPCION                        PRECIO                                                                                                                               
+---------- -------------------- ------------------------------ ----------                                                                                                                               
+         1 impresora            Epson Stylus C45                    400,8                                                                                                                               
+         2 impresora            Epson Stylus C85                      500                                                                                                                               
+         3 monitor              Samsung 14                            800                                                                                                                               
+         4 teclado              ingles Biswal                         100                                                                                                                               
+         5 teclado              espa¤ol Biswal                         90                                                                                                                               
+         6 mouse                Genius                                 20                                                                                                                               
+         7 mouse                teclado blanco                         30                                                                                                                               
+         8 impresora            Dell                                 2000                                                                                                                               
+
+8 filas seleccionadas.
+
+SQL> update articulos set nombre = 'impresora', precio = '500' where codigo = 3;
+
+1 fila actualizada.
+
+SQL> select * from articulos;
+
+    CODIGO NOMBRE               DESCRIPCION                        PRECIO                                                                                                                               
+---------- -------------------- ------------------------------ ----------                                                                                                                               
+         1 impresora            Epson Stylus C45                    400,8                                                                                                                               
+         2 impresora            Epson Stylus C85                      500                                                                                                                               
+         3 impresora            Samsung 14                            500                                                                                                                               
+         4 teclado              ingles Biswal                         100                                                                                                                               
+         5 teclado              espa¤ol Biswal                         90                                                                                                                               
+         6 mouse                Genius                                 20                                                                                                                               
+         7 mouse                teclado blanco                         30                                                                                                                               
+         8 impresora            Dell                                 2000                                                                                                                               
+
+8 filas seleccionadas.
+
+SQL> desc articulos
+ Nombre                                                                                                            ¿Nulo?   Tipo
+ ----------------------------------------------------------------------------------------------------------------- -------- ----------------------------------------------------------------------------
+ CODIGO                                                                                                                     NUMBER(5)
+ NOMBRE                                                                                                                     VARCHAR2(20)
+ DESCRIPCION                                                                                                                VARCHAR2(30)
+ PRECIO                                                                                                                     NUMBER(7,2)
+
+SQL> update articulos set nombre = 'impresora', precio = 500 where codigo = 3;
+
+1 fila actualizada.
+
+SQL> select * from articulos;
+
+    CODIGO NOMBRE               DESCRIPCION                        PRECIO                                                                                                                               
+---------- -------------------- ------------------------------ ----------                                                                                                                               
+         1 impresora            Epson Stylus C45                    400,8                                                                                                                               
+         2 impresora            Epson Stylus C85                      500                                                                                                                               
+         3 impresora            Samsung 14                            500                                                                                                                               
+         4 teclado              ingles Biswal                         100                                                                                                                               
+         5 teclado              espa¤ol Biswal                         90                                                                                                                               
+         6 mouse                Genius                                 20                                                                                                                               
+         7 mouse                teclado blanco                         30                                                                                                                               
+         8 impresora            Dell                                 2000                                                                                                                               
+
+8 filas seleccionadas.
+
+SQL> update articulos set precio = 1000;
+
+8 filas actualizadas.
+
+SQL> select * from articulos;
+
+    CODIGO NOMBRE               DESCRIPCION                        PRECIO                                                                                                                               
+---------- -------------------- ------------------------------ ----------                                                                                                                               
+         1 impresora            Epson Stylus C45                     1000                                                                                                                               
+         2 impresora            Epson Stylus C85                     1000                                                                                                                               
+         3 impresora            Samsung 14                           1000                                                                                                                               
+         4 teclado              ingles Biswal                        1000                                                                                                                               
+         5 teclado              espa¤ol Biswal                       1000                                                                                                                               
+         6 mouse                Genius                               1000                                                                                                                               
+         7 mouse                teclado blanco                       1000                                                                                                                               
+         8 impresora            Dell                                 1000                                                                                                                               
+
+8 filas seleccionadas.
+
+SQL> create table libros(
+  2  titulo varchar2(30) not null,
+  3  autor varchar2(20) not null,
+  4  editorial varchar2(15) null,
+  5  precio number(5,2)
+  6  );
+create table libros(
+             *
+ERROR en línea 1:
+ORA-00955: este nombre ya lo está utilizando otro objeto existente 
+
+
+SQL> select table_name from user_tables;
+
+TABLE_NAME                                                                                                                                                                                              
+------------------------------                                                                                                                                                                          
+EQUIPOS                                                                                                                                                                                                 
+ESTADIOS                                                                                                                                                                                                
+KK                                                                                                                                                                                                      
+TRATAR                                                                                                                                                                                                  
+MEDICO                                                                                                                                                                                                  
+PACIENTE                                                                                                                                                                                                
+D3                                                                                                                                                                                                      
+M3                                                                                                                                                                                                      
+PR0                                                                                                                                                                                                     
+W0R                                                                                                                                                                                                     
+MI_PRIMERA_TABLA                                                                                                                                                                                        
+EJEMPLOEMPLEADOS                                                                                                                                                                                        
+ARTICULOS                                                                                                                                                                                               
+VISITANTES                                                                                                                                                                                              
+LIBROS                                                                                                                                                                                                  
+PERSONAS                                                                                                                                                                                                
+ALUMNOS2                                                                                                                                                                                                
+DEPART                                                                                                                                                                                                  
+EMPLE                                                                                                                                                                                                   
+NOTAS_ALUMNOS                                                                                                                                                                                           
+LIBRERIA                                                                                                                                                                                                
+ALUMNOS                                                                                                                                                                                                 
+ASIGNATURAS                                                                                                                                                                                             
+NOTAS                                                                                                                                                                                                   
+
+24 filas seleccionadas.
+
+SQL> drop table libros;
+
+Tabla borrada.
+
+SQL> create table libros(
+  2    2  titulo varchar2(30) not null,
+  3    3  autor varchar2(20) not null,
+  4    4  editorial varchar2(15) null,
+  5    5  precio number(5,2)
+  6    6  );
+  2  titulo varchar2(30) not null,
+  *
+ERROR en línea 2:
+ORA-00904: : identificador no válido 
+
+
+SQL> create table libros(
+  2    titulo varchar2(30) not null,
+  3    autor varchar2(20) not null,
+  4    editorial varchar2(15) null,
+  5    precio number(5,2)
+  6    );
+
+Tabla creada.
+
+SQL> insert into libros values ('Mein Kampf', 'Hitler', 'La casa del libro', null);
+insert into libros values ('Mein Kampf', 'Hitler', 'La casa del libro', null)
+                                                   *
+ERROR en línea 1:
+ORA-12899: el valor es demasiado grande para la columna "ADRIAN"."LIBROS"."EDITORIAL" (real: 17, máximo: 15) 
+
+
+SQL> insert into libros values ('Mein Kampf', 'Hitler', 'pex', null);
+
+1 fila creada.
+
+SQL> select * from libros;
+
+TITULO                         AUTOR                EDITORIAL           PRECIO                                                                                                                          
+------------------------------ -------------------- --------------- ----------                                                                                                                          
+Mein Kampf                     Hitler               pex                                                                                                                                                 
+
+SQL> insert into libros values ('null', 'Bukowski', 'e', 300.55);
+
+1 fila creada.
+
+SQL> insert into libros values (null, 'Bukowski', 'e', 300.55);
+insert into libros values (null, 'Bukowski', 'e', 300.55)
+                           *
+ERROR en línea 1:
+ORA-01400: no se puede realizar una inserción NULL en ("ADRIAN"."LIBROS"."TITULO") 
+
+
+SQL> update libros set 'Maravilla' where titulo = 'null';
+update libros set 'Maravilla' where titulo = 'null'
+                  *
+ERROR en línea 1:
+ORA-01747: especificación no válida de usuario.tabla.columna, tabla.columna o columna 
+
+
+SQL> update libros set titulo='Maravilla' where autor = 'Bukowski';
+
+1 fila actualizada.
+
+SQL> select * from libros;
+
+TITULO                         AUTOR                EDITORIAL           PRECIO                                                                                                                          
+------------------------------ -------------------- --------------- ----------                                                                                                                          
+Mein Kampf                     Hitler               pex                                                                                                                                                 
+Maravilla                      Bukowski             e                   300,55                                                                                                                          
+
+SQL> insert into libros values ('Quijote', 'Cervantes', 'Lala', 0);
+
+1 fila creada.
+
+SQL> select * from libros;
+
+TITULO                         AUTOR                EDITORIAL           PRECIO                                                                                                                          
+------------------------------ -------------------- --------------- ----------                                                                                                                          
+Mein Kampf                     Hitler               pex                                                                                                                                                 
+Maravilla                      Bukowski             e                   300,55                                                                                                                          
+Quijote                        Cervantes            Lala                     0                                                                                                                          
+
+SQL>  create table medicamentos(
+  2    codigo number(5) not null,
+  3    nombre varchar2(20) not null,
+  4    laboratorio varchar2(20),
+  5    precio number(5,2),
+  6    cantidad number(3,0) not null
+  7   );
+
+Tabla creada.
+
+SQL> 
+SQL>  insert into medicamentos (codigo,nombre,laboratorio,precio,cantidad)
+  2    values(1,'Sertal gotas',null,null,100);
+
+1 fila creada.
+
+SQL>  insert into medicamentos (codigo,nombre,laboratorio,precio,cantidad)
+  2    values(2,'Sertal compuesto',null,8.90,150);
+
+1 fila creada.
+
+SQL>  insert into medicamentos (codigo,nombre,laboratorio,precio,cantidad)
+  2    values(3,'Buscapina','Roche',null,200);
+
+1 fila creada.
+
+SQL> select * from medicamentos;
+
+    CODIGO NOMBRE               LABORATORIO              PRECIO   CANTIDAD                                                                                                                              
+---------- -------------------- -------------------- ---------- ----------                                                                                                                              
+         1 Sertal gotas                                                100                                                                                                                              
+         2 Sertal compuesto                                 8,9        150                                                                                                                              
+         3 Buscapina            Roche                                  200                                                                                                                              
+
+SQL> select * from medicamentos where laboratorio is null;
+
+    CODIGO NOMBRE               LABORATORIO              PRECIO   CANTIDAD                                                                                                                              
+---------- -------------------- -------------------- ---------- ----------                                                                                                                              
+         1 Sertal gotas                                                100                                                                                                                              
+         2 Sertal compuesto                                 8,9        150                                                                                                                              
+
+SQL> select * from medicamentos where precio is null;
+
+    CODIGO NOMBRE               LABORATORIO              PRECIO   CANTIDAD                                                                                                                              
+---------- -------------------- -------------------- ---------- ----------                                                                                                                              
+         1 Sertal gotas                                                100                                                                                                                              
+         3 Buscapina            Roche                                  200                                                                                                                              
+
+SQL> select * from medicamentes where laboratorio is not null;
+select * from medicamentes where laboratorio is not null
+              *
+ERROR en línea 1:
+ORA-00942: la tabla o vista no existe 
+
+
+SQL> select * from medicamentos where laboratorio is not null;
+
+    CODIGO NOMBRE               LABORATORIO              PRECIO   CANTIDAD                                                                                                                              
+---------- -------------------- -------------------- ---------- ----------                                                                                                                              
+         3 Buscapina            Roche                                  200                                                                                                                              
+
+SQL> select * from medicamentos where precio is not null;
+
+    CODIGO NOMBRE               LABORATORIO              PRECIO   CANTIDAD                                                                                                                              
+---------- -------------------- -------------------- ---------- ----------                                                                                                                              
+         2 Sertal compuesto                                 8,9        150                                                                                                                              
+
+SQL> select * from ejemploEmpleado;
+select * from ejemploEmpleado
+              *
+ERROR en línea 1:
+ORA-00942: la tabla o vista no existe 
+
+
+SQL> select * from ejemploEmpleados;
+
+ID_EMPLEADO NOMBRE               DIRECCION                                          ID_DOCUMEN     SUELDO FECHA_NA                                                                                      
+----------- -------------------- -------------------------------------------------- ---------- ---------- --------                                                                                      
+          3 Adrian               Avenida Calabria 12                                122345           4000 10/03/98                                                                                      
+
+SQL> ALTER TABLE ejemploEmpleado
+  2  ADD CONSTRAINT ID_EMPLEADO PRIMARY KEY (ID_EMPLEADO);
+ALTER TABLE ejemploEmpleado
+*
+ERROR en línea 1:
+ORA-00942: la tabla o vista no existe 
+
+
+SQL> ALTER TABLE ejemploEmpleados
+  2  ADD CONSTRAINT ID_EMPLEADO PRIMARY KEY (ID_EMPLEADO);
+
+Tabla modificada.
+
+SQL> select * from ejemploEmpleados;
+
+ID_EMPLEADO NOMBRE               DIRECCION                                          ID_DOCUMEN     SUELDO FECHA_NA                                                                                      
+----------- -------------------- -------------------------------------------------- ---------- ---------- --------                                                                                      
+          3 Adrian               Avenida Calabria 12                                122345           4000 10/03/98                                                                                      
+
+SQL> desc ejemploEmpleados;
+ Nombre                                                                                                            ¿Nulo?   Tipo
+ ----------------------------------------------------------------------------------------------------------------- -------- ----------------------------------------------------------------------------
+ ID_EMPLEADO                                                                                                       NOT NULL NUMBER(38)
+ NOMBRE                                                                                                                     VARCHAR2(20)
+ DIRECCION                                                                                                                  VARCHAR2(50)
+ ID_DOCUMENTO                                                                                                               VARCHAR2(10)
+ SUELDO                                                                                                                     NUMBER(6,2)
+ FECHA_NACIMIENTO                                                                                                           DATE
+
+SQL> SELECT COLUMN_NAME
+  2  FROM ALL_CONS_COLUMNS
+  3  WHERE TABLE_NAME = 'ejemploEmpleados' AND CONSTRAINT_NAME = 'ID_EMPLEADO';
+
+ninguna fila seleccionada
+
+SQL> SELECT CONSTRAINT_NAME, CONSTRAINT_TYPE
+  2  FROM ALL_CONSTRAINTS
+  3  WHERE TABLE_NAME = 'ejemploEmpleados' AND CONSTRAINT_NAME = 'ID_EMPLEADO';
+
+ninguna fila seleccionada
+
+SQL> insert into ejemploEmpleados values(3,'Adrian');
+insert into ejemploEmpleados values(3,'Adrian')
+            *
+ERROR en línea 1:
+ORA-00947: no hay suficientes valores 
+
+
+SQL> insert into ejemploEmpleados values(4,'Adrian');
+insert into ejemploEmpleados values(4,'Adrian')
+            *
+ERROR en línea 1:
+ORA-00947: no hay suficientes valores 
+
+
+SQL> insert into ejemploEmpleados values(3,'Adrian',null,null,null,null);
+insert into ejemploEmpleados values(3,'Adrian',null,null,null,null)
+*
+ERROR en línea 1:
+ORA-00001: restricción única (ADRIAN.ID_EMPLEADO) violada 
+
+
+SQL> insert into ejemploEmpleados values(4,'Adrian',null,null,null,null);
+
+1 fila creada.
+
+SQL> exit

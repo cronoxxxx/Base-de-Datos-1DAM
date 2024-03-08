@@ -1,0 +1,14 @@
+spool "C:\Users\madrid\Desktop\spool\9enero2024"
+rem para conectarme
+connect adrian
+contraseña adrian
+
+
+select * from proyectos;
+
+select emp_no from m3;
+
+insert into trabajar values (7369, 001)
+
+
+

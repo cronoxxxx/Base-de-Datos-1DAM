@@ -1,0 +1,211 @@
+SQL> desc all_tables
+ Nombre                                    ¿Nulo?   Tipo
+ ----------------------------------------- -------- ----------------------------
+ OWNER                                     NOT NULL VARCHAR2(30)
+ TABLE_NAME                                NOT NULL VARCHAR2(30)
+ TABLESPACE_NAME                                    VARCHAR2(30)
+ CLUSTER_NAME                                       VARCHAR2(30)
+ IOT_NAME                                           VARCHAR2(30)
+ STATUS                                             VARCHAR2(8)
+ PCT_FREE                                           NUMBER
+ PCT_USED                                           NUMBER
+ INI_TRANS                                          NUMBER
+ MAX_TRANS                                          NUMBER
+ INITIAL_EXTENT                                     NUMBER
+ NEXT_EXTENT                                        NUMBER
+ MIN_EXTENTS                                        NUMBER
+ MAX_EXTENTS                                        NUMBER
+ PCT_INCREASE                                       NUMBER
+ FREELISTS                                          NUMBER
+ FREELIST_GROUPS                                    NUMBER
+ LOGGING                                            VARCHAR2(3)
+ BACKED_UP                                          VARCHAR2(1)
+ NUM_ROWS                                           NUMBER
+ BLOCKS                                             NUMBER
+ EMPTY_BLOCKS                                       NUMBER
+ AVG_SPACE                                          NUMBER
+ CHAIN_CNT                                          NUMBER
+ AVG_ROW_LEN                                        NUMBER
+ AVG_SPACE_FREELIST_BLOCKS                          NUMBER
+ NUM_FREELIST_BLOCKS                                NUMBER
+ DEGREE                                             VARCHAR2(40)
+ INSTANCES                                          VARCHAR2(40)
+ CACHE                                              VARCHAR2(20)
+ TABLE_LOCK                                         VARCHAR2(8)
+ SAMPLE_SIZE                                        NUMBER
+ LAST_ANALYZED                                      DATE
+ PARTITIONED                                        VARCHAR2(3)
+ IOT_TYPE                                           VARCHAR2(12)
+ TEMPORARY                                          VARCHAR2(1)
+ SECONDARY                                          VARCHAR2(1)
+ NESTED                                             VARCHAR2(3)
+ BUFFER_POOL                                        VARCHAR2(7)
+ ROW_MOVEMENT                                       VARCHAR2(8)
+ GLOBAL_STATS                                       VARCHAR2(3)
+ USER_STATS                                         VARCHAR2(3)
+ DURATION                                           VARCHAR2(15)
+ SKIP_CORRUPT                                       VARCHAR2(8)
+ MONITORING                                         VARCHAR2(3)
+ CLUSTER_OWNER                                      VARCHAR2(30)
+ DEPENDENCIES                                       VARCHAR2(8)
+ COMPRESSION                                        VARCHAR2(8)
+ DROPPED                                            VARCHAR2(3)
+
+SQL> select TABLE_NAME from all_tables;
+
+TABLE_NAME                                                                      
+------------------------------                                                  
+DUAL                                                                            
+SYSTEM_PRIVILEGE_MAP                                                            
+TABLE_PRIVILEGE_MAP                                                             
+STMT_AUDIT_OPTION_MAP                                                           
+AUDIT_ACTIONS                                                                   
+DEF$_TEMP$LOB                                                                   
+DEPART                                                                          
+DEPAR                                                                           
+DEPARTAMENT                                                                     
+DEP                                                                             
+EMPLE                                                                           
+
+TABLE_NAME                                                                      
+------------------------------                                                  
+EQUIPOS                                                                         
+ESTADIOS                                                                        
+HELP                                                                            
+DR$OBJECT_ATTRIBUTE                                                             
+DR$POLICY_TAB                                                                   
+DR$NUMBER_SEQUENCE                                                              
+OGIS_SPATIAL_REFERENCE_SYSTEMS                                                  
+OGIS_GEOMETRY_COLUMNS                                                           
+SDO_UNITS_OF_MEASURE                                                            
+SDO_PRIME_MERIDIANS                                                             
+SDO_ELLIPSOIDS                                                                  
+
+TABLE_NAME                                                                      
+------------------------------                                                  
+SDO_DATUMS                                                                      
+SDO_COORD_SYS                                                                   
+SDO_COORD_AXIS_NAMES                                                            
+SDO_COORD_AXES                                                                  
+SDO_COORD_REF_SYS                                                               
+SDO_COORD_OP_METHODS                                                            
+SDO_COORD_OPS                                                                   
+SDO_PREFERRED_OPS_SYSTEM                                                        
+SDO_PREFERRED_OPS_USER                                                          
+SDO_COORD_OP_PATHS                                                              
+SDO_COORD_OP_PARAMS                                                             
+
+TABLE_NAME                                                                      
+------------------------------                                                  
+SDO_COORD_OP_PARAM_USE                                                          
+SDO_COORD_OP_PARAM_VALS                                                         
+SDO_CS_SRS                                                                      
+SDO_PROJECTIONS_OLD_SNAPSHOT                                                    
+SDO_ELLIPSOIDS_OLD_SNAPSHOT                                                     
+SDO_DATUMS_OLD_SNAPSHOT                                                         
+WWV_FLOW_FIELD_TEMPLATES                                                        
+WWV_FLOW_LISTS_OF_VALUES$                                                       
+WWV_FLOW_LIST_OF_VALUES_DATA                                                    
+WWV_FLOW_PATCHES                                                                
+WWV_FLOW_DUAL100                                                                
+
+TABLE_NAME                                                                      
+------------------------------                                                  
+KK                                                                              
+WWV_FLOW_TEMP_TABLE                                                             
+WWV_FLOW_LOV_TEMP                                                               
+SDO_TOPO_DATA$                                                                  
+SDO_TOPO_RELATION_DATA                                                          
+SDO_TOPO_TRANSACT_DATA                                                          
+SDO_TXN_IDX_EXP_UPD_RGN                                                         
+SDO_TXN_IDX_DELETES                                                             
+SDO_TXN_IDX_INSERTS                                                             
+PLAN_TABLE$                                                                     
+IMPDP_STATS                                                                     
+
+TABLE_NAME                                                                      
+------------------------------                                                  
+KU$NOEXP_TAB                                                                    
+OL$NODES                                                                        
+OL$HINTS                                                                        
+OL$                                                                             
+ODCI_WARNINGS$                                                                  
+ODCI_SECOBJ$                                                                    
+WRI$_ADV_ASA_RECO_DATA                                                          
+PSTUBTBL                                                                        
+
+63 filas seleccionadas.
+
+SQL> set linesize 200
+SQL> set pagesize 200
+SQL> select TABLE_NAME from all_tables;
+
+TABLE_NAME                                                                                                                                                                                              
+------------------------------                                                                                                                                                                          
+DUAL                                                                                                                                                                                                    
+SYSTEM_PRIVILEGE_MAP                                                                                                                                                                                    
+TABLE_PRIVILEGE_MAP                                                                                                                                                                                     
+STMT_AUDIT_OPTION_MAP                                                                                                                                                                                   
+AUDIT_ACTIONS                                                                                                                                                                                           
+DEF$_TEMP$LOB                                                                                                                                                                                           
+DEPART                                                                                                                                                                                                  
+DEPAR                                                                                                                                                                                                   
+DEPARTAMENT                                                                                                                                                                                             
+DEP                                                                                                                                                                                                     
+EMPLE                                                                                                                                                                                                   
+EQUIPOS                                                                                                                                                                                                 
+ESTADIOS                                                                                                                                                                                                
+HELP                                                                                                                                                                                                    
+DR$OBJECT_ATTRIBUTE                                                                                                                                                                                     
+DR$POLICY_TAB                                                                                                                                                                                           
+DR$NUMBER_SEQUENCE                                                                                                                                                                                      
+OGIS_SPATIAL_REFERENCE_SYSTEMS                                                                                                                                                                          
+OGIS_GEOMETRY_COLUMNS                                                                                                                                                                                   
+SDO_UNITS_OF_MEASURE                                                                                                                                                                                    
+SDO_PRIME_MERIDIANS                                                                                                                                                                                     
+SDO_ELLIPSOIDS                                                                                                                                                                                          
+SDO_DATUMS                                                                                                                                                                                              
+SDO_COORD_SYS                                                                                                                                                                                           
+SDO_COORD_AXIS_NAMES                                                                                                                                                                                    
+SDO_COORD_AXES                                                                                                                                                                                          
+SDO_COORD_REF_SYS                                                                                                                                                                                       
+SDO_COORD_OP_METHODS                                                                                                                                                                                    
+SDO_COORD_OPS                                                                                                                                                                                           
+SDO_PREFERRED_OPS_SYSTEM                                                                                                                                                                                
+SDO_PREFERRED_OPS_USER                                                                                                                                                                                  
+SDO_COORD_OP_PATHS                                                                                                                                                                                      
+SDO_COORD_OP_PARAMS                                                                                                                                                                                     
+SDO_COORD_OP_PARAM_USE                                                                                                                                                                                  
+SDO_COORD_OP_PARAM_VALS                                                                                                                                                                                 
+SDO_CS_SRS                                                                                                                                                                                              
+SDO_PROJECTIONS_OLD_SNAPSHOT                                                                                                                                                                            
+SDO_ELLIPSOIDS_OLD_SNAPSHOT                                                                                                                                                                             
+SDO_DATUMS_OLD_SNAPSHOT                                                                                                                                                                                 
+WWV_FLOW_FIELD_TEMPLATES                                                                                                                                                                                
+WWV_FLOW_LISTS_OF_VALUES$                                                                                                                                                                               
+WWV_FLOW_LIST_OF_VALUES_DATA                                                                                                                                                                            
+WWV_FLOW_PATCHES                                                                                                                                                                                        
+WWV_FLOW_DUAL100                                                                                                                                                                                        
+KK                                                                                                                                                                                                      
+WWV_FLOW_TEMP_TABLE                                                                                                                                                                                     
+WWV_FLOW_LOV_TEMP                                                                                                                                                                                       
+SDO_TOPO_DATA$                                                                                                                                                                                          
+SDO_TOPO_RELATION_DATA                                                                                                                                                                                  
+SDO_TOPO_TRANSACT_DATA                                                                                                                                                                                  
+SDO_TXN_IDX_EXP_UPD_RGN                                                                                                                                                                                 
+SDO_TXN_IDX_DELETES                                                                                                                                                                                     
+SDO_TXN_IDX_INSERTS                                                                                                                                                                                     
+PLAN_TABLE$                                                                                                                                                                                             
+IMPDP_STATS                                                                                                                                                                                             
+KU$NOEXP_TAB                                                                                                                                                                                            
+OL$NODES                                                                                                                                                                                                
+OL$HINTS                                                                                                                                                                                                
+OL$                                                                                                                                                                                                     
+ODCI_WARNINGS$                                                                                                                                                                                          
+ODCI_SECOBJ$                                                                                                                                                                                            
+WRI$_ADV_ASA_RECO_DATA                                                                                                                                                                                  
+PSTUBTBL                                                                                                                                                                                                
+
+63 filas seleccionadas.
+
+SQL> exit
